@@ -30,10 +30,9 @@
 \usepackage{amsfonts}		% fontes matemáticas 
 %\usepackage{amssymb}		% símbolos 
 \usepackage{multirow}
-\usepackage{xcolor}		% marcações temporárias de revisão (\textcolor{red}{...})
-% Marcação de revisão robusta: use \rev{...} dentro de títulos e \caption,
-% onde {\color{red}...} é quebrado pelo \MakeUppercase da classe.
-\DeclareRobustCommand{\rev}[1]{{\color{red}#1}}
+\usepackage{xcolor}		% cores em tabelas, TikZ e similares
+% Identidade: se algum \rev{...} residual restar, imprime em preto.
+\DeclareRobustCommand{\rev}[1]{#1}
 \usepackage{array}		% colunas p{} com >{\raggedright\arraybackslash} 
 
 % ------------------------------------------------------------------------------
