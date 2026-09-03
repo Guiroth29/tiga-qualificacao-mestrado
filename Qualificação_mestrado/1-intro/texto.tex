@@ -1,0 +1,120 @@
+%=====================================================
+
+% A introdução geral do documento pode ser apresentada através das seguintes seções: Desafio, Motivação, Proposta, Contribuição e Organização do documento (especificando o que será tratado em cada um dos capítulos). O Capítulo 1 não contém subseções\footnote{Ver o Capítulo \ref{cap-exemplos} para comentários e exemplos de subseções.}.
+
+\chapter{Introdução}
+
+\section{Contexto}
+
+A tecnologia está em constante evolução, e seu impacto pode ser sentido em praticamente todos os setores da sociedade. A Inteligência Artificial (IA) refere-se a sistemas computacionais capazes de realizar tarefas que normalmente exigiriam inteligência humana, como reconhecimento de padrões, tomada de decisão e processamento de linguagem natural \citep{russell2016artificial}. Dentro desse campo, a Inteligência Artificial Generativa (IAG) representa um avanço significativo, sendo composta por técnicas capazes de criar novos conteúdos (como textos, imagens, vídeos e áudio) a partir do aprendizado de padrões em grandes volumes de dados.
+
+De forma geral, o funcionamento da IAG envolve o treinamento de modelos em grandes bases de dados, permitindo que aprendam estruturas e características recorrentes. Esse conhecimento pode ser refinado por meio de técnicas como \textit{fine-tuning}, sendo posteriormente utilizado para gerar conteúdos inéditos, muitas vezes com alto grau de realismo e coerência. Diferentes arquiteturas sustentam essas capacidades, incluindo Redes Adversariais Generativas (GANs) \citep{goodfellow2014generative}, Modelos de Difusão \citep{dhariwal2021diffusion} e \textit{Transformers} \citep{vaswani2017attention}.
+
+No contexto do setor audiovisual, essa transformação apresenta-se de maneira particularmente relevante. O audiovisual compreende a criação, produção, distribuição e consumo de conteúdos que combinam imagens e sons para comunicar ideias, narrativas ou experiências sensoriais. Esse campo abrange desde produções cinematográficas e televisivas até conteúdos digitais para internet, publicidade e videoclipes.
+
+Especificamente, este trabalho concentra-se no audiovisual não interativo, ou seja, em conteúdos lineares nos quais o espectador não interfere diretamente na narrativa, como filmes, séries, curtas-metragens e videoclipes. Diferentemente de mídias interativas, como jogos digitais, nesses formatos a progressão narrativa é previamente definida, o que impõe requisitos próprios de coerência temporal, continuidade visual e estrutura narrativa.
+
+Nesse cenário, a IAG vem se consolidando como um dos principais vetores de transformação. Embora técnicas baseadas em aprendizado profundo já fossem objeto de pesquisa desde a proposição das GANs em 2014, foi a partir de 2022 que essas tecnologias passaram a exercer um impacto estrutural, contínuo e visível sobre as práticas criativas, fluxos de produção e modelos de negócio do setor. Modelos recentes possibilitaram a criação de conteúdos com maior velocidade e qualidade visível, tornando a IA uma ferramenta cada vez mais relevante para artistas, cineastas e criadores de conteúdo \citep{karras2020analyzing, dhariwal2021diffusion}.
+
+Esse período recente caracteriza um ponto de inflexão associado à maturação técnica de arquiteturas generativas, em especial os Modelos de Difusão e os Transformers \citep{vaswani2017attention}. Os avanços nessas abordagens permitiram ganhos substanciais em estabilidade, qualidade visual, controle semântico e integração multimodal, superando limitações históricas observadas em arquiteturas anteriores, como a instabilidade no treinamento e a perda de diversidade na geração \citep{rombach2022high}. 
+
+Atualmente, sistemas baseados em IAG são utilizados em diversas etapas da produção audiovisual não interativa. Na pré-produção, destacam-se aplicações em apoio à escrita de roteiros, geração de \textit{storyboards} e previsuais. Na produção e, principalmente, na pós-produção, essas tecnologias são empregadas em tarefas como edição automatizada, geração de efeitos visuais, rotoscopia, correção de cor, síntese de vozes, dublagem e composição de cenas. 
+
+De acordo com \citet{RothAleo2026}, observa-se um crescimento expressivo no número de publicações científicas voltadas à geração, modificação e automação de conteúdos audiovisuais lineares. Esse crescimento não se restringe à pesquisa experimental, mas reflete também a incorporação gradual da IAG em fluxos reais de produção, ainda que, na maioria dos casos, de forma parcial, assistiva ou exploratória.
+
+Apesar da diversidade de aplicações, os estudos indicam que grande parte dessas soluções ainda se concentra em cenários de curta duração, formatos experimentais ou contextos que toleram inconsistências visuais e narrativas \citep{RothAleo2026}. Desafios como coerência temporal, consistência entre cenas e controle narrativo continuam sendo limitações relevantes.
+
+Esse cenário técnico e criativo se desenvolve em paralelo a um processo de forte concentração tecnológica. Um número reduzido de modelos e ferramentas, como Stable Diffusion, GPT-4, Midjourney, CLIP e DALL·E, domina a maior parte das aplicações reportadas na literatura recente. Essa concentração reflete não apenas a complexidade técnica e o custo computacional associados ao treinamento de modelos de larga escala, mas também a crescente dependência de infraestruturas em nuvem e serviços comerciais, o que impõe barreiras econômicas e técnicas à democratização efetiva dessas tecnologias \citep{brown2020language}. 
+
+Além disso, o uso e a massificação dessas ferramentas levantam questões éticas fundamentais. A garantia da transparência, o combate à manipulação de imagens e vídeos, bem como a necessidade de lidar com a disseminação de conteúdos falsos, tornam imprescindível a consolidação de diretrizes e avaliações rigorosas sobre a atuação da IA no setor \citep{capraro2024impact}.
+
+\section{Motivação}
+
+O avanço recente da IAG tem provocado uma transformação significativa no setor audiovisual não interativo, ampliando possibilidades criativas, automatizando processos e reconfigurando fluxos de produção. Esse crescimento acelerado, intensificado a partir de 2022, evidencia não apenas a relevância tecnológica do tema, mas também a necessidade urgente de compreendê-lo de forma sistemática e estruturada.
+
+Apesar do aumento expressivo no volume de publicações científicas, a literatura sobre IAG aplicada ao audiovisual não interativo apresenta-se altamente fragmentada, dispersa e heterogênea. Os estudos concentram-se em diferentes etapas do \textit{pipeline} de produção, utilizam abordagens metodológicas distintas e frequentemente focam em tecnologias ou aplicações específicas de forma isolada. Essa desorganização dificulta a construção de uma visão integrada do campo, limitando a capacidade de identificar padrões, tendências consolidadas e lacunas de pesquisa.
+
+% aqui
+Além disso, como demonstrado por \citet{RothAleo2026}, a rápida evolução dessas tecnologias torna o conhecimento rapidamente obsoleto, exigindo esforços contínuos de atualização e sistematização para acompanhar o ritmo da indústria. Esse cenário evidencia a urgência de um modelo estruturante. No contexto científico, uma taxonomia atua justamente como um sistema formal de classificação que organiza informações, variáveis e ferramentas em categorias hierárquicas e relacionais. Embora propostas taxonômicas recentes comecem a emergir na literatura para classificar estas ferramentas, tais abordagens tendem a restringir-se a aspectos puramente técnicos, como a arquitetura algorítmica, ou a atuar como meros catálogos de aplicações isoladas. A ausência de uma taxonomia que integre, em simultâneo, as capacidades técnicas, a autonomia operacional e as implicações éticas cria um descompasso contínuo entre o desenvolvimento tecnológico e a sua adoção consciente e segura no setor audiovisual.
+
+Adicionalmente, a literatura revela uma ampla diversidade de estratégias de avaliação e métricas, frequentemente sem padronização ou comparabilidade direta. Métricas quantitativas tradicionais, como FID (\textit{Fréchet Inception Distance}), IS (\textit{Inception Score}) e PSNR (\textit{Peak Signal-to-Noise Ratio}), são amplamente utilizadas, mas apresentam limitações reconhecidas para capturar aspectos narrativos, estéticos e criativos fundamentais ao audiovisual não interativo \citep{karras2020analyzing}. Por outro lado, avaliações qualitativas, embora ricas em \textit{insights}, enfrentam limitações de escala, custo e reprodutibilidade, reforçando a necessidade de estruturas mais consistentes para análise.
+
+Somam-se a esses fatores os desafios éticos, profissionais e regulatórios ainda em aberto. Questões relacionadas à transparência, autenticidade, autoria e uso de dados tornam-se cada vez mais relevantes à medida que a IAG se integra aos processos criativos. O impacto sobre trabalhadores do setor, incluindo riscos de substituição, precarização e concentração de poder econômico, intensifica a necessidade de compreensão crítica desse fenômeno \citep{capraro2024impact}. Paralelamente, problemas como viés algorítmico, inconsistência narrativa e indefinições jurídicas sobre direitos autorais configuram um cenário de incerteza que ultrapassa o domínio técnico e afeta diretamente a sustentabilidade do audiovisual \citep{floridi2020gpt3}.
+
+Diante desse contexto, torna-se fundamental organizar, sistematizar e analisar criticamente o conhecimento existente sobre a aplicação da IAG no audiovisual não interativo. Tal esforço é essencial não apenas para consolidar o estado da arte, mas também para orientar pesquisas futuras, apoiar a tomada de decisão por profissionais da indústria e contribuir para o desenvolvimento responsável dessas tecnologias.
+
+\section{Problema de Pesquisa}
+
+Atualmente, o campo depara-se com uma evidente fragmentação. Falta uma articulação clara entre a evolução tecnológica recente, a vasta diversidade de aplicações e os desafios técnicos inerentes à produção, tais como a coerência temporal, a estabilidade dos sistemas e a reprodutibilidade dos resultados gerados. Por se tratar de um campo de pesquisa nascente, a literatura sobre o tema encontra-se dispersa, dificultando sua consolidação e análise estruturada \citep{edmondson2007}. Diante desse cenário de rápida evolução e conhecimento não consolidado, abordagens como o Mapeamento Sistemático \citep{petersen2008systematic} são recomendadas para categorizar as evidências e identificar lacunas de pesquisa.
+
+Este cenário evidencia um profundo descompasso entre o acelerado progresso técnico das ferramentas de IAG e a sistematização das responsabilidades sociotécnicas e implicações ético-sociais. A literatura técnica tende a priorizar aspectos de desempenho e qualidade de geração, enquanto questões como autoria, transparência no uso de dados e vieses algorítmicos permanecem insuficientemente estruturadas \citep{floridi2020gpt3}.
+
+%aqui
+Consequentemente, embora existam esforços iniciais de categorização do uso da IA, prevalece a ausência de um artefacto metodológico validado que cruze as diferentes dimensões da produção. A falta de um modelo que correlacione as exigências técnicas da máquina com o nível de autonomia criativa concedido (atuando como assistente, colaboradora ou geradora autónoma) e os respetivos riscos éticos associados, impede que investigadores e profissionais do setor audiovisual tomem decisões fundamentadas sobre como integrar estas tecnologias de forma responsável nos seus fluxos de trabalho.
+
+Diante desse cenário, estabelece-se a seguinte questão de pesquisa: como desenvolver e validar uma taxonomia multidimensional que organize a integração da IAG no audiovisual não interativo, considerando suas dimensões técnicas, operacionais e éticas?
+
+\section{Objetivo de Pesquisa}
+\label{sec:intro:objetivo}
+
+Para responder ao problema delineado, o principal objetivo deste trabalho é desenvolver e validar uma Taxonomia Multidimensional que organize a integração da IAG no setor audiovisual não interativo, artefato aqui denominado TIGA (\textit{Taxonomy for Integrating GenAI in Audiovisual}). Mais do que uma simples lista de ferramentas, procura-se consolidar as potencialidades tecnológicas, os processos produtivos e as implicações éticas num artefato classificatório funcional. O intuito é que este artefato sirva como um guia metodológico para a indústria e a academia, permitindo que os desenvolvedores e pesquisadores identifiquem onde a IA atua como mero assistente e onde atua como agente gerador autônomo, mapeando os gargalos técnicos e éticos inerentes a cada escolha tecnológica.
+
+\subsection{Objetivos Específicos}
+\label{subsec:intro:objetivos_especificos}
+
+Para atingir o objetivo principal, os seguintes objetivos específicos são elencados:
+
+% aqui
+\begin{enumerate}
+    \item Sistematizar a base empírica da área: utilizar os dados qualitativos e quantitativos advindos de um Mapeamento Sistemático da Literatura (MSL) prévio \citep{RothAleo2026} para extrair os padrões operacionais, as arquiteturas técnicas e os desafios éticos reportados na literatura do setor.
+    
+    \item Propor a TIGA: estruturar um modelo taxonômico que organize a integração da IAG no setor audiovisual não interativo e correlacione a autonomia criativa da IAG com as exigências técnicas e os riscos éticos associados.
+    
+    \item Validar a taxonomia proposta: avaliar a aplicabilidade, a consistência e a utilidade da taxonomia por meio de um método rigoroso garantindo assim a sua validade científica e profissional.
+\end{enumerate}
+
+% aqui
+\section{Metodologia}
+\label{sec:intro:metodologia}
+
+Para responder ao problema de pesquisa focado na proposição de um modelo de classificação, este estudo utiliza como base empírica os resultados consolidados de um Mapeamento Sistemático da Literatura (MSL) conduzido de acordo com as diretrizes de \citet{Kitchenham2007SystematicReviews} e \citet{petersen2008systematic}. 
+
+A metodologia desta pesquisa de mestrado organiza-se nas seguintes etapas fundamentais: análise qualitativa e extração de variáveis do corpus base; síntese temática para a definição das dimensões conceituais; estruturação da TIGA; e validação empírica do artefato concebido.
+
+O desenvolvimento inicia-se pelo aprofundamento das informações já mapeadas no estudo prévio de \citet{RothAleo2026}. Devido ao volume massivo e crescente de publicações na área e à rápida obsolescência de ferramentas comerciais, a pesquisa optou por concentrar o seu rigor metodológico na síntese temática e qualitativa dos dados já extraídos, em vez de conduzir novas iterações quantitativas de busca. Essa abordagem permite isolar os conceitos estruturantes do uso da IAG e utilizá-los como os blocos de construção para a taxonomia.
+
+A construção do artefato taxonômico será fundamentada no cruzamento de três grandes dimensões integradas. A primeira, denominada dimensão operacional, tem como objetivo definir o nível de agência da IA no pipeline de produção, classificando instâncias em que a IA atua apenas como assistente e suporte técnico, como colaboradora na interação cocriativa, ou como geradora autônoma com autonomia de ponta a ponta na criação. 
+
+A segunda é a dimensão técnica, que ficará responsável por mapear a arquitetura subjacente empregada nas soluções, como modelos de difusão ou transformers, avaliando seus requisitos de processamento, modos de interação por interfaces ou prompts e as limitações operacionais inerentes, como a ausência de coerência temporal. 
+
+A terceira consiste na dimensão de risco, concebida para classificar os gargalos éticos associados a cada etapa tecnológica. O foco desta dimensão será fornecer critérios de avaliação sobre a transparência dos datasets de treinamento, potenciais conflitos de autoria e direitos autorais, impactos sobre o trabalho humano e a propensão a vieses algorítmicos.
+
+Para assegurar o rigor científico e a aderência prática do modelo para os pesquisadores e profissionais da indústria, a metodologia estabelece um rigoroso processo de validação dividido em abordagens complementares. Inicialmente, a estrutura taxonômica preliminar será submetida à apreciação de um painel de especialistas em IA aplicada e em produção audiovisual. Esta validação qualitativa terá como objetivo atestar a clareza dos conceitos, a completude das três dimensões propostas, a eliminação de redundâncias e a coerência do modelo frente aos fluxos de trabalho reais das produtoras.
+
+Complementarmente, será conduzida uma validação empírica baseada na aplicação. O modelo será testado como instrumento prático para classificar um subconjunto representativo de ferramentas comerciais vigentes e de estudos de caso reais identificados na literatura. A análise dos resultados dessa classificação verificará a real capacidade do modelo em discriminar cenários distintos e mapear os riscos, compondo um ciclo iterativo de refinamento metodológico até a consolidação da versão final da taxonomia.
+
+\section{Contribuição}
+\label{sec:intro:contribuicao}
+Este trabalho concentra-se na organização e análise da literatura recente sobre a integração da IAG no setor audiovisual não interativo. Ao identificar as tendências tecnológicas e focar na lacuna de estruturação teórica deste conhecimento, procura-se oferecer perspectivas sólidas para investigadores, profissionais criativos e formuladores de políticas.
+
+A principal contribuição teórica e prática deste estudo materializa-se na entrega da TIGA. Diferente de catálogos dinâmicos de ferramentas, que se tornam obsoletos rapidamente, este artefato servirá como um guia conceitual perene. Ele permite que os produtores e acadêmicos identifiquem claramente os contornos tecnológicos e as responsabilidades envolvidas quando a IA atua em diferentes graus de autonomia.
+
+Além disso, o trabalho oferece uma contribuição sociotécnica direta ao propor que a taxonomia atue como um mapa de prontidão. Este mapeamento permitirá avaliar o custo social, abrangendo as complexas questões de privacidade, transparência e autoria, sempre em relação aos benefícios criativos entregues por cada arquitetura. Dessa forma, o estudo evidencia os gargalos inerentes a cada escolha, fornecendo os subsídios metodológicos indispensáveis para a tomada de decisões informadas e responsáveis no desenvolvimento do audiovisual contemporâneo.
+
+\section{Organização do Documento}
+\label{sec:intro:organizacao}
+
+O restante deste documento está organizado da seguinte forma:
+
+O Capítulo 2 (Fundamentação Teórica e Trabalhos Relacionados) apresenta a base conceitual necessária para a compreensão do estudo. Caracteriza o ecossistema audiovisual, discute os fundamentos da IAG e suas aplicações ao longo do \textit{pipeline} de produção, e sistematiza os desafios técnicos, operacionais e éticos inerentes. Encerra evidenciando o papel de uma taxonomia e a lacuna existente na literatura, que justifica a construção do artefato proposto.
+
+O Capítulo 3 (Mapeamento Sistemático da Literatura) descreve o MSL prévio \citep{RothAleo2026} que fornece a base empírica desta pesquisa. Apresenta o contexto e os objetivos do mapeamento, as estratégias e os métodos de busca das publicações, o processo de extração e tratamento dos dados e, por fim, os resultados quantitativos e a discussão integrada, culminando na síntese das lacunas que fundamentam a proposição da taxonomia.
+
+O Capítulo 4 (Taxonomia: Conceituação, Estruturação e Proposição) constitui o núcleo do trabalho. Fundamenta o que é uma taxonomia e o método de construção adotado, analisa criticamente as taxonomias correlatas, e apresenta em detalhe a proposição da TIGA, com suas três dimensões (operacional, técnica e de risco/ética), sua síntese, a instanciação em arquétipos, os \textit{trade-offs} entre dimensões e as considerações sobre o processo de validação previsto.
+
+Por fim, o Capítulo 5 (Considerações Finais e Trabalhos Futuros) consolida as conclusões do estudo. Retoma os objetivos propostos, elenca as principais contribuições alcançadas, reconhece as limitações enfrentadas na elaboração do modelo de classificação e sugere caminhos e oportunidades para o desenvolvimento de pesquisas futuras que utilizem a taxonomia elaborada.
+
+
+
+%=====================================================
+

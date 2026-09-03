@@ -1,0 +1,423 @@
+\chapter{Mapeamento Sistemático da Literatura}
+\label{cap_trabalhos_previos}
+
+Para fundamentar as premissas desta dissertação, este capítulo detalha as bases empíricas consolidadas no trabalho de \citet{RothAleo2026} realizado anteriormente. Na referida pesquisa, foi conduzido um Mapeamento Sistemático da Literatura (doravante referido apenas como MSL) com o objetivo central de investigar as aplicações, os desafios técnicos e os impactos sociotécnicos da IAG quando aplicada à cadeia de produção de conteúdos audiovisuais de natureza estritamente não interativa. 
+
+O esforço analítico anterior estabeleceu um alicerce robusto sobre o estado da arte do setor, mapeando o que a academia vinha desenvolvendo e, mais importante, quais gargalos operacionais justificariam a necessidade de novas estruturas de organização metodológica e taxonômica.
+
+\section{O MSL Prévio: Contexto e Objetivo}
+
+O MSL conduzido por \citet{RothAleo2026} apresentou o protocolo e a execução da investigação sobre IAG aplicada à produção linear. O objetivo foi identificar como a tecnologia tem sido utilizada para gerar ou modificar conteúdos como filmes, curtas, trailers, videoclipes, publicidade e animações cinemáticas. Foram excluídos explicitamente desse escopo: experiências interativas (como jogos digitais, realidade virtual, realidade aumentada, realidade mista e aplicações sensoriais); estudos de detecção e autenticação (como forense de conteúdos sintéticos e técnicas de marca d'água); e aplicações biomédicas (uso de vídeo ou voz para diagnóstico clínico).
+
+O recorte temporal adotado compreendeu os anos de 2022 a 2025, período que marcou a popularização e o acesso público a modelos generativos modernos, como Stable Diffusion, DALL E e modelos baseados em Transformers, ferramentas multimodais que transformaram os fluxos criativos \citep{dwivedi2023chatgpt}. Cabe registrar que 2022 a 2025 é a janela \textit{buscada}, e não a janela \textit{observada}: a busca cobriu registros de 1º de janeiro de 2022 até a data de exportação, 26 de abril de 2025, mas nenhum estudo publicado em 2022 satisfez os critérios de inclusão, e 2025 aparece representado apenas parcialmente. A coleta concentrou se em fontes primárias revisadas por pares, disponíveis nas bases IEEE Xplore e ACM Digital Library, garantindo rigor científico.
+
+O objetivo do estudo foi estruturado e definido de acordo com o paradigma GQM (\textit{Goal Question Metric}) proposto por \citet{basili1988tame}.
+
+\begin{longtable}{|p{4cm}|p{11cm}|}
+\caption  {Objetivo do MSL de acordo com o modelo GQM}
+\label{tab:objetivo}
+%\centering
+%\begin{tabular}{|p{6cm}|p{8cm}|}
+\\
+\hline
+Analisar & publicações científicas\\
+\hline
+Com o propósito de & identificar e caracterizar  \\
+\hline
+Com respeito às & aplicações, desafios e impactos da IAG na produção de conteúdos audiovisuais não interativos, considerando os aspectos técnicos, criativos e éticos envolvidos.  \\
+\hline
+Do ponto de vista dos & pesquisadores das áreas de Computação e Inteligência Artificial.  \\
+\hline
+No contexto de& publicações científicas disponíveis em bases de dados relevantes, como \textit{IEEE Xplore e ACM Digital Library}. \\
+\hline
+%\end{tabular}
+\end{longtable}
+
+\subsection{Questões de Pesquisa}
+
+A questão principal norteou o MSL buscando responder: Quais são as aplicações, desafios e impactos do uso de ferramentas de IAG na geração de conteúdos audiovisuais não interativos?
+
+Para desdobrar essa questão central, o processo envolveu diferentes frentes de informação estruturadas através de dezessete subquestões (SQ1 a SQ17), duas delas decompostas em dois subitens condicionais cada (SQ4.1 e SQ4.2, sob a SQ4; SQ8.1 e SQ8.2, sob a SQ8), totalizando vinte e um campos de extração, detalhados a seguir:
+
+\begin{itemize}
+    \item SQ1 Qual o tipo de contribuição do artigo? Visou classificar a pesquisa em: pesquisa de avaliação (investiga tecnologia existente em contexto real); proposta de solução (apresenta nova abordagem técnica); pesquisa de validação (investiga proposta em ambiente controlado); artigo filosófico; artigo de opinião; ou relato de experiência empírica.
+    \item SQ2 Em qual área do conhecimento o estudo se insere? Identificou se a pesquisa pertencia à IA, engenharia de software, design digital, mídia e entretenimento, entre outras.
+    \item SQ3 Qual o foco principal da aplicação da IAG no estudo? Determinou qual tipo de artefato audiovisual foi diretamente gerado ou modificado (vídeo, imagem, áudio, animação).
+    \item SQ4 Qual tecnologia de IAG foi empregada? Mapeou o uso de Modelos de Difusão, Transformers, entre outros arquiteturas estruturais.
+    \item SQ4.1 Quais critérios ou métricas foram utilizados para avaliar a qualidade? Verificou a aplicação de métricas de fidelidade visual, coerência narrativa ou avaliações subjetivas estéticas.
+    \item SQ4.2 O que os avaliadores concluíram sobre o conteúdo gerado? Sintetizou percepções sobre naturalidade e adequação técnica.
+    \item SQ5 A ferramenta de IAG foi utilizada em sua versão original ou houve customização? Classificou o uso como ferramenta existente, customização parcial ou solução desenvolvida do zero.
+    \item SQ6 Quais desafios técnicos foram identificados? Investigou limitações de resolução, coerência temporal, sincronização de áudio e vídeo, latência e controle de parâmetros.
+    \item SQ7 Quais desafios éticos e criativos foram apontados? Investigou autenticidade, viés algorítmico, impacto no trabalho criativo e uso não autorizado de referências.
+    \item SQ8 O estudo apresenta análises empíricas? Verificou a presença de experimentos controlados ou avaliações práticas.
+    \item SQ8.1 Se sim, qual método empírico foi adotado? Identificou o uso de experimentos, estudos de caso ou questionários.
+    \item SQ8.2 Quantas pessoas participaram do estudo? Extraiu o tamanho da amostra metodológica.
+    \item SQ9 Qual a finalidade principal para a utilização da IAG no estudo? Definiu o papel funcional, como apoio ao processo criativo, automação de tarefas ou experimentação estética.
+    \item SQ10 Que tipos de conteúdos audiovisuais foram gerados? Especificou a entrega final entre vídeos, trailers, clipes ou curtas.
+    \item SQ11 Qual tipo de dispositivo foi utilizado para a interação do usuário? Verificou o uso de computadores, nuvem ou dispositivos móveis.
+    \item SQ12 Qual o tipo de interação realizada pelo usuário? Classificou se foi via interface gráfica, texto direto, voz ou multimodal.
+    \item SQ13 Qual o modelo específico de base foi utilizado no estudo? Listou ferramentas nominais como Stable Diffusion, GPT 4 ou DALL E.
+    \item SQ14 Que referenciais foram empregados para validar os resultados? Analisou comparações com padrões da indústria ou métricas quantitativas.
+    \item SQ15 Qual o impacto potencial identificado para a indústria audiovisual? Avaliou redução de custos, transformação de processos e efeitos sobre a força de trabalho.
+    \item SQ16 Quais desafios quanto à reprodutibilidade dos resultados foram mencionados? Mapeou problemas de dependência de dados, variabilidade estocástica e falta de padronização.
+    \item SQ17 A intenção dos autores era tornar perceptível o uso da IAG no conteúdo gerado? Determinou a transparência do uso algorítmico no artefato final.
+\end{itemize}
+
+\section{Estratégias e Métodos de Busca de Publicações}
+
+A busca foi realizada de maneira automática utilizando palavras chave definidas sob o modelo PICOC \citep{Kitchenham2007SystematicReviews}. A \textit{população} foi composta pela Inteligência Artificial Generativa. A \textit{intervenção} englobou a geração e a manipulação de conteúdo (gerar, produzir, criar, manipular e escrever). A \textit{comparação} não se aplica, uma vez que o objetivo do MSL é caracterizar e levantar o estado da arte de uma área ampla e emergente, e não comparar experimentalmente técnicas ou algoritmos específicos. Os \textit{resultados} almejados focaram em impactos, ética, qualidade e criatividade. O \textit{contexto} é a produção audiovisual não interativa, operacionalizada na busca por termos como filme, cinema, animação, efeitos visuais e roteiro.
+
+A lógica estrutural aplicada nas bases ACM Digital Library e IEEE Xplore foi a seguinte intersecção textual: ("Artificial intelligence" OR "AI") AND ("generate" OR "produce" OR "create" OR "manipulate" OR "write") AND ("impact" OR "ethics" OR "quality" OR "consequences" OR "perception" OR "realism" OR "creativity") AND ("film" OR "cinema" OR "movie" OR "animation" OR "advertisement" OR "CGI" OR "special effects" OR "VFX" OR "script" OR "voice-over"). Antes da extração final, foram conduzidas buscas-piloto para calibrar a \textit{string}, testando termos alternativos e verificando se artigos reconhecidamente relevantes eram recuperados; a versão definitiva foi adotada após essa etapa de calibração, por equilibrar abrangência e precisão temática para o contexto do audiovisual não interativo.
+
+A escolha pelas referidas bibliotecas justificou se por sua abrangência nas áreas de ciência da computação e tecnologias emergentes, coerente com o escopo centrado em computação do mapeamento. Como consequência, as afirmações derivadas do MSL limitam-se às evidências indexadas nesses veículos e não devem ser lidas como um panorama exaustivo de todos os ecossistemas de publicação em mídia e design. Os idiomas definidos para inclusão foram o inglês e o português, refletindo o padrão internacional de periódicos e a língua nativa dos pesquisadores.
+
+\subsection{Procedimentos de Seleção e Critérios}
+
+Para assegurar rigor na triagem dos estudos, \citet{RothAleo2026} estabeleceram os seguintes critérios:
+
+\subsection{Critérios de inclusão (CI)}
+
+\begin{itemize}
+    \item I1 – IA em Audiovisual: O estudo aborda a aplicação da IA em conteúdos audiovisuais (produção, edição, análise ou avaliação).
+    \item I2 – Avaliação do Conteúdo: O artigo apresenta alguma forma de avaliação técnica, criativa, estética ou operacional do conteúdo gerado com IA.
+\end{itemize}
+
+\subsection{Critérios de exclusão (CE)}
+
+\begin{itemize}
+    \item E1 – Irrelevância temática: O conteúdo é irrelevante tematicamente, ou seja, menciona IA ou audiovisual, mas não trata da relação entre os dois nem de suas aplicações práticas.
+    \item E2 – Sem revisão por pares: Estudos sem revisão por pares (ex.: artigos de opinião, blogs, relatórios institucionais informais, dissertações e teses não publicadas).
+    \item E3 – Duplicata: Publicações duplicadas em diferentes bases de dados ou versões do mesmo artigo.
+    \item E4 – Documento incompleto: Documentos incompletos, resumos expandidos ou publicações cujo texto integral não está disponível para análise.
+    \item E5 – Idioma não aceito: Artigos publicados em idiomas que não sejam o português ou o inglês.
+    \item E6 – Revisões da literatura: Artigos que são apenas revisões de literatura, sem proposta nova, aplicação prática ou análise empírica.
+    \item E7 – Escopo fora do audiovisual linear: Estudos voltados a mídias interativas (jogos digitais) ou a aplicações biomédicas e forenses.
+\end{itemize}
+
+As exclusões da etapa inicial concentraram-se em irrelevância temática e em trabalhos sem revisão por pares, enquanto as exclusões após a leitura integral decorreram sobretudo de desalinhamento de escopo e de ausência de avaliação do conteúdo gerado. Um registro foi identificado como duplicata e removido sob o critério E3 na transição de 667 para 162 estudos. Vale destacar que o critério I2 exigia alguma forma de avaliação técnica, criativa, estética ou operacional do conteúdo gerado, condição mais ampla do que a de um estudo empírico formal: é por isso que os 60 estudos satisfazem I2, ao passo que a SQ8 identifica análise empírica explícita em 52 deles. Não foi realizado \textit{snowballing}, pois o mapeamento delimitou deliberadamente seu corpus a registros revisados por pares indexados nas duas bibliotecas de computação, de modo a manter a busca integralmente reexecutável.
+
+A triagem ocorreu em duas etapas colaborativas na plataforma digital Porifera \citep{campos2022porifera} (https://porifera.app.br/), permitindo rastreabilidade e democratização das decisões entre orientadores e alunos. O primeiro filtro operou sobre os títulos, resumos e palavras-chave, eliminando trabalhos fora do escopo. O segundo filtro consistiu na leitura integral, avaliando a clareza metodológica. Em ambas as etapas, a avaliação foi conduzida de forma independente por quatro pesquisadores, seguida de discussão de consenso registrada na própria plataforma. O índice de Fleiss Kappa \citep{fleiss1971} foi de 0,730 no primeiro filtro e 0,645 no segundo filtro, valores que indicam concordância \textit{substancial} segundo os critérios de interpretação consolidados na literatura \citep{landis1977measurement}, que situam a faixa de 0,61 a 0,80 nessa categoria.
+
+\section{Extração de Dados e Processamento Automatizado}
+
+Após a aprovação integral dos artigos, as informações foram registradas individualmente em um formulário \texttt{.docx} por estudo, alocado em um repositório sincronizado no Github. Cada formulário continha uma tabela estruturada com os vinte e um campos de extração, as opções de resposta predefinidas marcadas como \textit{checkboxes} e um campo obrigatório de texto livre com o trecho literal que justificava cada escolha. O preenchimento foi feito pelos próprios pesquisadores, e não pelos avaliadores dos estudos primários. Durante esse preenchimento, ferramentas de IA focadas em texto foram utilizadas de maneira assistiva para localizar parágrafos específicos, mantendo supervisão humana constante para evitar interpretações divergentes.
+
+A etapa de análise quantitativa final exigiu processamento avançado das sessenta extrações. \citet{RothAleo2026} desenvolveram três algoritmos em linguagem Python para automação. O primeiro script converteu os documentos originais para texto puro estruturado. O segundo script unificou os arquivos isolados e inseriu cabeçalhos padronizados. O terceiro script realizou a análise técnica, utilizando expressões regulares para identificar IDs de rastreamento, implementar detecção algorítmica de múltiplas escolhas, normalizar categorias e agregar respostas. A Figura \ref{fig:pipeline_scripts} ilustra o encadeamento sequencial desses três algoritmos, desde as extrações originais até os resultados quantitativos consolidados.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  startstop/.style={rectangle, rounded corners, draw=black, fill=black!8, text width=6.8cm, minimum height=0.85cm, align=center, inner sep=4pt},
+  process/.style={rectangle, draw=black, fill=black!4, text width=6.8cm, minimum height=0.85cm, align=center, inner sep=4pt},
+  detail/.style={rectangle, draw=black, densely dashed, fill=black!2, text width=6.8cm, align=left, font=\footnotesize, inner sep=6pt},
+  arrow/.style={-{Latex[length=2.5mm]}, thick}
+]
+\node (in)  [startstop] at (0,0)     {60 extrações\\(documentos originais preenchidos)};
+\node (s1)  [process]    at (0,-1.9) {\textbf{Script 1 --- Conversão}\\documentos originais $\rightarrow$ texto puro estruturado};
+\node (s2)  [process]    at (0,-3.8) {\textbf{Script 2 --- Unificação}\\junção dos arquivos isolados e inserção de cabeçalhos padronizados};
+\node (s3)  [process]    at (0,-5.7) {\textbf{Script 3 --- Análise técnica}\\processamento por expressões regulares (\textit{regex})};
+\node (d3)  [detail]     at (0,-7.9) {\textbf{Operações do Script 3:}\\
+  \textbullet~identificação de IDs de rastreamento\\
+  \textbullet~detecção algorítmica de múltiplas escolhas\\
+  \textbullet~normalização de categorias\\
+  \textbullet~agregação das respostas};
+\node (out) [startstop]  at (0,-10.2) {Resultados quantitativos\\(percentuais das subquestões)};
+
+\draw [arrow] (in) -- (s1);
+\draw [arrow] (s1) -- (s2);
+\draw [arrow] (s2) -- (s3);
+\draw [arrow] (s3) -- (d3);
+\draw [arrow] (d3) -- (out);
+\end{tikzpicture}
+\caption{Fluxo dos três algoritmos de processamento automatizado das extrações}
+\label{fig:pipeline_scripts}
+\end{figure}
+
+O esforço metodológico teve sua corretude validada por três procedimentos. O primeiro foi a idempotência do \textit{pipeline}, verificada por \textit{hash} SHA-256 do relatório final em execuções repetidas. O segundo consistiu em arquivos de teste que exercitaram variantes de marcação de \textit{checkbox} e de trechos citados. O terceiro foi uma auditoria manual, realizada primeiro sobre dez por cento e posteriormente sobre cinquenta por cento dos formulários, que obteve 100\% de concordância nos identificadores dos estudos, 98,3\% nas opções selecionadas e 95,8\% nas tecnologias identificadas, percentuais calculados sobre os campos auditados e não sobre formulários inteiros. As divergências remanescentes decorreram de variantes de nomenclatura, como ``GPT-4'' e ``GPT4'', e o rótulo variante registrado na SQ12 é uma instância visível dessa classe de erro.
+
+\section{Resultados Quantitativos e Discussão Integrada}
+
+O fluxo de trabalho de busca retornou inicialmente 667 artigos potencialmente relevantes nas bases selecionadas (500 na IEEE Xplore e 167 na ACM Digital Library). Após a aplicação do primeiro filtro sobre títulos, resumos e palavras-chave, esse montante foi reduzido a 162 publicações (104 da IEEE Xplore e 58 da ACM Digital Library), o que corresponde a uma taxa de retenção de 24,3\%. A leitura integral promovida no segundo filtro refinou a base de dados empírica final para exatos 60 artigos científicos (35 da IEEE Xplore e 25 da ACM Digital Library), equivalentes a 9,0\% do conjunto inicial e a 37,0\% dos aprovados no primeiro filtro, que serviram de alicerce para a extração quantitativa e a análise sociotécnica.
+
+A distribuição temporal dos estudos selecionados segue uma trajetória de crescimento acelerado: 12 estudos (20,0\%) em 2023, 39 (65,0\%) em 2024 e 9 (15,0\%) até o corte de abril de 2025, sem nenhum registro de 2022 aprovado nos critérios. Somente o biênio 2023--2024 responde por 51 dos 60 artigos (85,0\%), o que evidencia a consolidação acadêmica acelerada da IAG na produção audiovisual não interativa após a disseminação de sistemas de acesso público como ChatGPT, Stable Diffusion e Midjourney. Quanto aos veículos de publicação, artigos de conferências e \textit{workshops} predominam de forma expressiva, somando 57 estudos (95,0\%), contra apenas 3 artigos de periódico (5,0\%), padrão característico de domínios tecnológicos em evolução rápida, nos quais a velocidade de disseminação precede a consolidação metodológica. A Tabela \ref{tab:sqs_completa} a seguir detalha os achados reportados no estudo de \citet{RothAleo2026}, categorizados e discutidos com base nas subquestões investigadas.
+
+Todos os valores reproduzidos nesta seção provêm da versão \textit{camera-ready} do artigo derivado desse mapeamento \citep{RothPereiraValentim2026}, adotada aqui como fonte oficial dos dados, na qual as frequências foram integralmente reconstruídas a partir das listas de identificadores por estudo do conjunto de extração. Sempre que houver divergência numérica entre o relatório original \citep{RothAleo2026} e essa versão, prevalecem os valores aqui reproduzidos. Três observações governam a leitura da tabela. Primeiro, com exceção da SQ1, da SQ4.2, da SQ8, da SQ8.2 e da SQ17, que admitem resposta única, todas as subquestões são multirrótulo, de modo que os percentuais de uma mesma subquestão podem somar mais de 100\%. Segundo, os percentuais são sempre calculados sobre $N = 60$. Terceiro, nove subquestões totalizam menos de 60 atribuições, com destaque para a SQ9 (39), a SQ5 (42), a SQ14 (47) e a SQ10 (48); essa diferença combina rótulos de ocorrência única, preservados quando a opção residual foi preenchida em texto livre, e campos não registrados. Nenhuma dessas classes foi redistribuída, portanto nenhum percentual repousa em imputação, mas a diferença limita o quanto a SQ5, a SQ9 e a SQ14 caracterizam a totalidade do corpus.
+
+\renewcommand{\arraystretch}{1.0}
+\setlength{\tabcolsep}{4pt}
+\scriptsize
+
+\begin{longtable}{|p{4.2cm}|p{5.2cm}|c|c|}
+\caption{Distribuição das respostas para as subquestões de pesquisa do MSL ($N = 60$ estudos primários)}
+\label{tab:sqs_completa} \\
+
+\hline
+\textbf{Subquestões de Pesquisa} & \textbf{Possíveis Respostas} & \textbf{Artigos} & \textbf{Porcentagem} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Subquestões de Pesquisa} & \textbf{Possíveis Respostas} & \textbf{Artigos} & \textbf{Porcentagem} \\
+\hline
+\endhead
+
+\hline
+\multicolumn{4}{r}{\textit{Continua na próxima página}} \\
+\endfoot
+
+\hline
+
+% SQ1
+\multirow{4}{=}{SQ1. Qual é o tipo de contribuição do artigo?}
+& Proposta de solução & 31 & 51,67\% \\ \cline{2-4}
+& Pesquisa de avaliação & 19 & 31,67\% \\ \cline{2-4}
+& Pesquisa de validação & 7 & 11,67\% \\ \cline{2-4}
+& Outros (ocorrências únicas) & 3 & 5,00\% \\
+\hline
+
+% SQ2
+\multirow{5}{=}{SQ2. Em qual área do conhecimento o estudo se insere?}
+& Mídia e entretenimento & 34 & 56,67\% \\ \cline{2-4}
+& Inteligência Artificial & 31 & 51,67\% \\ \cline{2-4}
+& Design digital & 13 & 21,67\% \\ \cline{2-4}
+& Educação & 7 & 11,67\% \\ \cline{2-4}
+& Ciências sociais & 3 & 5,00\% \\
+\hline
+
+% SQ3
+\multirow{6}{=}{SQ3. Qual é o foco principal da aplicação de IAG no estudo?}
+& Geração e modificação de vídeo & 19 & 31,67\% \\ \cline{2-4}
+& \textit{Storytelling} e narrativas & 12 & 20,00\% \\ \cline{2-4}
+& Outros & 10 & 16,67\% \\ \cline{2-4}
+& Criação de imagem estática & 7 & 11,67\% \\ \cline{2-4}
+& Efeitos audiovisuais & 5 & 8,33\% \\ \cline{2-4}
+& Automação do processo de edição & 2 & 3,33\% \\
+\hline
+
+% SQ4
+\multirow{7}{=}{SQ4. Qual tecnologia de IAG foi utilizada?}
+& Modelos de difusão & 29 & 48,33\% \\ \cline{2-4}
+& \textit{Transformers} & 22 & 36,67\% \\ \cline{2-4}
+& Outros & 12 & 20,00\% \\ \cline{2-4}
+& GANs (redes adversariais generativas) & 10 & 16,67\% \\ \cline{2-4}
+& Modelos híbridos & 6 & 10,00\% \\ \cline{2-4}
+& \textit{Autoencoders} & 3 & 5,00\% \\ \cline{2-4}
+& Redes recorrentes & 2 & 3,33\% \\
+\hline
+
+% SQ4.1
+\multirow{3}{=}{SQ4.1. Quais critérios ou métricas foram utilizados?}
+& Fidelidade visual (realismo) & 26 & 43,33\% \\ \cline{2-4}
+& Avaliações subjetivas (MOS, estética) & 19 & 31,67\% \\ \cline{2-4}
+& Coerência narrativa & 8 & 13,33\% \\
+\hline
+
+% SQ4.2
+\multirow{3}{=}{SQ4.2. O que os avaliadores concluíram sobre o conteúdo?}
+& Resultados positivos / superiores & 35 & 58,33\% \\ \cline{2-4}
+& Resultados mistos ou limitados & 13 & 21,67\% \\ \cline{2-4}
+& Sem conclusão registrada & 12 & 20,00\% \\
+\hline
+
+% SQ5
+\multirow{5}{=}{SQ5. A ferramenta utilizada era original ou houve customização?}
+& Combinação de ferramentas existentes & 20 & 33,33\% \\ \cline{2-4}
+& Customização parcial & 8 & 13,33\% \\ \cline{2-4}
+& Desenvolvimento próprio extenso & 6 & 10,00\% \\ \cline{2-4}
+& Ferramenta original sem modificações & 6 & 10,00\% \\ \cline{2-4}
+& Outros & 2 & 3,33\% \\
+\hline
+
+% SQ6
+\multirow{7}{=}{SQ6. Quais desafios técnicos foram identificados?}
+& Outros desafios específicos & 22 & 36,67\% \\ \cline{2-4}
+& Coerência temporal & 16 & 26,67\% \\ \cline{2-4}
+& Estabilidade do sistema & 7 & 11,67\% \\ \cline{2-4}
+& Latência / tempo de resposta & 5 & 8,33\% \\ \cline{2-4}
+& Escalabilidade & 4 & 6,67\% \\ \cline{2-4}
+& Limitações de resolução & 4 & 6,67\% \\ \cline{2-4}
+& Sincronização áudio-vídeo & 4 & 6,67\% \\
+\hline
+
+% SQ7
+\multirow{7}{=}{SQ7. Quais desafios éticos e criativos foram apontados?}
+& Impacto na indústria criativa & 19 & 31,67\% \\ \cline{2-4}
+& Autenticidade e autoria & 17 & 28,33\% \\ \cline{2-4}
+& Outros & 15 & 25,00\% \\ \cline{2-4}
+& Viés algorítmico & 10 & 16,67\% \\ \cline{2-4}
+& Privacidade / proteção de dados & 4 & 6,67\% \\ \cline{2-4}
+& Uso não autorizado de referências & 3 & 5,00\% \\ \cline{2-4}
+& Plágio / direitos autorais & 2 & 3,33\% \\
+\hline
+
+% SQ8
+\multirow{3}{=}{SQ8. O estudo apresenta análises empíricas?}
+& Sim & 52 & 86,67\% \\ \cline{2-4}
+& Não & 6 & 10,00\% \\ \cline{2-4}
+& Parcialmente & 2 & 3,33\% \\
+\hline
+
+% SQ8.1
+\multirow{7}{=}{SQ8.1. Qual método empírico foi adotado?}
+& Experimento controlado & 22 & 36,67\% \\ \cline{2-4}
+& \textit{Survey} / questionário & 15 & 25,00\% \\ \cline{2-4}
+& Estudo de caso & 11 & 18,33\% \\ \cline{2-4}
+& Entrevista & 9 & 15,00\% \\ \cline{2-4}
+& Outros & 5 & 8,33\% \\ \cline{2-4}
+& Avaliação heurística & 3 & 5,00\% \\ \cline{2-4}
+& Observação participante & 2 & 3,33\% \\
+\hline
+
+% SQ8.2
+\multirow{2}{=}{SQ8.2. Quantas pessoas participaram do estudo?}
+& Artigos que reportaram amostra & 48 & 80,00\% \\ \cline{2-4}
+& Não reportado / não aplicável & 12 & 20,00\% \\
+\hline
+
+% SQ9
+\multirow{6}{=}{SQ9. Qual é o principal propósito do uso de IAG?}
+& Outros & 13 & 21,67\% \\ \cline{2-4}
+& Automação de pós-produção & 9 & 15,00\% \\ \cline{2-4}
+& Criação de roteiro e narrativa & 9 & 15,00\% \\ \cline{2-4}
+& Criação de imagem e fotografia & 3 & 5,00\% \\ \cline{2-4}
+& Geração de efeitos especiais & 3 & 5,00\% \\ \cline{2-4}
+& Animações interativas & 2 & 3,33\% \\
+\hline
+
+% SQ10
+\multirow{4}{=}{SQ10. Quais tipos de conteúdo audiovisual foram gerados?}
+& Imagens estáticas & 14 & 23,33\% \\ \cline{2-4}
+& Animações & 13 & 21,67\% \\ \cline{2-4}
+& Vídeos completos & 12 & 20,00\% \\ \cline{2-4}
+& Outros & 9 & 15,00\% \\
+\hline
+
+% SQ11
+\multirow{8}{=}{SQ11. Que tipo de dispositivo foi utilizado na interação?}
+& Computadores / \textit{notebooks} & 24 & 40,00\% \\ \cline{2-4}
+& Interfaces em nuvem & 12 & 20,00\% \\ \cline{2-4}
+& Outros & 7 & 11,67\% \\ \cline{2-4}
+& Não informado & 5 & 8,33\% \\ \cline{2-4}
+& Dispositivos especializados & 2 & 3,33\% \\ \cline{2-4}
+& Ambientes imersivos & 1 & 1,67\% \\ \cline{2-4}
+& Assistentes de voz & 1 & 1,67\% \\ \cline{2-4}
+& Dispositivos móveis & 1 & 1,67\% \\
+\hline
+
+% SQ12
+\multirow{6}{=}{SQ12. Qual tipo de interação é realizada pelo usuário?}
+& \textit{Prompt} textual & 25 & 41,67\% \\ \cline{2-4}
+& Interface gráfica (GUI) & 12 & 20,00\% \\ \cline{2-4}
+& Multimodal & 7 & 11,67\% \\ \cline{2-4}
+& \textit{Prompt} textual (rótulo variante) & 4 & 6,67\% \\ \cline{2-4}
+& Outros & 2 & 3,33\% \\ \cline{2-4}
+& Programática (API/SDK) & 1 & 1,67\% \\
+\hline
+
+% SQ13
+\multirow{7}{=}{SQ13. Qual modelo base específico foi utilizado?}
+& \textit{Stable Diffusion} & 23 & 38,33\% \\ \cline{2-4}
+& GPT-4 & 12 & 20,00\% \\ \cline{2-4}
+& Outros & 11 & 18,33\% \\ \cline{2-4}
+& \textit{MidJourney} & 8 & 13,33\% \\ \cline{2-4}
+& CLIP & 7 & 11,67\% \\ \cline{2-4}
+& DALL·E & 7 & 11,67\% \\ \cline{2-4}
+& GPT-3 & 3 & 5,00\% \\
+\hline
+
+% SQ14
+\multirow{5}{=}{SQ14. Quais modelos de referência foram usados na validação?}
+& Análises qualitativas (especialistas) & 15 & 25,00\% \\ \cline{2-4}
+& Métricas quantitativas (FID, IS, PSNR) & 13 & 21,67\% \\ \cline{2-4}
+& Padrões da indústria & 10 & 16,67\% \\ \cline{2-4}
+& Outros & 5 & 8,33\% \\ \cline{2-4}
+& Testes A/B com usuários & 4 & 6,67\% \\
+\hline
+
+% SQ15
+\multirow{3}{=}{SQ15. Qual o impacto potencial para a indústria audiovisual?}
+& Aumento de produtividade & 24 & 40,00\% \\ \cline{2-4}
+& Novos fluxos criativos & 18 & 30,00\% \\ \cline{2-4}
+& Democratização da produção & 12 & 20,00\% \\
+\hline
+
+% SQ16
+\multirow{7}{=}{SQ16. Quais são os desafios de reprodutibilidade?}
+& Dependência de dados & 22 & 36,67\% \\ \cline{2-4}
+& Variabilidade nos resultados & 17 & 28,33\% \\ \cline{2-4}
+& Outros & 8 & 13,33\% \\ \cline{2-4}
+& Falta de \textit{benchmarks} padronizados & 7 & 11,67\% \\ \cline{2-4}
+& Dificuldades de validação técnica & 3 & 5,00\% \\ \cline{2-4}
+& Instabilidade entre ambientes & 3 & 5,00\% \\ \cline{2-4}
+& Viés nos dados & 3 & 5,00\% \\
+\hline
+
+% SQ17
+\multirow{4}{=}{SQ17. Qual é a intenção quanto à perceptibilidade da IAG no conteúdo?}
+& Não declara intenção & 29 & 48,33\% \\ \cline{2-4}
+& Sim (intencional / estilizado) & 18 & 30,00\% \\ \cline{2-4}
+& Não (busca imperceptibilidade) & 12 & 20,00\% \\ \cline{2-4}
+& Parcialmente & 1 & 1,67\% \\
+\hline
+\end{longtable}
+\normalsize
+
+\subsection{Perfil Acadêmico e Domínios de Aplicação (SQ1, SQ2 e SQ3)}
+
+A análise da SQ1 revelou que a categoria dominante foi a Proposta de Solução, compreendendo 31 artigos (mais da metade do total analisado). Essa concentração evidenciou que a pesquisa sobre IAG ainda esteve fortemente voltada para o desenvolvimento de novas ferramentas, superando as Pesquisas de Avaliação (19 artigos) e as Pesquisas de Validação (7 artigos). Esse cenário atestou o ritmo acelerado de inovação no campo, típico de fases exploratórias intensas onde a prototipação técnica precede a validação empírica consolidada de longo prazo. Os três registros restantes correspondem a ocorrências únicas, um artigo de opinião, um relato de experiência e um estudo cujo rótulo registrado situa-se fora da taxonomia adotada, fechando exatamente os 60 estudos, como exige um campo de resposta única.
+
+Em relação à área do conhecimento (SQ2), o estudo confirmou uma interdisciplinaridade intrínseca. Mídia e Entretenimento despontou em trinta e quatro publicações, possuindo enorme sobreposição com a categoria de IA, que angariou trinta e um artigos. O Design Digital figurou em 13 publicações. Curiosamente, a Educação apareceu em 7 artigos, sinalizando um interesse latente na adoção dessas ferramentas para a geração de tutoriais e materiais didáticos audiovisuais, e as Ciências Sociais em 3. A ausência massiva de campos como Direito Digital e Ética Aplicada demonstrou uma perigosa fragmentação, onde a engenharia avança isolada das ciências humanas.
+
+No foco principal da aplicação (SQ3), a geração e modificação de vídeos liderou com 19 estudos, confirmando a ambição acadêmica de transcender a síntese visual estática. A criação de imagem estática apareceu em 7 estudos, os efeitos audiovisuais em 5 e a automação do processo de edição em apenas 2, ao lado de um agrupamento residual de 10 registros com rótulos de ocorrência única. A categoria de Storytelling e narrativas alcançou 12 publicações, um dado expressivo que provou a inserção da máquina em processos criativos centrais, como a roteirização e a estruturação de arcos de personagens, desafiando a percepção limitante de que a adoção de IAG serviria apenas para a automação de tarefas mecânicas ou de renderização.
+
+\subsection{Infraestrutura Tecnológica e Formas de Uso (SQ4, SQ5 e SQ13)}
+
+A base arquitetônica do audiovisual gerativo (SQ4) consolidou a hegemonia absoluta dos Modelos de Difusão, presentes em 29 estudos, seguidos de perto pelas arquiteturas baseadas em Transformers, citadas em 22 projetos. As GANs clássicas sofreram um declínio notório, aparecendo em apenas 10 trabalhos, geralmente atreladas a otimizações pontuais muito específicas. Modelos explicitamente híbridos foram reportados em 6 trabalhos, autoencoders em 3 e redes recorrentes em 2, além de um agrupamento residual de 12 registros. A estabilidade de treinamento e o controle semântico fino garantiram a predominância da difusão latente sobre as metodologias legadas.
+
+A distribuição quantitativa da SQ5 confirmou que a combinação de ferramentas existentes foi a abordagem dominante, abarcando 20 artigos, seguida pela customização parcial, com 8 ocorrências. O desenvolvimento proprietário extenso apareceu em apenas 6 publicações, mesmo número dos estudos que empregaram uma ferramenta de terceiros sem qualquer modificação. As categorias orientadas à integração concentram 34 dos 42 rótulos registrados na subquestão (20 mais 8 mais 6), de modo que o campo prioriza a orquestração sobre o uso puro de ferramentas prontas; como a SQ5 é multirrótulo, esses valores são rótulos, e não estudos distintos. Isso revelou uma profunda dependência estrutural dos pesquisadores independentes e laboratórios acadêmicos em relação aos modelos pré treinados disponibilizados por corporações monumentais, ditando os rumos do que pode ou não ser investigado.
+
+Essa concentração ficou ainda mais evidente na análise dos modelos específicos (SQ13). O Stable Diffusion dominou o cenário em 23 publicações, justificado por sua natureza open source que permitia ajustes diretos. O GPT 4 atuou em 12 pesquisas, orquestrando fluxos e prompts complexos. O MidJourney figurou em 8 estudos, o CLIP e o DALL·E em 7 cada e o GPT-3 em 3. Modelos puramente dedicados ao áudio profissional ou animação facial de altíssima fidelidade não conseguiram representação estatística dominante, atestando a primazia visual corporativa.
+
+\subsection{Gargalos Operacionais, Interação e Produção (SQ6, SQ9, SQ10, SQ11 e SQ12)}
+
+No campo dos desafios técnicos (SQ6), a manutenção da coerência temporal foi identificada de forma isolada como o maior gargalo tecnológico, sendo o problema central em 16 trabalhos. A dificuldade algorítmica de manter a identidade de personagens, a iluminação contínua e a consistência geométrica através de múltiplos quadros de vídeo limitou drasticamente a usabilidade profissional. A estabilidade do sistema foi apontada em 7 estudos, a latência em 5, e a escalabilidade, as limitações de resolução e a sincronização áudio-vídeo em 4 cada. O maior agrupamento da subquestão, com 22 registros, reúne gargalos genuinamente específicos de cada estudo, sem vocabulário compartilhado, o que constitui um achado sobre a imaturidade terminológica do campo e não desloca a coerência temporal da posição de obstáculo nomeado dominante.
+
+Complementarmente, a análise do propósito de uso da IAG (SQ9) mostrou que os rótulos nomeados mais frequentes foram a automação de pós-produção e a criação de roteiro e narrativa, com 9 estudos (15,00\%) cada, seguidos pela criação de imagem e fotografia e pela geração de efeitos especiais, com 3 estudos cada, e pelas animações interativas, com 2. O maior agrupamento da subquestão é o residual, com 13 registros (21,67\%), e essa dimensão é, ela própria, um achado: parte relevante das aplicações não se encaixa nas categorias clássicas do \textit{pipeline} cinematográfico, como no caso de plataformas educacionais que geram vídeos de professores digitais a partir de roteiros de aula. Isso indica que a IAG não apenas automatiza fluxos audiovisuais existentes, mas cria demanda nova por vídeo linear em domínios como educação, comunicação institucional e acessibilidade, que antes não conseguiam custear produção. Vale registrar que a SQ9 totaliza 39 atribuições, o menor número entre todas as subquestões, o que limita o alcance de qualquer generalização sobre a totalidade do corpus. 
+
+Devido a essa barreira temporal, os tipos de conteúdos gerados (SQ10) refletiram adaptações forçadas. Ocorreu um empate estatístico no qual Imagens Estáticas (14 artigos) e Animações (13 artigos) superaram numericamente os Vídeos Completos (12 artigos). A animação tornou se o refúgio seguro da IAG, pois sua natureza estilizada mascarava falhas visuais que destruiriam a imersão em filmagens de pessoas reais.
+
+A infraestrutura de hardware utilizada (SQ11) reforçou barreiras econômicas. Vinte e quatro projetos exigiram computadores e notebooks com aceleração gráfica local e 12 dependeram de servidores e processamento em nuvem. Essas classes não são exclusivas: 10 dos 24 estudos de \textit{desktop} também figuram sob interfaces em nuvem, pois a interface roda localmente enquanto o modelo é invocado remotamente. A interação humana predominante (SQ12) reafirmou a supremacia dos comandos de linguagem natural, com os prompts textuais orientando 25 iniciativas, enquanto interfaces gráficas mais acessíveis apareceram em apenas 12 e a interação multimodal em 7, evidenciando a nova alfabetização técnica exigida pelo mercado. Outros 4 estudos foram registrados sob um rótulo variante do mesmo valor, gerado pela normalização da extração; ao fundi-los, a interação textual alcança 29 estudos (48,33\%).
+
+\subsection{Dimensões Éticas e Validação Científica (SQ7, SQ8, SQ14, SQ15, SQ16 e SQ17)}
+
+O eixo ético (SQ7) concentrou as preocupações mais severas dos autores. Dezenove trabalhos destacaram o choque contra a indústria criativa, com receios fundamentados sobre a substituição direta e abrupta de profissionais humanos. A questão da autenticidade e da indefinição de direitos autorais foi debatida por 17 artigos, ilustrando a fragilidade legal de sistemas alimentados por raspagem de dados não autorizada. O viés algorítmico, reprodutor de estereótipos sociais e raciais, ocupou 10 frentes de estudo.
+
+A análise da validação empírica (SQ8 e SQ14) demonstrou que 52 estudos (86,67\%) apresentaram análise empírica explícita, contra 6 que não a apresentaram e 2 classificados como parcialmente, com predomínio do experimento controlado (22 estudos), seguido de \textit{survey} e questionário (15), estudo de caso (11) e entrevista (9). Quanto ao tamanho de amostra (SQ8.2), 48 estudos (80,00\%) reportaram o número de participantes; os 12 restantes (20,00\%) compõem a classe ``não reportado ou não aplicável'', que subsume os oito casos não afirmativos da SQ8. A validação ocorreu sob um sistema dual: 15 estudos recorreram a painéis qualitativos subjetivos compostos por especialistas humanos capazes de julgar emoção e narrativa, enquanto 13 pesquisas utilizaram métricas matemáticas puramente quantitativas para medir distâncias estatísticas de resolução, ignorando completamente as nuances subjetivas da arte.
+
+No que diz respeito ao impacto potencial na indústria audiovisual (SQ15), os estudos analisados apontaram uma perspectiva majoritariamente disruptiva. Cerca de 40\% das publicações destacaram o aumento de produtividade como principal benefício, seguido pela emergência de novos fluxos criativos (30\%) e pela democratização da produção (20\%). Esses achados reforçam a hipótese de que a IAG não apenas automatiza tarefas existentes, mas reconfigura profundamente o papel dos profissionais do setor, deslocando competências técnicas tradicionais para atividades de curadoria, direção e orquestração de sistemas generativos, conforme discutido por \citet{RothAleo2026}.
+
+O MSL explicitou uma dura crise de reprodutibilidade científica (SQ16). Vinte e dois artigos indicaram que a extrema dependência de dados de treinamento fechados impedia a replicação plena das metodologias. Somado a isso, 17 autores apontaram a variabilidade estocástica como um inimigo: o fato de as ferramentas gerarem saídas distintas para o mesmo comando exato frustrou as necessidades de direção de arte preditiva exigidas por grandes estúdios.
+
+Por fim, a investigação sobre transparência (SQ17) revelou um setor fraturado, e o dado mais expressivo é justamente o silêncio: 29 estudos (48,33\%), quase metade do corpus, não declararam qualquer intenção quanto à perceptibilidade do uso da IAG. Entre os que se posicionaram, 18 (30,00\%) tornaram o uso intencionalmente visível, em geral por meio de saídas assumidamente estilizadas, 12 (20,00\%) buscaram a imperceptibilidade, regime no qual o sucesso é definido pela incapacidade de o espectador detectar a síntese, e 1 declarou perceptibilidade parcial. A concentração da exposição ética nos estudos tecnicamente mais bem-sucedidos, somada ao silêncio da maioria, ilustra o vácuo regulatório global sobre sinalização de mídia artificial em um momento em que reguladores, plataformas e entidades setoriais começam a exigir a divulgação de proveniência.
+
+\section{Síntese e Lacunas Evidenciadas}
+
+A análise aprofundada dos sessenta artigos revelou um campo em processo de amadurecimento explosivo, caracterizado por intensa atividade de prototipagem, mas ainda marcado por desafios metodológicos formidáveis. O MSL de \citet{RothAleo2026} evidenciou oito lacunas estruturais que comprometeram a adoção estável da tecnologia no audiovisual não interativo:
+
+\begin{enumerate}
+    \item Lacuna de escala: as experimentações ocorreram em contextos limitados e isolados, sem enfrentar o estresse operacional ou a carga de processamento exigidos por uma verdadeira rotina de produção seriada.
+    \item Lacuna metodológica: foi diagnosticada a ausência completa de \textit{benchmarks} unificados ou métricas focadas exclusivamente em narrativa e cinema, forçando pesquisadores a adaptarem parâmetros da ciência da computação pura para avaliar obras de arte.
+    \item Lacuna de reprodutibilidade: o bloqueio corporativo dos dados de treinamento aliados à variabilidade inerente das difusões probabilísticas impossibilitaram testes idênticos independentes.
+    \item Lacuna de diversidade tecnológica: houve extrema vulnerabilidade e centralização acadêmica, com o conhecimento global submisso às atualizações comerciais de menos de meia dúzia de megacorporações detentoras de IA.
+    \item Lacuna interdisciplinar: comprovou-se o foco majoritariamente no código fonte, em detrimento dos reflexos psicológicos, jurídicos e contratuais que as ferramentas causam no mundo do trabalho.
+    \item Lacuna de democratização: apesar das interfaces de texto parecerem convidativas, o real poder geracional exigiu maquinário gráfico de elite inalcançável para estúdios independentes.
+    \item Lacuna regulatória: a indefinição internacional prolongada sobre atribuição de autoria coletiva e violação de direitos em treinamento massivo.
+    \item Lacuna temporal: os modelos careciam de uma janela de memória expansiva, degradando a continuidade de cenários e identidades de personagens após curtos períodos de iteração em tela.
+\end{enumerate}
+
+Essas lacunas não apenas delimitaram os contornos da incerteza científica no momento da avaliação, como apontaram a necessidade inegável da construção de um sistema de classificação mais maduro. Foi exatamente a partir da compreensão das lacunas identificadas que se formou a base justificativa para a formulação taxonômica desenvolvida nos capítulos seguintes deste documento, almejando parametrizar os limites e as capacidades técnicas dessas tecnologias.
+
+Para garantir transparência e reprodutibilidade, a lista de estudos extraídos e a síntese dos dados estão disponíveis no seguinte repositório:
+
+\url{https://figshare.com/s/6b28d0b8c22d009b6af9}.

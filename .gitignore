@@ -1,0 +1,29 @@
+# Ambiente e lixo de sistema
+.claude/
+.DS_Store
+Thumbs.db
+*:Zone.Identifier
+
+# Outros materiais deste workspace (não entram neste repositório)
+Artigo-sobre-TCC/
+TCC/
+Introdução-pesquisa-computação/
+Lattes_Guilherme_Roth.md
+venue_*.json
+
+# Qualificação: backups e artefatos de compilação
+**/*.bak
+**/*.bak_*
+**/*.aux
+**/*.log
+**/*.out
+**/*.toc
+**/*.lof
+**/*.lot
+**/*.bbl
+**/*.blg
+**/*.synctex.gz
+**/*.fdb_latexmk
+**/*.fls
+Qualificação_mestrado/main_maziero.pdf
+Qualificação_mestrado/changelog

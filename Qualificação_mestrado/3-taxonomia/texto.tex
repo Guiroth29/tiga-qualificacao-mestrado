@@ -1,0 +1,479 @@
+\chapter{TAXONOMIA: CONCEITUAÇÃO, ESTRUTURAÇÃO E PROPOSIÇÃO}
+\label{cap:taxonomia}
+
+Este capítulo tem como objetivo fundamentar teórica e metodologicamente o desenvolvimento da TIGA e apresentar o artefato resultante. O texto segue uma progressão do conceitual ao aplicado. As primeiras seções estabelecem o referencial: o que é uma taxonomia e para que serve, as etapas metodológicas de sua construção e uma análise crítica das taxonomias correlatas, que evidencia a lacuna a ser preenchida. Em seguida, apresenta-se a proposição do artefato: o objetivo e a diferenciação do modelo, o método aplicado em sua construção e a estrutura das três dimensões, com suas facetas e valores, consolidada em uma síntese. A parte final é dedicada à operacionalização e à avaliação: a aplicação da taxonomia a estudos reais do corpus, a rubrica de classificação, a análise dos \textit{trade-offs} entre as dimensões, as limitações da versão preliminar e o instrumento previsto para sua validação.
+
+\section{O que é uma Taxonomia e para que serve}
+
+No contexto da ciência da computação (CC) e dos sistemas de informação (SI), o avanço acelerado de novos paradigmas tecnológicos frequentemente resulta em uma fragmentação do conhecimento, caracterizada por terminologias inconsistentes e pela proliferação de ferramentas e métodos desestruturados. Para mitigar essa entropia informacional, o desenvolvimento de artefatos de classificação estruturados faz-se essencial.
+
+Uma taxonomia é, fundamentalmente, um sistema formal de classificação empírica ou conceitual que agrupa objetos de interesse (fenômenos, sistemas, algoritmos ou processos) com base em suas características compartilhadas, organizando-os de forma hierárquica e relacional \citep{nickerson2013method, bailey1994}. Originárias das ciências biológicas (com o sistema de Lineu), as taxonomias foram amplamente adotadas nas ciências exatas e aplicadas como mecanismos para organizar a complexidade e revelar a estrutura subjacente de um domínio de conhecimento \citep{glass1995}. Na literatura de SI, a distinção entre \textit{taxonomias} (derivadas empiricamente) e \textit{tipologias} (derivadas conceitualmente) é objeto de debate consolidado \citep{bailey1994, doty1994}; nesta pesquisa, adota-se o termo taxonomia em sentido amplo, abarcando o processo iterativo que combina indução empírica e dedução conceitual \citep{nickerson2013method}.
+
+A utilidade de uma taxonomia transcende a simples catalogação. Ela serve para:
+\begin{itemize}
+    \item Estabelecer um vocabulário comum: Padronizar termos e conceitos, facilitando a comunicação entre pesquisadores, desenvolvedores e profissionais da indústria.
+    \item Reduzir a complexidade: Agrupar um volume massivo e heterogêneo de dados - como as centenas de aplicações emergentes de IAG - em categorias gerenciáveis e compreensíveis.
+    \item Identificar lacunas de pesquisa e oportunidades: Ao mapear o que já existe de forma estruturada, o modelo taxonômico torna evidentes as áreas que ainda carecem de exploração empírica ou desenvolvimento teórico.
+    \item Apoiar a tomada de decisão: Fornecer um guia estrutural que permite a profissionais e gestores avaliar e selecionar tecnologias de acordo com os requisitos específicos de seus projetos.
+\end{itemize}
+
+Diante da rápida evolução da IAG, onde dados e ferramentas tornam-se obsoletos em poucos meses, uma taxonomia atua como uma âncora conceitual. Ela desloca o foco das ferramentas individuais (efêmeras) para as dimensões e características estruturantes (perenes) do uso da tecnologia \citep{RothAleo2026}.
+
+\section{Etapas de Construção de uma Taxonomia}
+\label{sec:tax:etapas}
+
+A construção de uma taxonomia cientificamente rigorosa não pode basear-se em agrupamentos arbitrários; ela exige a aplicação de um método sistemático. Na área de SI, a metodologia proposta por \citet{nickerson2013method} consolidou-se como o padrão-ouro para o desenvolvimento taxonômico, tendo recebido, posteriormente, refinamentos que sistematizam a documentação e a avaliação das decisões de projeto \citep{kundisch2022, szopinski2019}. Este método baseia-se em um processo iterativo que combina deduções teóricas e induções empíricas. Por se tratar de um artefato de conhecimento deliberadamente projetado para resolver um problema de organização de um domínio, o desenvolvimento taxonômico alinha-se aos princípios da \textit{Design Science Research} \citep{hevner2004}, que orienta a construção e a avaliação rigorosa de artefatos em computação.
+
+As principais etapas de construção de uma taxonomia, adaptadas para o escopo desta pesquisa, são:
+
+\begin{enumerate}
+    \item Definição da Meta-Característica: O primeiro passo é determinar a característica central que servirá de base para a classificação. Neste estudo, a meta-característica é a \textit{integração da IAG no pipeline de produção audiovisual não interativo}, abrangendo os níveis de autonomia, a infraestrutura e os riscos inerentes.
+    \item Determinação das Condições de Término: Definir critérios objetivos para encerrar o processo iterativo. Condições comuns incluem: a taxonomia deve ser mutuamente exclusiva e coletivamente exaustiva (MECE), abrangente, extensível e útil de forma prática.
+    \item Escolha da Abordagem Iterativa: A metodologia prevê duas vias complementares:
+    \begin{itemize}
+        \item \textit{Abordagem Empírico-Conceitual (Indutiva):} Baseia-se na análise de um subconjunto de objetos reais (neste caso, as evidências e ferramentas extraídas do MSL) para identificar características comuns e agrupá-las em dimensões conceituais.
+        \item \textit{Abordagem Conceitual-Empírica (Dedutiva):} Parte da literatura teórica existente e de conhecimentos prévios para conceber categorias lógicas, verificando posteriormente se os objetos reais se encaixam nessas divisões.
+    \end{itemize}
+    \item Refinamento e Validação Iterativa: O modelo preliminar é testado iterativamente. Se a taxonomia não atender às condições de término, novas dimensões são criadas ou as existentes são ajustadas. A validação final comumente envolve a submissão do artefato a um painel de especialistas e a aplicação em casos de estudo práticos, combinando métodos de avaliação \textit{ex post} e critérios de utilidade reconhecidos na literatura \citep{prat2015, szopinski2019}.
+\end{enumerate}
+
+Para a concepção do modelo proposto nesta dissertação, os dados extraídos do MSL conduzido fornecem a base de dados rigorosa necessária para a abordagem empírico-conceitual, garantindo que as categorias reflitam a realidade da pesquisa científica e do setor criativo \citep{RothAleo2026}.
+
+\section{Taxonomias Relacionadas e a Lacuna na Literatura}
+\label{sec:tax:relacionadas}
+
+O campo da IAG testemunhou recentemente o surgimento de diversas propostas taxonômicas. No entanto, uma análise crítica revela uma fragmentação e um distanciamento das reais necessidades operacionais do setor audiovisual não interativo.
+
+Por exemplo, \citet{strobel2024} exploraram a IAG propondo uma taxonomia focada primordialmente nas capacidades e nos tipos de geração (ex.: \textit{text-to-image}, \textit{text-to-video}, \textit{audio-to-audio}). Embora útil para compreender o paradigma multimodal, trata-se de um modelo excessivamente generalista. Ele classifica os outputs algorítmicos, mas não orienta como essas ferramentas se encaixam nas etapas de pré-produção, produção e pós-produção cinematográfica.
+
+Sob outra perspectiva, \citet{slattery2024} elaboraram uma taxonomia focada estritamente nos riscos impostos pela IA. Os autores mapearam desde vieses discriminatórios até riscos de segurança existencial. No entanto, essa taxonomia isola a dimensão ética e de risco da dimensão técnica e operacional. No ambiente criativo, o risco (como a violação de direitos autorais ou o viés narrativo) está intrinsecamente ligado à autonomia concedida à máquina durante o fluxo de trabalho \citep{floridi2020gpt3}.
+
+Outras abordagens taxonômicas encontradas na literatura costumam restringir-se a aspectos puramente algorítmicos, distinguindo, por exemplo, Modelos de Difusão de GANs ou Transformers. Tais classificações são essenciais para engenheiros de \textit{machine learning}, mas oferecem pouca utilidade para o produtor executivo, roteirista ou montador audiovisual que necessita tomar decisões fundamentadas sobre a adoção tecnológica.
+
+Evidencia-se, portanto, uma lacuna literária significativa: a ausência de um artefato metodológico validado que cruze e integre simultaneamente o nível de autonomia operacional, as exigências técnicas e os riscos socioéticos associados à adoção da IAG especificamente na produção audiovisual não interativa.
+
+\section{O Objetivo e a Diferenciação da Taxonomia Proposta}
+\label{sec:tax:objetivo}
+
+Diante da lacuna evidenciada, o objetivo central ao criar a TIGA é consolidar as potencialidades tecnológicas, os processos produtivos e as implicações éticas em um único artefato classificatório funcional e pragmático. 
+
+Esta taxonomia destina-se a servir como um guia metodológico e um "mapa de prontidão" para a indústria e a academia. O propósito não é catalogar ferramentas de vida curta, mas sim as lógicas de sua aplicação. Ao utilizá-la, pesquisadores e profissionais criativos poderão tomar decisões informadas e responsáveis, compreendendo os gargalos técnicos e as responsabilidades éticas inerentes a cada escolha.
+
+O diferencial fundamental do modelo proposto reside em sua natureza multidimensional. Ao contrário das taxonomias prévias, que isolam o fenômeno, a taxonomia desta pesquisa estrutura-se na interseção de três eixos correlacionados: a \textbf{dimensão operacional}, que classifica o grau de autonomia concedido à IAG; a \textbf{dimensão técnica}, que mapeia a arquitetura e os gargalos que condicionam a aplicabilidade ao audiovisual linear; e a \textbf{dimensão de risco e ética}, que avalia os custos sociotécnicos decorrentes de cada escolha. A caracterização detalhada de cada eixo, com suas facetas e valores categóricos, é desenvolvida na Seção \ref{sec:tax:estrutura}; nesta seção, interessa apenas justificar por que a articulação simultânea das três é o que diferencia o artefato dos modelos existentes.
+
+Dessa forma, a taxonomia desenvolvida diferencia-se por tratar o audiovisual não como um mero laboratório de testes algorítmicos, mas como um ecossistema sociotécnico complexo. O artefato evidencia os \textit{trade-offs} da adoção da IAG: para cada grau de automação e ganho de eficiência (dimensões operacional e técnica), mapeia-se o respectivo custo de controle criativo e risco ético, entregando uma contribuição inovadora, madura e de aplicação imediata para o setor.
+
+\section{Método Aplicado na Construção da Taxonomia}
+
+Estabelecidos o referencial conceitual (Seção \ref{sec:tax:etapas}) e o objetivo do artefato (Seção \ref{sec:tax:objetivo}), esta seção descreve como o método iterativo de \citet{nickerson2013method} foi operacionalizado sobre a base empírica desta pesquisa. Diferentemente de uma proposição puramente dedutiva, a taxonomia aqui apresentada emerge do cruzamento entre as evidências consolidadas no MSL prévio \citep{RothAleo2026}, descrito no Capítulo \ref{cap_trabalhos_previos}, e as estruturas conceituais reconhecidas na literatura de IAG e de produção audiovisual.
+
+A \textbf{meta-característica} adotada, conforme antecipado na Seção \ref{sec:tax:etapas}, é a \textit{integração da IAG no pipeline de produção audiovisual não interativo}. Toda categoria proposta subordina-se a essa característica central, evitando a proliferação de dimensões irrelevantes ou de baixo poder discriminante. As \textbf{condições de término} estabelecidas seguem os atributos objetivos preconizados pelo método: a taxonomia deve ser concisa (número gerenciável de dimensões e categorias), robusta (capaz de diferenciar os objetos de interesse), abrangente (aplicável à totalidade do corpus), extensível (permitindo a incorporação de novas categorias sem ruptura estrutural) e explicativa (revelando relações e \textit{trade-offs}, e não apenas rótulos).
+
+A construção privilegiou a \textbf{abordagem empírico-conceitual (indutiva)}, na qual as dezessete subquestões (SQ), correspondentes a vinte e um campos de extração aplicados aos 60 estudos primários, funcionaram como o subconjunto de objetos reais a partir do qual se identificaram atributos recorrentes. Cada iteração agrupou variáveis de extração afins em facetas conceituais, verificando, ao final, se a estrutura resultante satisfazia as condições de término \citep{nickerson2013method, kundisch2022}. Sempre que uma variável isolada não contribuía para diferenciar os estudos ou se sobrepunha a outra já contemplada, procedeu-se ao seu colapso ou realocação, em ciclos sucessivos de refinamento, documentando as decisões de projeto conforme recomendado pelas boas práticas de desenvolvimento taxonômico \citep{szopinski2019}.
+
+O resultado desse processo foi a convergência das subquestões diretamente ligadas à meta-característica nas três dimensões estruturantes da taxonomia. Essa correspondência não é arbitrária: cada dimensão consolida o conjunto de subquestões que compartilham a mesma natureza analítica: operacional, técnica ou sociotécnica. A Tabela \ref{tab:sq_dimensoes} explicita esse mapeamento, tornando rastreável a origem empírica de cada eixo do artefato.
+
+\begin{longtable}{p{0.28\linewidth} p{0.30\linewidth} p{0.34\linewidth}}
+\caption{Mapeamento das subquestões do MSL para as dimensões da taxonomia}
+\label{tab:sq_dimensoes}\\
+\hline
+\textbf{Dimensão} & \textbf{Subquestões de origem} & \textbf{Foco analítico consolidado} \\
+\hline
+\endfirsthead
+\caption[]{(continuação)}\\
+\hline
+\textbf{Dimensão} & \textbf{Subquestões de origem} & \textbf{Foco analítico consolidado} \\
+\hline
+\endhead
+\hline
+\endfoot
+Operacional & SQ3, SQ5, SQ9, SQ12 & Grau de autonomia concedido à IAG, etapa do \textit{pipeline} e locus da decisão criativa. \\
+\hline
+Técnica (Arquitetura e Limitações) & SQ4, SQ6, SQ10, SQ11, SQ13, SQ14 & Família arquitetural, modelo base, tipo de saída, infraestrutura e gargalos operacionais. \\
+\hline
+Risco e Ética (Custos Sociotécnicos) & SQ7, SQ8, SQ15, SQ16, SQ17 & Autoria, viés, impacto no trabalho, transparência de dados, reprodutibilidade e perceptibilidade. \\
+\hline
+\end{longtable}
+
+Cabe esclarecer que a SQ1 (tipo de contribuição do artigo) e a SQ2 (área do conhecimento em que o estudo se insere) não figuram no mapeamento da Tabela \ref{tab:sq_dimensoes}. Ainda que essenciais para caracterizar o perfil acadêmico do corpus no MSL prévio \citep{RothAleo2026}, essas duas subquestões descrevem propriedades \textit{do próprio artigo} (a natureza de sua contribuição científica e o campo em que foi publicado), e não atributos da \textit{integração da IAG no pipeline audiovisual}, que é a meta-característica adotada. Por não incidirem sobre nenhuma das três dimensões estruturantes (operacional, técnica ou de risco/ética) e por não contribuírem para diferenciar as soluções quanto a essa meta-característica, foram deliberadamente mantidas fora do artefato, em conformidade com o critério de subordinação à meta-característica descrito na Seção \ref{sec:tax:etapas}. Assim, das dezessete subquestões do MSL, quinze fundamentam diretamente as facetas da taxonomia.
+
+Cabe destacar que a versão apresentada neste capítulo constitui uma \textit{proposta preliminar} do artefato. Conforme detalhado na Seção \ref{sec:intro:metodologia}, a estrutura resultante será submetida a um ciclo de validação (painel de especialistas e aplicação sobre instâncias reais), do qual poderão decorrer o desdobramento, a fusão ou o renomeamento de categorias, em conformidade com a natureza iterativa do método adotado.
+
+\section{Estrutura Geral da \rev{TIGA}}
+\label{sec:tax:estrutura}
+
+A TIGA organiza-se como um sistema de classificação \textit{facetado}, e não estritamente hierárquico. Isso significa que um mesmo objeto de análise (uma ferramenta, um estudo ou um caso de uso) não é alocado em uma única categoria terminal, mas recebe, simultaneamente, um valor em cada uma das três dimensões ortogonais. Uma solução de IAG é, portanto, descrita por uma tripla que combina o seu grau de autonomia, o seu perfil técnico e o seu perfil de risco.
+
+Essa escolha estrutural é uma resposta direta à principal lacuna evidenciada na literatura (Seção \ref{sec:tax:relacionadas}): as taxonomias existentes isolam dimensões (capacidades geradoras \citep{strobel2024}, riscos \citep{slattery2024, marchal2024} ou etapas do \textit{pipeline} \citep{orak2024, lazarte2025}), impedindo a análise das relações entre elas. Ao adotar um modelo facetado, a taxonomia proposta preserva a análise conjunta e permite que os \textit{trade-offs} entre eficiência técnica e custo sociotécnico se tornem explícitos. A Figura \ref{fig:taxonomia_visao} apresenta uma visão geral da arquitetura do artefato (a meta-característica no topo, subordinando as três dimensões ortogonais e suas respectivas facetas), e as subseções a seguir detalham as facetas e os valores categóricos de cada dimensão.
+
+\begin{figure}[htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  font=\small,
+  meta/.style={rectangle, rounded corners, draw=black, fill=black!12, text width=11cm, minimum height=1cm, align=center, inner sep=6pt},
+  dim/.style={rectangle, rounded corners, draw=black, fill=black!6, text width=4.6cm, minimum height=1cm, align=center, inner sep=5pt, font=\bfseries\small},
+  facets/.style={rectangle, draw=black, densely dashed, fill=white, text width=4.6cm, align=left, inner sep=6pt, font=\footnotesize},
+  arrow/.style={-{Latex[length=2.5mm]}, thick}
+]
+\node (meta) [meta] at (0,0) {\textbf{Meta-característica}\\Integração da IAG no \textit{pipeline} de produção audiovisual não interativo};
+
+\node (op) [dim] at (-5.4,-2.3) {Dimensão Operacional};
+\node (te) [dim] at (0,-2.3)    {Dimensão Técnica\\(Arquitetura e Limitações)};
+\node (ri) [dim] at (5.4,-2.3)  {Dimensão de Risco e Ética\\(Custos Sociotécnicos)};
+
+\node (opf) [facets, anchor=north] at (-5.4,-3.7) {%
+  \textbullet~Grau de autonomia\\
+  \textbullet~Etapa do \textit{pipeline}\\
+  \textbullet~Modo de interação};
+\node (tef) [facets, anchor=north] at (0,-3.7) {%
+  \textbullet~Família arquitetural\\
+  \textbullet~Modelo base\\
+  \textbullet~Tipo de saída\\
+  \textbullet~Infraestrutura\\
+  \textbullet~Gargalo dominante};
+\node (rif) [facets, anchor=north] at (5.4,-3.7) {%
+  \textbullet~Autoria/autenticidade\\
+  \textbullet~Viés algorítmico\\
+  \textbullet~Impacto no trabalho\\
+  \textbullet~Transparência e reprodutibilidade\\
+  \textbullet~Perceptibilidade};
+
+\draw [arrow] (meta.south) -- (op.north);
+\draw [arrow] (meta.south) -- (te.north);
+\draw [arrow] (meta.south) -- (ri.north);
+\draw [arrow] (op.south) -- (opf.north);
+\draw [arrow] (te.south) -- (tef.north);
+\draw [arrow] (ri.south) -- (rif.north);
+\end{tikzpicture}%
+}
+\caption{Visão geral da TIGA: da meta-característica às facetas de cada dimensão}
+\label{fig:taxonomia_visao}
+\end{figure}
+
+\subsection{Dimensão Operacional}
+
+A dimensão operacional classifica o grau de autonomia decisória concedido à IAG ao longo do \textit{pipeline} produtivo. Sua principal faceta, o \textit{grau de autonomia}, distribui-se em três valores ordinais, do menor ao maior grau de delegação criativa:
+
+\begin{itemize}
+    \item \textbf{Assistente:} a IAG atua como ferramenta pontual de suporte técnico, automatizando tarefas discretas, mecânicas e verificáveis, sob controle humano integral. Enquadram-se aqui a rotoscopia automática, o \textit{upscaling} de resolução, a remoção de objetos e a limpeza de ruído de áudio. A decisão criativa permanece inteiramente com o profissional; a máquina executa. Esse perfil é coerente com a forte presença da automação de pós-produção reportada na SQ9 e com a predominância da combinação de ferramentas existentes na SQ5 \citep{RothAleo2026}.
+    \item \textbf{Colaboradora:} a IAG participa de um processo cocriativo iterativo, no qual humano e máquina alternam contribuições, mas o humano retém a autoridade final sobre cada decisão. São exemplos a roteirização assistida, a geração de \textit{concept art} e a produção de \textit{storyboards} a partir de \textit{prompts}. A expressiva participação de \textit{storytelling} e narrativas na SQ3 e da criação de roteiros na SQ9 evidencia a consolidação desse nível intermediário.
+    \item \textbf{Geradora Autônoma:} a IAG produz artefatos audiovisuais completos de ponta a ponta, com intervenção humana mínima, frequentemente por meio de agentes que planejam, geram e autoavaliam o resultado. A geração e modificação de vídeos, categoria líder da SQ3, expressa a ambição por esse nível, ainda que, como demonstram os gargalos da SQ6, ele permaneça o mais restringido tecnicamente.
+\end{itemize}
+
+Como facetas complementares, esta dimensão incorpora a \textit{etapa do pipeline} em que a integração ocorre (pré-produção, produção ou pós-produção, conforme a Seção \ref{subsec:pipeline}) e o \textit{modo de interação} pelo qual a agência é exercida (\textit{prompt} textual, interface gráfica, multimodal ou programático, derivado da SQ12). A combinação dessas facetas permite distinguir, por exemplo, uma IA colaboradora de pré-produção operada por \textit{prompt} de uma IA assistente de pós-produção operada por interface gráfica.
+
+\subsection{Dimensão Técnica: Arquitetura, Saída e Limitações}
+
+A dimensão técnica mapeia a infraestrutura computacional subjacente às soluções e, sobretudo, os gargalos que condicionam sua aplicabilidade ao audiovisual linear. Compõe-se das seguintes facetas, todas derivadas diretamente do corpus:
+
+\begin{itemize}
+    \item \textbf{Família arquitetural (SQ4):} Modelos de Difusão, \textit{Transformers}, GANs, modelos híbridos, \textit{autoencoders} ou redes recorrentes. As duas primeiras famílias dominam o cenário e, com frequência crescente, atuam de forma combinada, com o \textit{Transformer}/LLM como planejador e o modelo de difusão como renderizador \citep{dhariwal2021diffusion, rombach2022high, vaswani2017attention}.
+    \item \textbf{Modelo base predominante (SQ13):} instâncias concretas como \textit{Stable Diffusion}, GPT-4, \textit{MidJourney}, DALL·E e CLIP. Essa faceta captura a dependência de ecossistemas externos e distingue dois regimes de acesso ao modelo. Nos \textit{modelos abertos} (como o \textit{Stable Diffusion}), cujo código e parâmetros treinados (\textit{pesos}) são disponibilizados publicamente, o desenvolvedor pode inspecionar o funcionamento interno, modificar a arquitetura e retreinar ou ajustar o modelo para necessidades específicas. Já nos \textit{modelos fechados} (como GPT-4, \textit{MidJourney} e DALL·E), acessíveis apenas por meio de serviços comerciais, o funcionamento interno permanece inacessível: o usuário controla o resultado somente de forma indireta, ajustando os comandos de entrada (\textit{prompts}). Essa distinção condiciona diretamente o grau de customização possível e o nível de dependência de fornecedores externos.
+    \item \textbf{Tipo de saída (SQ10):} imagens estáticas, animações, vídeos completos, áudio ou \textit{assets} reutilizáveis (por exemplo, sequências de movimento 3D). O predomínio de saídas modulares e estilizadas sobre vídeos fotorrealistas completos reflete uma adaptação às limitações técnicas correntes.
+    \item \textbf{Infraestrutura de execução (SQ11):} indica \textit{onde} o processamento do modelo efetivamente ocorre. Modelos de IAG dependem de \textit{Graphics Processing Units} (GPUs), processadores especializados em realizar um enorme volume de cálculos simultâneos, o que os torna indispensáveis (e substancialmente mais rápidos que processadores comuns) tanto para treinar quanto para executar esses modelos. A execução pode assumir três formas: \textit{local}, quando o modelo roda em equipamentos do próprio usuário, o que exige \textit{hardware} robusto, de ponta e com grande capacidade de processamento (em especial GPUs de alto desempenho), mas mantém total controle sobre os dados; \textit{em nuvem}, quando o processamento é terceirizado a servidores remotos acessados pela internet e pagos conforme o uso, eliminando o investimento inicial em \textit{hardware} ao custo de dependência de conectividade e de fornecedores; ou \textit{híbrida}, arranjo comum no audiovisual, em que um mesmo \textit{pipeline} distribui suas etapas entre recursos locais e serviços em nuvem (por exemplo, edição e ajustes finos em máquina local e a geração pesada de vídeo na nuvem), buscando o melhor equilíbrio entre custo, desempenho e controle a cada tarefa. Esta faceta materializa a barreira econômica de acesso e ajuda a explicar a concentração da pesquisa em poucos laboratórios e empresas com recursos computacionais robustos.
+    \item \textbf{Gargalo dominante (SQ6):} coerência temporal, estabilidade do sistema, latência, escalabilidade, limitações de resolução ou sincronização áudio-vídeo. A coerência temporal destaca-se como o obstáculo isolado mais recorrente do corpus, sendo o problema central em dezesseis estudos \citep{RothAleo2026}; a incapacidade de manter a identidade de objetos e personagens entre \textit{frames} (o fenômeno da cintilação, ou \textit{flickering}) é o principal fator que confina a geração plenamente autônoma a peças curtas ou estilizadas \citep{gavran2025, orak2024}.
+\end{itemize}
+
+A leitura conjunta dessas facetas permite caracterizar o perfil técnico de uma solução para além do rótulo da arquitetura, associando cada escolha a seus requisitos de infraestrutura e a suas fragilidades operacionais específicas.
+
+\subsection{Dimensão de Risco e Ética: Custos Sociotécnicos}
+
+A terceira dimensão avalia os impactos sociotécnicos inerentes a cada configuração operacional e técnica. Sua premissa estrutural é que o risco não constitui um domínio autônomo, mas uma consequência mensurável das escolhas registradas nas duas dimensões anteriores. As facetas que a compõem são:
+
+\begin{itemize}
+    \item \textbf{Autoria e autenticidade (SQ7):} tensões sobre titularidade, originalidade e atribuição, agravadas em regimes de alta autonomia geradora. Trata-se da segunda preocupação ética mais frequente do corpus, presente em dezessete estudos \citep{RothAleo2026}.
+    \item \textbf{Viés algorítmico (SQ7):} propensão à reprodução de estereótipos e à homogeneização estética, decorrente da otimização sobre corpora históricos de larga escala \citep{floridi2020gpt3}.
+    \item \textbf{Impacto no trabalho e na indústria criativa (SQ7, SQ15):} reconfiguração de funções profissionais, deslocando competências para curadoria, direção e orquestração de sistemas generativos, em vez de substituição integral.
+    \item \textbf{Transparência de dados e reprodutibilidade (SQ16):} dependência de conjuntos de treinamento fechados e variabilidade estocástica dos resultados, que comprometem a replicação científica e a direção de arte preditiva exigida por estúdios.
+    \item \textbf{Perceptibilidade e rotulagem (SQ17):} intenção (ou ausência dela) de sinalizar à audiência a origem sintética do material, questão central diante do avanço regulatório sobre proveniência de mídia.
+\end{itemize}
+
+A explicitação dessas facetas transforma a discussão ética, frequentemente relegada a seções conclusivas na literatura, em um critério classificatório de primeira ordem, com valores atribuíveis e comparáveis entre soluções.
+
+\section{Síntese da Taxonomia Proposta}
+
+A Tabela \ref{tab:taxonomia_sintese} consolida a estrutura completa da taxonomia, reunindo as três dimensões, suas facetas, os valores categóricos correspondentes e a subquestão de origem que fundamenta cada faceta. Essa síntese constitui a representação operacional do artefato: para classificar uma instância, atribui-se a ela um valor em cada linha, obtendo-se um perfil multidimensional completo.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.16\linewidth} >{\raggedright\arraybackslash}p{0.28\linewidth} >{\raggedright\arraybackslash}p{0.38\linewidth} >{\raggedright\arraybackslash}p{0.08\linewidth}}
+\caption{Síntese da TIGA}
+\label{tab:taxonomia_sintese}\\
+\hline
+\textbf{Dimensão} & \textbf{Faceta} & \textbf{Valores categóricos} & \textbf{SQ} \\
+\hline
+\endfirsthead
+\caption[]{(continuação)}\\
+\hline
+\textbf{Dimensão} & \textbf{Faceta} & \textbf{Valores categóricos} & \textbf{SQ} \\
+\hline
+\endhead
+\hline
+\endfoot
+\multirow{3}{=}{Operacional}
+ & Grau de autonomia & Assistente; Colaboradora; Geradora Autônoma & SQ3, SQ9 \\
+\cline{2-4}
+ & Etapa do \textit{pipeline} & Pré-produção; Produção; Pós-produção & SQ9 \\
+\cline{2-4}
+ & Modo de interação & \textit{Prompt} textual; GUI; Multimodal; Programático & SQ12 \\
+\hline
+\multirow{5}{=}{Técnica}
+ & Família arquitetural & Difusão; \textit{Transformer}; GAN; Híbrido; \textit{Autoencoder}; RNN & SQ4 \\
+\cline{2-4}
+ & Modelo base & \textit{Stable Diffusion}; GPT-4; \textit{MidJourney}; DALL·E; CLIP; Outro & SQ13 \\
+\cline{2-4}
+ & Tipo de saída & Imagem estática; Animação; Vídeo completo; Áudio; \textit{Asset} & SQ10 \\
+\cline{2-4}
+ & Infraestrutura & Local; Nuvem; Híbrido & SQ11 \\
+\cline{2-4}
+ & Gargalo dominante & Coerência temporal; Estabilidade; Latência; Escalabilidade; Resolução; Sincronização A/V & SQ6 \\
+\hline
+\multirow{5}{=}{Risco e Ética}
+ & Autoria/autenticidade & Baixo; Moderado; Alto & SQ7 \\
+\cline{2-4}
+ & Viés algorítmico & Baixo; Moderado; Alto & SQ7 \\
+\cline{2-4}
+ & Impacto no trabalho & Assistivo; Reconfigurador; Substitutivo & SQ7, SQ15 \\
+\cline{2-4}
+ & Transparência e reprodutibilidade & Alta; Parcial; Baixa & SQ16 \\
+\cline{2-4}
+ & Perceptibilidade & Explícita; Ausente; Não informada & SQ17 \\
+\hline
+\end{longtable}
+
+\section{Aplicação da Taxonomia a Estudos Reais do Corpus}
+\label{sec:tax:instanciacao}
+
+Para demonstrar o poder descritivo do artefato e realizar uma primeira verificação de sua aplicabilidade, esta seção classifica três estudos primários extraídos dos 60 artigos do MSL \citep{RothAleo2026}. Os três foram selecionados por ocuparem posições distintas na faceta de maior poder discriminante (o grau de autonomia), cobrindo o espectro do assistente à geradora autônoma. Os valores atribuídos derivam diretamente dos formulários de extração do MSL, e não de inferência: cada célula da Tabela \ref{tab:aplicacao_real} corresponde a uma resposta registrada nas subquestões do estudo correspondente.
+
+Os estudos são: (i) o \textit{wr-AI-ter} \citep{weber2024wraiter}, uma aplicação de roteirização assistida por GPT-4 que preserva a percepção de autoria do roteirista; (ii) o \textit{MagicVFX} \citep{guo2024magicvfx}, um \textit{pipeline} de síntese de efeitos visuais em vídeo a partir de um vídeo-base, uma máscara e um \textit{prompt}; e (iii) o \textit{Anim-Director} \citep{li2024animdirector}, um agente autônomo que gera animações completas a partir de narrativas curtas, orquestrando GPT-4, MidJourney e Pika sem intervenção humana rotineira.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.26\linewidth} >{\raggedright\arraybackslash}p{0.20\linewidth} >{\raggedright\arraybackslash}p{0.20\linewidth} >{\raggedright\arraybackslash}p{0.20\linewidth}}
+\caption{Classificação de três estudos reais do corpus segundo a taxonomia proposta}
+\label{tab:aplicacao_real}\\
+\hline
+\textbf{Faceta} & \textbf{\textit{wr-AI-ter} \citep{weber2024wraiter}} & \textbf{\textit{MagicVFX} \citep{guo2024magicvfx}} & \textbf{\textit{Anim-Director} \citep{li2024animdirector}} \\
+\hline
+\endfirsthead
+\caption[]{(continuação)}\\
+\hline
+\textbf{Faceta} & \textbf{\textit{wr-AI-ter}} & \textbf{\textit{MagicVFX}} & \textbf{\textit{Anim-Director}} \\
+\hline
+\endhead
+\hline
+\endfoot
+\multicolumn{4}{l}{\textbf{\textit{Dimensão Operacional}}} \\
+\hline
+Grau de autonomia & Colaboradora & Assistente & Geradora Autônoma \\
+Etapa do \textit{pipeline} & Pré-produção & Pós-produção & Produção e pós-produção \\
+Modo de interação & GUI e \textit{prompt} & Multimodal & Multimodal \\
+\hline
+\multicolumn{4}{l}{\textbf{\textit{Dimensão Técnica}}} \\
+\hline
+Família arquitetural & \textit{Transformer} & Difusão & Híbrido (\textit{Transformer} + Difusão) \\
+Modelo base & GPT-4 & VideoCrafter2 & GPT-4; MidJourney; Pika \\
+Tipo de saída & Texto (roteiro) & Vídeo (segmento com VFX) & Vídeo completo; Animação \\
+Infraestrutura & Híbrido & Local & Híbrido \\
+Gargalo dominante & Coerência temporal & Coerência temporal; Resolução & Coerência temporal; Estabilidade \\
+\hline
+\multicolumn{4}{l}{\textbf{\textit{Dimensão de Risco e Ética}}} \\
+\hline
+Autoria e autenticidade & Moderado & Baixo & Alto \\
+Viés algorítmico & Não reportado & Não reportado & Não reportado \\
+Impacto no trabalho & Reconfigurador & Assistivo & Substitutivo \\
+Transparência e reprodutibilidade & Parcial & Parcial & Baixa \\
+Perceptibilidade & Ausente & Ausente & Ausente \\
+\hline
+\end{longtable}
+
+A leitura da Tabela \ref{tab:aplicacao_real} confirma empiricamente a tese central do artefato. À medida que se avança do \textit{wr-AI-ter} (colaboradora) ao \textit{Anim-Director} (gerador autônomo), o custo sociotécnico cresce de forma correlacionada: o impacto no trabalho passa de reconfigurador a substitutivo, o risco de autoria passa de moderado a alto e a reprodutibilidade decai de parcial a baixa. O \textit{MagicVFX}, embora tecnicamente sofisticado, mantém baixo custo sociotécnico justamente por preservar o controle humano sobre a decisão criativa, evidenciando que a maturidade técnica não implica, por si só, maior risco.
+
+Além de confirmar a correlação, a aplicação a dados reais expôs três necessidades concretas de refinamento do artefato, que alimentam tanto a rubrica da Seção \ref{sec:tax:rubrica} quanto as limitações da Seção \ref{sec:tax:limitacoes}:
+
+\begin{enumerate}
+    \item \textbf{Lacuna na faceta \textit{tipo de saída}.} O \textit{wr-AI-ter} entrega um roteiro, isto é, texto, valor não previsto entre as saídas originais da taxonomia (imagem, animação, vídeo, áudio, \textit{asset}). A faceta precisa incorporar o valor \textit{texto/roteiro}.
+    \item \textbf{Necessidade de facetas multivaloradas.} Vários estudos apresentam mais de um valor legítimo em uma mesma faceta (o \textit{Anim-Director} gera vídeo e animação; o \textit{MagicVFX} reporta coerência temporal e resolução como gargalos). A taxonomia deve admitir múltiplos valores em facetas descritivas, e não forçar um valor único.
+    \item \textbf{Distinção entre risco baixo e risco não reportado.} Nenhum dos três estudos discutiu viés algorítmico. Registrar esse silêncio como risco \textit{baixo} seria enganoso, pois ausência de menção não equivale a ausência de risco. A dimensão de risco precisa de um valor explícito \textit{não reportado}, distinto de \textit{baixo}, conforme já refletido na Tabela \ref{tab:aplicacao_real}.
+\end{enumerate}
+
+\section{Critérios de Classificação e Protocolo de Aplicação}
+\label{sec:tax:rubrica}
+
+Listar os valores possíveis de cada faceta (Tabela \ref{tab:taxonomia_sintese}) não basta para garantir uma classificação reprodutível: dois avaliadores diferentes podem interpretar de modo distinto o mesmo estudo. Para eliminar essa ambiguidade, esta seção define uma \textit{rubrica de decisão}, isto é, o critério objetivo que rege a atribuição de cada valor. É essa rubrica que confere ao artefato a propriedade de método reutilizável, no sentido preconizado por \citet{Wieringa2006} para propostas de solução metodológica em engenharia: a de explicitar os ingredientes do método, a forma como se articulam, o uso pretendido e os critérios de aplicação, de modo que diferentes avaliadores possam reutilizar o artefato de maneira consistente e produzir classificações comparáveis. A ausência dela era a principal fragilidade da versão anterior do modelo. A Tabela \ref{tab:rubrica} apresenta a regra de atribuição de cada faceta, já incorporando os refinamentos identificados na aplicação a estudos reais (Seção \ref{sec:tax:instanciacao}): o valor \textit{texto/roteiro} na saída, a admissão de facetas multivaloradas e a distinção entre risco \textit{baixo} e \textit{não reportado}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.30\linewidth} >{\raggedright\arraybackslash}p{0.62\linewidth}}
+\caption{Rubrica de decisão para a atribuição dos valores de cada faceta}
+\label{tab:rubrica}\\
+\hline
+\textbf{Faceta} & \textbf{Regra de atribuição} \\
+\hline
+\endfirsthead
+\caption[]{(continuação)}\\
+\hline
+\textbf{Faceta} & \textbf{Regra de atribuição} \\
+\hline
+\endhead
+\hline
+\endfoot
+\multicolumn{2}{l}{\textbf{\textit{Dimensão Operacional}}} \\
+\hline
+Grau de autonomia & Pelo \textit{locus} da decisão criativa final. \textit{Assistente}: tarefa discreta e verificável, decisão integralmente humana. \textit{Colaboradora}: humano e máquina alternam contribuições, com a palavra final do humano. \textit{Geradora autônoma}: artefato completo com intervenção humana mínima (o sistema planeja, gera e autoavalia). \\
+Etapa do \textit{pipeline} & Pela fase em que a saída é utilizada (SQ9). Admite mais de um valor. \\
+Modo de interação & Pela forma primária de entrada do usuário (SQ12). Admite mais de um valor (por exemplo, GUI e \textit{prompt}). \\
+\hline
+\multicolumn{2}{l}{\textbf{\textit{Dimensão Técnica}}} \\
+\hline
+Família arquitetural & Pela arquitetura declarada no estudo (SQ4). Classificar como \textit{híbrido} quando duas ou mais famílias operam de forma integrada. \\
+Modelo base & Pelo(s) modelo(s) nominal(is) empregado(s) (SQ13). Registrar todos quando houver orquestração de vários modelos. \\
+Tipo de saída & Pelo artefato entregue (SQ10): texto/roteiro, imagem estática, animação, vídeo, áudio ou \textit{asset}. Admite mais de um valor. \\
+Infraestrutura & Por onde ocorre o processamento do modelo (SQ11). \textit{Local}: roda em máquina do usuário. \textit{Nuvem}: acessado por API ou serviço remoto. \textit{Híbrido}: combina os dois (por exemplo, interface local que invoca um modelo em nuvem). \\
+Gargalo dominante & Pelo(s) desafio(s) técnico(s) mais citado(s) (SQ6). Admite mais de um valor. \\
+\hline
+\multicolumn{2}{l}{\textbf{\textit{Dimensão de Risco e Ética}}} \\
+\hline
+Autoria e autenticidade & \textit{Baixo}: autoria humana clara, sem preocupação reportada. \textit{Moderado}: tema discutido, com salvaguarda de autoria. \textit{Alto}: geração autônoma sem atribuição clara. \textit{Não reportado}: ausência de menção (SQ7). \\
+Viés algorítmico & \textit{Baixo}, \textit{Moderado} ou \textit{Alto} pela presença e severidade reportadas; \textit{Não reportado} quando o estudo não aborda o tema (SQ7). \\
+Impacto no trabalho & Pelo grau de substituição da tarefa humana (SQ7, SQ15). \textit{Assistivo}: aumenta o profissional. \textit{Reconfigurador}: desloca competências (por exemplo, para curadoria). \textit{Substitutivo}: dispensa a função. \\
+Transparência e reprodutibilidade & \textit{Alta}: dados e modelo abertos, resultado estável. \textit{Parcial}: dependência de dados fechados ou variabilidade moderada. \textit{Baixa}: dados fechados e alta variabilidade estocástica (SQ16). \\
+Perceptibilidade & \textit{Explícita}: intenção de sinalizar a origem sintética. \textit{Ausente}: intenção de não sinalizar. \textit{Não informada}: não declarada (SQ17). \\
+\hline
+\end{longtable}
+
+De posse da rubrica, a classificação de uma instância segue cinco passos, na ordem de precedência representada na Figura \ref{fig:protocolo}: (1) delimitar o objeto e sua etapa no \textit{pipeline}; (2) atribuir o grau de autonomia, que subordina as demais escolhas por ser o de maior poder discriminante \citep{RothAleo2026}; (3) caracterizar o perfil técnico; (4) avaliar o perfil de risco, informado pelas escolhas anteriores; e (5) compor a tripla \textit{(operacional, técnico, risco)} e ler os \textit{trade-offs} resultantes.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  passo/.style={rectangle, draw=black, fill=black!4, text width=8.2cm, minimum height=0.8cm, align=center, inner sep=4pt},
+  startstop/.style={rectangle, rounded corners, draw=black, fill=black!10, text width=8.2cm, minimum height=0.8cm, align=center, inner sep=4pt},
+  arrow/.style={-{Latex[length=2.5mm]}, thick}
+]
+\node (p1) [startstop] at (0,0)     {\textbf{1. Delimitar a instância}\\objeto e etapa do \textit{pipeline}};
+\node (p2) [passo]     at (0,-1.7)  {\textbf{2. Grau de autonomia}\\Assistente / Colaboradora / Geradora Autônoma};
+\node (p3) [passo]     at (0,-3.4)  {\textbf{3. Perfil técnico}\\arquitetura, modelo base, saída, infraestrutura, gargalo};
+\node (p4) [passo]     at (0,-5.1)  {\textbf{4. Perfil de risco}\\autoria, viés, trabalho, transparência, perceptibilidade};
+\node (p5) [startstop] at (0,-6.9)  {\textbf{5. Perfil multidimensional}\\tripla \textit{(operacional, técnico, risco)} + leitura dos \textit{trade-offs}};
+
+\draw [arrow] (p1) -- (p2);
+\draw [arrow] (p2) -- (p3);
+\draw [arrow] (p3) -- (p4);
+\draw [arrow] (p4) -- (p5);
+\end{tikzpicture}
+\caption{Fluxo de decisão para a classificação de uma instância segundo a taxonomia proposta}
+\label{fig:protocolo}
+\end{figure}
+
+A adoção desse protocolo cumpre dois propósitos. Do ponto de vista científico, garante a \textit{reprodutibilidade} da classificação, condição para que a validação empírica descrita na Seção \ref{sec:tax:validacao} produza resultados comparáveis entre diferentes avaliadores. Do ponto de vista prático, oferece a produtores, roteiristas e gestores um roteiro objetivo para posicionar uma tecnologia antes de adotá-la, alinhando a decisão de adoção aos gargalos técnicos e às responsabilidades éticas que ela carrega.
+
+\section{Trade-offs e Correlações entre Dimensões}
+\label{sec:tax:tradeoffs}
+
+A principal contribuição analítica da estrutura facetada reside em explicitar correlações que permanecem ocultas em taxonomias unidimensionais. A leitura cruzada das três dimensões evidencia, em consonância com a análise integrada do MSL \citep{RothAleo2026}, ao menos três \textit{trade-offs} estruturais:
+
+\begin{enumerate}
+    \item \textbf{Autonomia \textit{versus} risco ético.} Existe uma correlação positiva entre o grau de autonomia (dimensão operacional) e a magnitude dos custos sociotécnicos (dimensão de risco). Quanto maior a autonomia delegada à máquina, mais agudas tornam-se as questões de autoria, substituição de trabalho e transparência. Configurações assistivas são de baixo risco; configurações geradoras autônomas concentram os dilemas éticos mais severos.
+    \item \textbf{Automação técnica \textit{versus} controle criativo.} Os ganhos de eficiência proporcionados pelas arquiteturas mais avançadas (dimensão técnica) são contrabalançados pela perda de controle determinístico exigido pela produção linear. A variabilidade estocástica e os gargalos de coerência temporal impõem um teto à confiabilidade profissional, de modo que maior potência geradora não se traduz automaticamente em maior aplicabilidade em estúdio.
+    \item \textbf{Fidelidade técnica \textit{versus} exposição ética.} O avanço na superação dos gargalos técnicos, em especial o aumento do realismo e da coerência, desloca a fronteira do risco: quanto mais imperceptível se torna a origem sintética do material, maior o peso da faceta de perceptibilidade e das preocupações com desinformação e uso indevido. Assim, o progresso em uma dimensão intensifica, em vez de aliviar, as tensões em outra.
+\end{enumerate}
+
+Esses \textit{trade-offs} podem ser visualizados em um plano que confronta o grau de autonomia e automação (eixo horizontal) com a magnitude do custo sociotécnico (eixo vertical). A Figura \ref{fig:mapa_tradeoff} posiciona os três estudos classificados na Seção \ref{sec:tax:instanciacao} nesse plano, evidenciando a tendência diagonal que sintetiza o primeiro e principal \textit{trade-off}: o ganho de autonomia e eficiência caminha, de forma correlacionada, com o aumento do risco ético e da perda de controle criativo determinístico.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  arq/.style={circle, draw=black, fill=black!10, minimum size=0.55cm, inner sep=1pt},
+  lbl/.style={align=center, font=\footnotesize},
+  axis/.style={-{Latex[length=2.5mm]}, thick},
+  trend/.style={-{Latex[length=2.5mm]}, thick, densely dashed}
+]
+% eixos
+\draw [axis] (0,0) -- (8.6,0) node[right, font=\footnotesize] {Autonomia / automação};
+\draw [axis] (0,0) -- (0,6.2) node[above, font=\footnotesize] {Custo sociotécnico (risco)};
+% rótulos dos extremos
+\node [font=\scriptsize] at (0.9,-0.35) {baixa};
+\node [font=\scriptsize] at (7.6,-0.35) {alta};
+\node [font=\scriptsize, rotate=90] at (-0.35,1.0) {baixo};
+\node [font=\scriptsize, rotate=90] at (-0.35,5.2) {alto};
+% linha de tendência
+\draw [trend] (1.0,0.9) -- (7.4,5.4);
+% estudos reais
+\node (a1) [arq] at (1.4,1.0) {A};
+\node (a2) [arq] at (4.2,2.9) {B};
+\node (a3) [arq] at (7.0,5.0) {C};
+\node [lbl, anchor=west] at (1.9,0.9)  {A: \textit{MagicVFX}\\Assistente\\(pós-produção)};
+\node [lbl, anchor=west] at (4.7,2.8)  {B: \textit{wr-AI-ter}\\Colaboradora\\(pré-produção)};
+\node [lbl, anchor=east] at (6.5,5.1)  {C: \textit{Anim-Director}\\Geradora autônoma\\(vídeo)};
+\end{tikzpicture}
+\caption{Mapa dos \textit{trade-offs}: posicionamento dos três estudos classificados no plano autonomia/automação \textit{versus} custo sociotécnico}
+\label{fig:mapa_tradeoff}
+\end{figure}
+
+É precisamente a capacidade de tornar esses \textit{trade-offs} legíveis e comparáveis que distingue a taxonomia proposta dos modelos fragmentados discutidos na Seção \ref{sec:tax:relacionadas}, cumprindo a função explicativa exigida como condição de término do método de \citet{nickerson2013method}.
+
+\section{Limitações da Versão Preliminar do Artefato}
+\label{sec:tax:limitacoes}
+
+O reconhecimento explícito das limitações é parte integrante do rigor da \textit{Design Science Research} \citep{hevner2004} e condição para os ciclos iterativos de refinamento previstos no método adotado \citep{nickerson2013method}. A versão apresentada neste capítulo está sujeita às seguintes limitações:
+
+\begin{itemize}
+    \item \textbf{Escala reduzida da aplicação.} A classificação da Seção \ref{sec:tax:instanciacao} cobriu três estudos, escolhidos para cobrir o espectro de autonomia. Trata-se de uma verificação inicial de aplicabilidade, e não de uma validação estatística: a discriminação do artefato sobre a totalidade do corpus e sobre ferramentas comerciais ainda precisa ser medida.
+    \item \textbf{Classificação por um único codificador.} As três classificações foram realizadas por um único avaliador a partir dos formulários de extração. Sem uma segunda codificação independente, a reprodutibilidade da rubrica (Seção \ref{sec:tax:rubrica}) permanece uma hipótese a ser testada com medida de concordância entre avaliadores.
+    \item \textbf{Ausência de validação por especialistas.} A clareza, a completude e a ausência de redundância das facetas ainda não foram submetidas a um painel de especialistas em IA e em produção audiovisual \citep{szopinski2019}.
+    \item \textbf{Recorte temporal do corpus.} A base empírica cobre uma janela de busca de 2022 a abril de 2025, cujas publicações efetivamente selecionadas situam-se entre 2023 e abril de 2025 \citep{RothAleo2026}. Dada a velocidade de evolução da IAG, novos modelos e modos de interação podem exigir a extensão da faceta \textit{modelo base} ou o desdobramento de categorias, possibilidade prevista pelo critério de extensibilidade, mas ainda não testada.
+    \item \textbf{Granularidade da dimensão de risco.} As facetas éticas adotam escalas qualitativas (baixo, moderado, alto), adequadas à comparação relativa entre soluções, mas insuficientes para uma mensuração absoluta de impacto; sua atribuição depende do julgamento do avaliador, o que reforça a necessidade da rubrica (Seção \ref{sec:tax:rubrica}) para assegurar reprodutibilidade.
+\end{itemize}
+
+Vale notar que a aplicação a estudos reais já corrigiu três fragilidades da versão inicial, incorporadas à rubrica: o valor \textit{texto/roteiro} na saída, a admissão de facetas multivaloradas e a distinção entre risco \textit{baixo} e \textit{não reportado}. As limitações remanescentes não invalidam a proposta; ao contrário, delimitam com precisão o que a etapa de validação, detalhada a seguir, precisa examinar.
+
+\section{Instrumento de Validação da Taxonomia}
+\label{sec:tax:validacao}
+
+Em conformidade com a metodologia definida na Seção \ref{sec:intro:metodologia}, a versão preliminar do artefato será submetida a duas etapas de validação complementares, apoiadas em critérios consolidados de avaliação de artefatos \citep{prat2015, hevner2004}. Esta seção não apenas anuncia essas etapas, mas define os instrumentos concretos que serão empregados em cada uma, de modo a torná-las reprodutíveis.
+
+\subsection{Etapa 1: Validação por Painel de Especialistas}
+
+A primeira etapa é uma avaliação qualitativa conduzida com um painel de cinco a oito especialistas, equilibrado entre pesquisadores de IA aplicada e profissionais de produção audiovisual, recrutados por amostragem intencional segundo critério de experiência mínima de cinco anos na área. Cada especialista avalia a taxonomia por meio do questionário da Tabela \ref{tab:instrumento_especialistas}, cujos itens operacionalizam as condições de término do método \citep{nickerson2013method} e os critérios de qualidade de artefatos \citep{prat2015, szopinski2019}. As respostas usam escala Likert de cinco pontos (1, discordo totalmente; 5, concordo totalmente), acompanhadas de campo aberto obrigatório para justificativa.
+
+O dimensionamento do painel entre cinco e oito avaliadores decorre da natureza desta etapa, que é qualitativa e orientada à convergência de julgamentos especializados, e não à inferência estatística sobre uma população \citep{szopinski2019, kundisch2022}. O limite inferior de cinco atende a duas exigências simultâneas. A primeira é de composição: como o painel precisa contemplar dois perfis distintos (pesquisa em IA aplicada e prática de produção audiovisual), cinco avaliadores são o mínimo para garantir pelo menos dois representantes de cada perfil, evitando que a avaliação de um dos lados dependa de um único respondente. A segunda é de robustez do critério de aceitação: com cinco ou mais respostas, a mediana adotada como limiar de aprovação deixa de ser deslocada por uma única avaliação divergente, o que preserva a estabilidade da decisão de revisar ou manter cada faceta. O limite superior de oito, por sua vez, preserva a viabilidade da análise temática dos comentários abertos, que constitui o principal insumo de refinamento das facetas e demanda leitura integral e codificação de cada justificativa. Esse limite também se apoia na literatura sobre saturação temática. Ao documentar sistematicamente o surgimento de novos códigos ao longo de sessenta entrevistas em profundidade, \citet{guest2006} verificaram que a saturação se completou nas doze primeiras e que os elementos básicos dos temas centrais já estavam presentes por volta da sexta, em uma amostra relativamente homogênea. Como o painel aqui previsto é pequeno, homogêneo quanto ao objeto avaliado e conduzido por um instrumento fechado com campo aberto de justificativa, espera-se comportamento análogo: novas categorias de crítica tendem a se tornar rarefeitas a partir do sexto avaliador, de modo que participantes adicionais elevariam o custo de recrutamento, restrito a profissionais com no mínimo cinco anos de experiência em um nicho ainda incipiente, sem ganho proporcional de informação. Caso a codificação dos comentários não indique saturação ao se alcançar oito avaliadores, o painel poderá ser ampliado em uma rodada complementar, sem alteração do instrumento nem do critério de aceitação.
+
+\begin{longtable}{p{0.20\linewidth} p{0.72\linewidth}}
+\caption{Instrumento de avaliação da taxonomia pelo painel de especialistas}
+\label{tab:instrumento_especialistas}\\
+\hline
+\textbf{Construto} & \textbf{Item (avaliado em escala de 1 a 5)} \\
+\hline
+\endfirsthead
+\caption[]{(continuação)}\\
+\hline
+\textbf{Construto} & \textbf{Item} \\
+\hline
+\endhead
+\hline
+\endfoot
+\multirow{2}{*}{Clareza} & As dimensões e facetas têm definições compreensíveis e sem ambiguidade. \\
+ & Os valores categóricos de cada faceta são mutuamente distinguíveis. \\
+\hline
+\multirow{2}{*}{Completude} & As três dimensões cobrem os aspectos relevantes da integração da IAG no audiovisual não interativo. \\
+ & Não há faceta essencial ausente para descrever uma solução real. \\
+\hline
+Concisão & Não há dimensões ou facetas redundantes ou dispensáveis. \\
+\hline
+Robustez & A taxonomia permite diferenciar soluções com perfis distintos. \\
+\hline
+\multirow{2}{*}{Utilidade} & O artefato apoia decisões reais de adoção tecnológica no setor. \\
+ & A rubrica (Tabela \ref{tab:rubrica}) é suficiente para classificar uma solução sem consulta ao autor. \\
+\hline
+Extensibilidade & Novos modelos ou modos de interação podem ser acomodados sem ruptura da estrutura. \\
+\hline
+\end{longtable}
+
+O critério de aceitação estabelece que cada item deve alcançar mediana igual ou superior a 4; itens abaixo desse limiar, ou que concentrem justificativas críticas convergentes, disparam a revisão da faceta correspondente. Os comentários abertos são analisados por codificação temática, gerando uma lista priorizada de ajustes.
+
+\subsection{Etapa 2: Validação por Aplicação e Concordância entre Avaliadores}
+
+A segunda etapa mede a reprodutibilidade da rubrica (Seção \ref{sec:tax:rubrica}) sobre uma amostra maior. Seleciona-se uma amostra estratificada de estudos do corpus, distribuída pelos três graus de autonomia, acrescida de um conjunto de ferramentas comerciais vigentes, de modo a testar o artefato para além dos dados que o originaram. Dois avaliadores classificam cada instância de forma independente, usando exclusivamente a rubrica, sem comunicação prévia.
+
+A concordância entre os avaliadores é quantificada, para cada faceta, pelo coeficiente \textit{kappa} de Cohen, cuja interpretação segue as faixas consolidadas na literatura \citep{landis1977measurement, altman1991}: valores acima de 0,61 indicam concordância substancial e acima de 0,81, concordância quase perfeita. Facetas que não atinjam ao menos concordância substancial são revistas, seja pela redefinição de seus valores, seja pela reformulação da regra de atribuição na rubrica. As divergências pontuais são reconciliadas por consenso e documentadas como decisões de projeto \citep{szopinski2019}.
+
+O processo encerra-se quando as duas etapas convergem, isto é, quando o painel aprova clareza e completude e todas as facetas alcançam concordância ao menos substancial na aplicação. Os resultados alimentam os ciclos iterativos de refinamento previstos pelo método \citep{nickerson2013method}, e sua execução detalhada constitui o objeto da continuidade desta pesquisa de mestrado.
