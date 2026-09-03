@@ -14,6 +14,8 @@ Não é preciso instalar nada. Abra o link:
 
 O atalho **Ver um exemplo pronto** mostra uma ficha já preenchida (estudo MagicVFX do corpus). **Classificar meu projeto** percorre o protocolo da taxonomia e gera o resultado.
 
+**Minhas fichas** guarda classificações só neste navegador (não há login). Para a apresentação, use o exemplo pronto ou classifique um projeto na hora.
+
 ## O que tem neste repositório
 
 | Pasta | Conteúdo |

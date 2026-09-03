@@ -5,7 +5,16 @@
   'use strict';
 
   const STORAGE = 'tiga-web-v1';
+  const HISTORY = 'tiga-web-history-v1';
   const FORM_STEPS = [1, 2, 3, 4];
+  const RADAR_SHORT = {
+    authorship:      { pt: 'Autoria',      en: 'Authorship' },
+    labor:           { pt: 'Trabalho',     en: 'Labour' },
+    reproducibility: { pt: 'Repetir',      en: 'Repeat' },
+    perceptibility:  { pt: 'Sinalizar',    en: 'Disclose' },
+    bottleneck:      { pt: 'Gargalo',      en: 'Bottleneck' },
+    dependency:      { pt: 'Dependência',  en: 'Dependency' }
+  };
   const SILENCE_IDS = FACETS.filter(f => f.options.some(o => o.silence)).map(f => f.id);
   const RING = 2 * Math.PI * 52;
 
@@ -113,6 +122,88 @@
       lang: state.lang, theme: state.theme, expert: state.expert,
       answers: state.answers, projectName: state.projectName, otherModel: state.otherModel
     }));
+  }
+
+  function fingerprint(answers, name, other) {
+    return JSON.stringify({ a: answers, n: name || '', o: other || '' });
+  }
+  function loadHistory() {
+    try {
+      const raw = localStorage.getItem(HISTORY);
+      const list = raw ? JSON.parse(raw) : [];
+      return Array.isArray(list) ? list : [];
+    } catch (_) { return []; }
+  }
+  function writeHistory(list) {
+    localStorage.setItem(HISTORY, JSON.stringify(list.slice(0, 40)));
+  }
+  function saveCurrentSheet() {
+    const s = scores(state.answers);
+    const fp = fingerprint(state.answers, state.projectName, state.otherModel);
+    const list = loadHistory();
+    const existing = list.findIndex(x => x.fp === fp);
+    const entry = {
+      id: existing >= 0 ? list[existing].id : 'h-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      fp,
+      savedAt: new Date().toISOString(),
+      projectName: state.projectName,
+      otherModel: state.otherModel,
+      answers: JSON.parse(JSON.stringify(state.answers)),
+      scores: s,
+      badge: badgeOf(s)
+    };
+    if (existing >= 0) list.splice(existing, 1);
+    list.unshift(entry);
+    writeHistory(list);
+    return entry;
+  }
+  function openHistory(id) {
+    const item = loadHistory().find(x => x.id === id);
+    if (!item) return;
+    state.answers = { ...item.answers };
+    state.projectName = item.projectName || '';
+    state.otherModel = item.otherModel || '';
+    persist();
+    showView('result');
+  }
+  function deleteHistory(id) {
+    writeHistory(loadHistory().filter(x => x.id !== id));
+    renderHistory();
+  }
+  function formatWhen(iso) {
+    try {
+      return new Date(iso).toLocaleString(state.lang === 'en' ? 'en-GB' : 'pt-BR', {
+        dateStyle: 'short', timeStyle: 'short'
+      });
+    } catch (_) { return iso; }
+  }
+  function renderHistory() {
+    const root = $('#history-root');
+    if (!root) return;
+    const list = loadHistory();
+    if (!list.length) {
+      root.innerHTML = `<p class="hist-empty">${ui('histEmpty')}</p>`;
+      return;
+    }
+    root.innerHTML = `<div class="hist-list">${list.map(item => {
+      const name = item.projectName || ui('histUntitled');
+      const badge = item.badge || 'mid';
+      const sc = item.scores || {};
+      return `<article class="hist-card">
+        <h3>${escapeHtml(name)}</h3>
+        <div class="hist-meta">
+          <span class="tag">${ui(badge === 'low' ? 'badgeLow' : badge === 'high' ? 'badgeHigh' : 'badgeMid')}</span>
+          <span class="tag">${ui('gaugeAutonomy')} ${sc.autonomy ?? '—'}</span>
+          <span class="tag">${ui('gaugeTech')} ${sc.tech ?? '—'}</span>
+          <span class="tag">${ui('gaugeSocial')} ${sc.social ?? '—'}</span>
+        </div>
+        <p class="hist-when">${ui('histWhen').replace('{d}', formatWhen(item.savedAt))}</p>
+        <div class="hist-foot">
+          <button type="button" class="btn btn-primary" data-hist-open="${item.id}">${ui('histOpen')}</button>
+          <button type="button" class="btn btn-quiet" data-hist-del="${item.id}">${ui('histDelete')}</button>
+        </div>
+      </article>`;
+    }).join('')}</div>`;
   }
 
   function applyTheme() {
@@ -410,6 +501,112 @@
     </div>`;
   }
 
+  function radarValue(level) {
+    return { ok: 22, warn: 58, alert: 94 }[level] || 58;
+  }
+  function renderRadar(answers) {
+    const items = VERDICTS;
+    const n = items.length;
+    const cx = 160, cy = 158, r = 86;
+    const polar = (i, pct) => {
+      const ang = -Math.PI / 2 + (i * 2 * Math.PI / n);
+      const rr = (pct / 100) * r;
+      return [cx + rr * Math.cos(ang), cy + rr * Math.sin(ang)];
+    };
+    const web = [25, 50, 75, 100].map(pct => {
+      const pts = items.map((_, i) => polar(i, pct).join(',')).join(' ');
+      return `<polygon class="web" points="${pts}"/>`;
+    }).join('');
+    const axes = items.map((_, i) => {
+      const [x, y] = polar(i, 100);
+      return `<line class="axis" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`;
+    }).join('');
+    const vals = items.map(v => radarValue(v.level(answers)));
+    const poly = vals.map((val, i) => polar(i, val).map(n => n.toFixed(1)).join(',')).join(' ');
+    const dots = vals.map((val, i) => {
+      const [x, y] = polar(i, val);
+      return `<circle class="dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5"/>`;
+    }).join('');
+    const labels = items.map((v, i) => {
+      const [x, y] = polar(i, 124);
+      return `<text class="lbl" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${escapeHtml(t(RADAR_SHORT[v.id] || v.title))}</text>`;
+    }).join('');
+    return `<svg class="radar-svg" viewBox="0 0 320 316" role="img" aria-label="${ui('radarTitle')}">
+      ${web}${axes}
+      <polygon class="fill" points="${poly}"/>
+      ${dots}${labels}
+    </svg>`;
+  }
+
+  function renderPipe(answers) {
+    const facet = FACETS.find(f => f.id === 'stage');
+    const on = answers.stage || [];
+    return `<div class="pipe-row">${facet.options.map(o => `
+      <div class="pipe-cell" data-on="${on.includes(o.id) ? 'true' : 'false'}">
+        <span class="st">${t(o.label)}</span>
+        <span class="on">${on.includes(o.id) ? ui('pipeOn') : ui('pipeOff')}</span>
+      </div>`).join('')}</div>`;
+  }
+
+  function renderCompareBars(s) {
+    const metrics = [
+      { key: 'autonomy', label: ui('gaugeAutonomy') },
+      { key: 'tech', label: ui('gaugeTech') },
+      { key: 'social', label: ui('gaugeSocial') }
+    ];
+    const series = [
+      { cls: 'you', name: ui('mapYou'), scores: s },
+      ...CASES.map((c, i) => ({ cls: 'c' + i, name: c.name, scores: scores(c.answers) }))
+    ];
+    const W = 520, H = 228, p = { l: 28, r: 8, t: 12, b: 38 };
+    const groupW = (W - p.l - p.r) / metrics.length;
+    const barW = 16, gap = 4;
+    const nBars = series.length;
+    const cluster = nBars * barW + (nBars - 1) * gap;
+    const yScale = v => H - p.b - (Math.max(0, Math.min(100, v)) / 100) * (H - p.t - p.b);
+    const bars = metrics.map((m, gi) => {
+      const gx = p.l + gi * groupW + (groupW - cluster) / 2;
+      const rects = series.map((ser, si) => {
+        const val = ser.scores[m.key] ?? 0;
+        const x = gx + si * (barW + gap);
+        const y = yScale(val);
+        const h = Math.max(1, H - p.b - y);
+        return `<rect class="${ser.cls}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW}" height="${h.toFixed(1)}" rx="2">
+          <title>${escapeHtml(ser.name)} — ${escapeHtml(m.label)}: ${val}</title></rect>`;
+      }).join('');
+      const lx = p.l + gi * groupW + groupW / 2;
+      return `${rects}<text class="lbl" x="${lx.toFixed(1)}" y="${H - 14}" text-anchor="middle">${escapeHtml(m.label)}</text>`;
+    }).join('');
+    const legend = series.map(ser =>
+      `<span><i class="${ser.cls}"></i>${escapeHtml(ser.name)}</span>`
+    ).join('');
+    return `<svg class="bars-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${ui('barsTitle')}">
+      <line class="axis" x1="${p.l}" y1="${H - p.b}" x2="${W - p.r}" y2="${H - p.b}"/>
+      ${bars}
+    </svg>
+    <div class="viz-legend">${legend}</div>`;
+  }
+
+  function renderFacetBars(answers) {
+    const groups = [
+      { key: 'operational', title: ui('dimOp') },
+      { key: 'technical', title: ui('dimTe') },
+      { key: 'risk', title: ui('dimRi') }
+    ];
+    return `<div class="facet-bars">${groups.map(g => {
+      const rows = FACETS.filter(f => f.dim === g.key && f.id !== 'stage').map(f => {
+        const n = scoreOf(f, answers);
+        if (n == null) return '';
+        return `<div class="fbar">
+          <span class="k">${escapeHtml(t(f.formalName))}</span>
+          <span class="track"><span class="fill" data-tone="${tone(n)}" style="width:${n}%"></span></span>
+          <span class="n">${n}</span>
+        </div>`;
+      }).join('');
+      return `<div class="facet-group"><h3>${g.title}</h3>${rows}</div>`;
+    }).join('')}</div>`;
+  }
+
   function renderMap(s) {
     const W = 420, H = 300, p = { l: 48, r: 18, t: 18, b: 42 };
     const x = v => p.l + (v / 100) * (W - p.l - p.r);
@@ -540,6 +737,21 @@
         </div>
       </div>
 
+      <div class="viz-grid">
+        <article class="viz-card">
+          <h3>${ui('radarTitle')}</h3>
+          <p class="lead">${ui('radarLead')}</p>
+          ${renderRadar(answers)}
+        </article>
+        <article class="viz-card">
+          <h3>${ui('pipeTitle')}</h3>
+          ${renderPipe(answers)}
+          <h3 style="margin-top:1.5rem">${ui('barsTitle')}</h3>
+          <p class="lead">${ui('barsLead')}</p>
+          ${renderCompareBars(s)}
+        </article>
+      </div>
+
       <section class="result-block">
         <h2>${ui('verdictTitle')}</h2>
         <p class="lead">${ui('verdictLead')}</p>
@@ -571,11 +783,18 @@
       </section>
 
       <section class="result-block">
+        <h2>${ui('facetTitle')}</h2>
+        <p class="lead">${ui('facetLead')}</p>
+        ${renderFacetBars(answers)}
+      </section>
+
+      <section class="result-block">
         <h2>${ui('sheetTitle')}</h2>
         <p class="lead">${ui('sheetLead')}</p>
         ${sheetHTML(answers)}
         <div class="sheet-actions">
-          <button type="button" class="btn btn-primary" data-copy>${ui('copySheet')}</button>
+          <button type="button" class="btn btn-primary" data-save>${ui('histSave')}</button>
+          <button type="button" class="btn btn-ghost" data-copy>${ui('copySheet')}</button>
           <button type="button" class="btn btn-ghost" data-print>${ui('printSheet')}</button>
           <button type="button" class="btn btn-ghost" data-edit>${ui('edit')}</button>
           <button type="button" class="btn btn-quiet" data-restart>${ui('restart')}</button>
@@ -597,6 +816,7 @@
     if (name === 'result') renderResult(state.answers);
     if (name === 'glossary') renderGloss();
     if (name === 'about') renderAbout();
+    if (name === 'history') renderHistory();
     if (name === 'home') { renderPipeline(); renderHow(); renderSample(); }
     const target = hash ? document.getElementById(hash) : $('#main');
     (target || $('#main')).scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -677,6 +897,22 @@
       if (e.target.closest('[data-restart]')) { restart(); return; }
       if (e.target.closest('[data-copy]')) { copySheet(); return; }
       if (e.target.closest('[data-print]')) { window.print(); return; }
+      if (e.target.closest('[data-save]')) {
+        saveCurrentSheet();
+        const btn = $('[data-save]');
+        if (btn) {
+          btn.textContent = ui('histSaved');
+          setTimeout(() => { if (btn.isConnected) btn.textContent = ui('histSave'); }, 1800);
+        }
+        return;
+      }
+      const hop = e.target.closest('[data-hist-open]');
+      if (hop) { openHistory(hop.dataset.histOpen); return; }
+      const hdel = e.target.closest('[data-hist-del]');
+      if (hdel) {
+        if (confirm(ui('histDeleteQ'))) deleteHistory(hdel.dataset.histDel);
+        return;
+      }
     });
 
     document.addEventListener('change', e => {
@@ -729,6 +965,7 @@
     else if (state.view === 'result') renderResult(state.answers);
     else if (state.view === 'glossary') renderGloss();
     else if (state.view === 'about') renderAbout();
+    else if (state.view === 'history') renderHistory();
   }
 
   load();

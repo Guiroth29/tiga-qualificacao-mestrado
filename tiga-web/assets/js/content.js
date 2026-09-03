@@ -152,7 +152,34 @@ const UI = {
   formTitle:    { pt: 'Classificar projeto',                   en: 'Classify a project' },
   otherLabel:   { pt: 'Outro modelo ou ferramenta',            en: 'Another model or tool' },
   restartConfirm:{ pt: 'Apagar as respostas e começar de novo?', en: 'Clear the answers and start over?' },
-  close:        { pt: 'Fechar',                                en: 'Close' }
+  close:        { pt: 'Fechar',                                en: 'Close' },
+
+  navHistory:   { pt: 'Minhas fichas',                         en: 'My sheets' },
+  histTitle:    { pt: 'Fichas guardadas neste aparelho',       en: 'Sheets saved on this device' },
+  histLead:     { pt: 'As classificações ficam só neste navegador, neste computador. Não há conta nem senha: é o jeito mais simples de guardar o histórico sem servidor. Se você limpar os dados do site, a lista some.',
+                  en: 'Classifications stay only in this browser, on this computer. There is no account or password: the simplest way to keep a history without a server. Clearing the site’s data deletes the list.' },
+  histEmpty:    { pt: 'Ainda não há ficha guardada. Classifique um projeto ou abra um exemplo, e use “Guardar nesta máquina”.',
+                  en: 'No sheet saved yet. Classify a project or open an example, then use “Save on this device”.' },
+  histSave:     { pt: 'Guardar nesta máquina',                 en: 'Save on this device' },
+  histSaved:    { pt: 'Ficha guardada',                        en: 'Sheet saved' },
+  histOpen:     { pt: 'Abrir',                                 en: 'Open' },
+  histDelete:   { pt: 'Apagar',                                en: 'Delete' },
+  histUntitled: { pt: 'Projeto sem nome',                      en: 'Untitled project' },
+  histWhen:     { pt: 'Guardada em {d}',                       en: 'Saved on {d}' },
+  histDeleteQ:  { pt: 'Apagar esta ficha do histórico?',       en: 'Delete this sheet from the history?' },
+
+  radarTitle:   { pt: 'Perfil de atenção',                     en: 'Attention profile' },
+  radarLead:    { pt: 'Cada eixo é um tópico da ficha. Quanto mais longe do centro, maior o cuidado exigido.',
+                  en: 'Each axis is a topic on the sheet. The farther from the centre, the more care it demands.' },
+  barsTitle:    { pt: 'Você ao lado do corpus',                en: 'You next to the corpus' },
+  barsLead:     { pt: 'As três notas da sua ficha, comparadas com os três estudos reais usados como régua.',
+                  en: 'Your three scores, compared with the three real studies used as a ruler.' },
+  pipeTitle:    { pt: 'Onde a IA entra no pipeline',           en: 'Where AI enters the pipeline' },
+  pipeOn:       { pt: 'Em uso',                                en: 'In use' },
+  pipeOff:      { pt: 'Fora',                                  en: 'Off' },
+  facetTitle:   { pt: 'Leitura por faceta',                    en: 'Reading by facet' },
+  facetLead:    { pt: 'Cada barra traduz uma resposta em 0 a 100. Não é nota de qualidade: é quanto aquele campo puxa o custo ou a autonomia para cima.',
+                  en: 'Each bar turns an answer into 0 to 100. It is not a quality grade: it is how much that field pulls cost or autonomy up.' }
 };
 
 /* --- Passos do protocolo (espelham a rubrica da taxonomia) ------------- */

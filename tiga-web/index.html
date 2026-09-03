@@ -27,6 +27,7 @@
 
       <nav class="header-nav" data-i18n-aria="navSections">
         <button type="button" data-go="home" data-hash="como" data-i18n="navHow"></button>
+        <button type="button" data-go="history" data-i18n="navHistory"></button>
         <button type="button" data-go="glossary" data-i18n="navGlossary"></button>
         <button type="button" data-go="about" data-i18n="navAbout"></button>
       </nav>
@@ -95,6 +96,17 @@
 
     <section id="view-result" class="view" hidden>
       <div class="wrap" id="result-root"></div>
+    </section>
+
+    <section id="view-history" class="view" hidden>
+      <div class="wrap">
+        <div class="page-head">
+          <p class="eyebrow" data-i18n="navHistory"></p>
+          <h1 data-i18n="histTitle"></h1>
+          <p class="lead" data-i18n="histLead"></p>
+        </div>
+        <div id="history-root"></div>
+      </div>
     </section>
 
     <section id="view-glossary" class="view" hidden>
