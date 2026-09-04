@@ -1,7 +1,7 @@
 /* =========================================================================
-   TIGA — conteúdo bilíngue e definição da taxonomia
+   TIGA: conteúdo bilíngue e definição da taxonomia
    Taxonomia de Integração da IA Generativa no Audiovisual Não Interativo
-   Base empírica: MSL com 60 estudos primários (IEEE Xplore + ACM DL, 2023–2025)
+   Base empírica: MSL com 60 estudos primários (IEEE Xplore + ACM DL, 2023-2025)
    ========================================================================= */
 
 /* --- Textos de interface ------------------------------------------------ */
@@ -27,8 +27,8 @@ const UI = {
                   en: 'Shows the formal name of each category and its source sub-question in the mapping.' },
 
   heroEyebrow:  { pt: 'Ficha técnica de uso de IA',            en: 'AI usage spec sheet' },
-  heroTitle:    { pt: 'Onde a inteligência artificial entra no seu projeto — e o que isso custa',
-                  en: 'Where AI enters your project — and what that costs' },
+  heroTitle:    { pt: 'Onde a inteligência artificial entra no seu projeto, e o que isso custa',
+                  en: 'Where AI enters your project, and what that costs' },
   heroLead:     { pt: 'Responda a algumas perguntas sobre o seu filme, série, clipe ou peça publicitária. No fim, você recebe uma ficha com o perfil do seu uso de IA, os pontos que exigem atenção e o que fazer sobre cada um. Não é preciso entender nada de programação.',
                   en: 'Answer a few questions about your film, series, music video or ad. At the end you get a spec sheet with the profile of your AI usage, the points that need attention, and what to do about each one.' },
   heroCta:      { pt: 'Classificar meu projeto',               en: 'Classify my project' },
@@ -225,8 +225,8 @@ const HOW_STEPS = [
   {
     n: '05',
     title: { pt: 'Ler a ficha', en: 'Read the sheet' },
-    body:  { pt: 'Os três perfis juntos — operacional, técnico e de risco — e o que fazer sobre cada ponto de atenção.',
-             en: 'The three profiles together — operational, technical and risk — and what to do about each attention point.' }
+    body:  { pt: 'Os três perfis juntos (operacional, técnico e de risco) e o que fazer sobre cada ponto de atenção.',
+             en: 'The three profiles together (operational, technical and risk) and what to do about each attention point.' }
   }
 ];
 
@@ -242,8 +242,8 @@ const ABOUT = {
     en: 'This tool applies TIGA, a multidimensional taxonomy for classifying the use of generative AI in film, series, music videos, advertising and linear animation.'
   },
   p1: {
-    pt: 'O propósito não é dar nota à qualidade da peça. É preencher sempre os mesmos campos — etapa, autonomia, técnica e risco — para que dois projetos, dois estudos ou duas ferramentas possam ser comparados lado a lado. No fim, a ficha aponta o quanto aquele arranjo exige de cuidado com autoria, trabalho, reprodutibilidade e sinalização ao público.',
-    en: 'The purpose is not to grade the quality of the piece. It is to fill in the same fields every time — stage, autonomy, technique and risk — so that two projects, two studies or two tools can be compared side by side. At the end, the sheet shows how much care that setup demands around authorship, labour, reproducibility and disclosure to the audience.'
+    pt: 'O propósito não é dar nota à qualidade da peça. É preencher sempre os mesmos campos (etapa, autonomia, técnica e risco) para que dois projetos, dois estudos ou duas ferramentas possam ser comparados lado a lado. No fim, a ficha aponta o quanto aquele arranjo exige de cuidado com autoria, trabalho, reprodutibilidade e sinalização ao público.',
+    en: 'The purpose is not to grade the quality of the piece. It is to fill in the same fields every time (stage, autonomy, technique and risk) so that two projects, two studies or two tools can be compared side by side. At the end, the sheet shows how much care that setup demands around authorship, labour, reproducibility and disclosure to the audience.'
   },
   p2: {
     pt: 'A estrutura veio de um mapeamento sistemático da literatura com 60 estudos primários recuperados na IEEE Xplore e na ACM Digital Library, publicados entre 2023 e abril de 2025. Cada pergunta desta ficha corresponde a uma faceta da taxonomia, e cada faceta rastreia uma subquestão daquele mapeamento.',

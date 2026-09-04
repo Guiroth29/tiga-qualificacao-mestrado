@@ -6,14 +6,14 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#EDF1F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0D171B" media="(prefers-color-scheme: dark)">
-  <title>TIGA — Taxonomia da IA no Audiovisual</title>
+  <title>TIGA: Taxonomia da IA no Audiovisual</title>
   <meta name="description" content="Classifique o uso de inteligência artificial generativa no seu filme, série, clipe ou peça publicitária. Receba uma ficha com o perfil, os pontos de atenção e o que fazer sobre cada um.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <style>
 /* =========================================================================
-   TIGA — folha de estilo
+   TIGA: folha de estilo
    Paleta ancorada na sala de grading: cinza-azulado neutro, luz de projeção
    ciano, semântica em sálvia / âmbar / coral.
    ========================================================================= */
@@ -1062,9 +1062,9 @@ html[data-expert="on"] .sheet-k { display: flex; flex-wrap: wrap; align-items: c
   </noscript>
   <script>
 /* =========================================================================
-   TIGA — conteúdo bilíngue e definição da taxonomia
+   TIGA: conteúdo bilíngue e definição da taxonomia
    Taxonomia de Integração da IA Generativa no Audiovisual Não Interativo
-   Base empírica: MSL com 60 estudos primários (IEEE Xplore + ACM DL, 2023–2025)
+   Base empírica: MSL com 60 estudos primários (IEEE Xplore + ACM DL, 2023-2025)
    ========================================================================= */
 
 /* --- Textos de interface ------------------------------------------------ */
@@ -1090,8 +1090,8 @@ const UI = {
                   en: 'Shows the formal name of each category and its source sub-question in the mapping.' },
 
   heroEyebrow:  { pt: 'Ficha técnica de uso de IA',            en: 'AI usage spec sheet' },
-  heroTitle:    { pt: 'Onde a inteligência artificial entra no seu projeto — e o que isso custa',
-                  en: 'Where AI enters your project — and what that costs' },
+  heroTitle:    { pt: 'Onde a inteligência artificial entra no seu projeto, e o que isso custa',
+                  en: 'Where AI enters your project, and what that costs' },
   heroLead:     { pt: 'Responda a algumas perguntas sobre o seu filme, série, clipe ou peça publicitária. No fim, você recebe uma ficha com o perfil do seu uso de IA, os pontos que exigem atenção e o que fazer sobre cada um. Não é preciso entender nada de programação.',
                   en: 'Answer a few questions about your film, series, music video or ad. At the end you get a spec sheet with the profile of your AI usage, the points that need attention, and what to do about each one.' },
   heroCta:      { pt: 'Classificar meu projeto',               en: 'Classify my project' },
@@ -1288,8 +1288,8 @@ const HOW_STEPS = [
   {
     n: '05',
     title: { pt: 'Ler a ficha', en: 'Read the sheet' },
-    body:  { pt: 'Os três perfis juntos — operacional, técnico e de risco — e o que fazer sobre cada ponto de atenção.',
-             en: 'The three profiles together — operational, technical and risk — and what to do about each attention point.' }
+    body:  { pt: 'Os três perfis juntos (operacional, técnico e de risco) e o que fazer sobre cada ponto de atenção.',
+             en: 'The three profiles together (operational, technical and risk) and what to do about each attention point.' }
   }
 ];
 
@@ -1305,8 +1305,8 @@ const ABOUT = {
     en: 'This tool applies TIGA, a multidimensional taxonomy for classifying the use of generative AI in film, series, music videos, advertising and linear animation.'
   },
   p1: {
-    pt: 'O propósito não é dar nota à qualidade da peça. É preencher sempre os mesmos campos — etapa, autonomia, técnica e risco — para que dois projetos, dois estudos ou duas ferramentas possam ser comparados lado a lado. No fim, a ficha aponta o quanto aquele arranjo exige de cuidado com autoria, trabalho, reprodutibilidade e sinalização ao público.',
-    en: 'The purpose is not to grade the quality of the piece. It is to fill in the same fields every time — stage, autonomy, technique and risk — so that two projects, two studies or two tools can be compared side by side. At the end, the sheet shows how much care that setup demands around authorship, labour, reproducibility and disclosure to the audience.'
+    pt: 'O propósito não é dar nota à qualidade da peça. É preencher sempre os mesmos campos (etapa, autonomia, técnica e risco) para que dois projetos, dois estudos ou duas ferramentas possam ser comparados lado a lado. No fim, a ficha aponta o quanto aquele arranjo exige de cuidado com autoria, trabalho, reprodutibilidade e sinalização ao público.',
+    en: 'The purpose is not to grade the quality of the piece. It is to fill in the same fields every time (stage, autonomy, technique and risk) so that two projects, two studies or two tools can be compared side by side. At the end, the sheet shows how much care that setup demands around authorship, labour, reproducibility and disclosure to the audience.'
   },
   p2: {
     pt: 'A estrutura veio de um mapeamento sistemático da literatura com 60 estudos primários recuperados na IEEE Xplore e na ACM Digital Library, publicados entre 2023 e abril de 2025. Cada pergunta desta ficha corresponde a uma faceta da taxonomia, e cada faceta rastreia uma subquestão daquele mapeamento.',
@@ -2012,7 +2012,7 @@ const GLOSSARY = [
 ];
 
 /* =========================================================================
-   TIGA — aplicação: formulário, pontuação e ficha
+   TIGA: formulário, pontuação e ficha
    ========================================================================= */
 (() => {
   'use strict';
@@ -2206,9 +2206,9 @@ const GLOSSARY = [
         <h3>${escapeHtml(name)}</h3>
         <div class="hist-meta">
           <span class="tag">${ui(badge === 'low' ? 'badgeLow' : badge === 'high' ? 'badgeHigh' : 'badgeMid')}</span>
-          <span class="tag">${ui('gaugeAutonomy')} ${sc.autonomy ?? '—'}</span>
-          <span class="tag">${ui('gaugeTech')} ${sc.tech ?? '—'}</span>
-          <span class="tag">${ui('gaugeSocial')} ${sc.social ?? '—'}</span>
+          <span class="tag">${ui('gaugeAutonomy')} ${sc.autonomy ?? '-'}</span>
+          <span class="tag">${ui('gaugeTech')} ${sc.tech ?? '-'}</span>
+          <span class="tag">${ui('gaugeSocial')} ${sc.social ?? '-'}</span>
         </div>
         <p class="hist-when">${ui('histWhen').replace('{d}', formatWhen(item.savedAt))}</p>
         <div class="hist-foot">
@@ -2237,8 +2237,8 @@ const GLOSSARY = [
   function applyLang() {
     document.documentElement.lang = state.lang === 'en' ? 'en' : 'pt-BR';
     document.title = state.lang === 'en'
-      ? 'TIGA — Taxonomy of AI in Audiovisual'
-      : 'TIGA — Taxonomia da IA no Audiovisual';
+      ? 'TIGA: Taxonomy of AI in Audiovisual'
+      : 'TIGA: Taxonomia da IA no Audiovisual';
     $$('[data-i18n]').forEach(el => { el.textContent = ui(el.dataset.i18n); });
     $$('[data-i18n-aria]').forEach(el => {
       if (el.id === 'theme-toggle') return; // rótulo definido em applyTheme, conforme o estado
@@ -2595,7 +2595,7 @@ const GLOSSARY = [
         const y = yScale(val);
         const h = Math.max(1, H - p.b - y);
         return `<rect class="${ser.cls}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW}" height="${h.toFixed(1)}" rx="2">
-          <title>${escapeHtml(ser.name)} — ${escapeHtml(m.label)}: ${val}</title></rect>`;
+          <title>${escapeHtml(ser.name)} - ${escapeHtml(m.label)}: ${val}</title></rect>`;
       }).join('');
       const lx = p.l + gi * groupW + groupW / 2;
       return `${rects}<text class="lbl" x="${lx.toFixed(1)}" y="${H - 14}" text-anchor="middle">${escapeHtml(m.label)}</text>`;
@@ -2683,7 +2683,7 @@ const GLOSSARY = [
 
   function sheetText(answers, s) {
     const lines = [
-      `TIGA — ${ui('resultEyebrow')}`,
+      `TIGA: ${ui('resultEyebrow')}`,
       state.projectName ? `${ui('projectName')}: ${state.projectName}` : '',
       `${ui('gaugeAutonomy')}: ${s.autonomy}/100`,
       `${ui('gaugeTech')}: ${s.tech}/100`,

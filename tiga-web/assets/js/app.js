@@ -1,5 +1,5 @@
 /* =========================================================================
-   TIGA — aplicação: formulário, pontuação e ficha
+   TIGA: formulário, pontuação e ficha
    ========================================================================= */
 (() => {
   'use strict';
@@ -193,9 +193,9 @@
         <h3>${escapeHtml(name)}</h3>
         <div class="hist-meta">
           <span class="tag">${ui(badge === 'low' ? 'badgeLow' : badge === 'high' ? 'badgeHigh' : 'badgeMid')}</span>
-          <span class="tag">${ui('gaugeAutonomy')} ${sc.autonomy ?? '—'}</span>
-          <span class="tag">${ui('gaugeTech')} ${sc.tech ?? '—'}</span>
-          <span class="tag">${ui('gaugeSocial')} ${sc.social ?? '—'}</span>
+          <span class="tag">${ui('gaugeAutonomy')} ${sc.autonomy ?? '-'}</span>
+          <span class="tag">${ui('gaugeTech')} ${sc.tech ?? '-'}</span>
+          <span class="tag">${ui('gaugeSocial')} ${sc.social ?? '-'}</span>
         </div>
         <p class="hist-when">${ui('histWhen').replace('{d}', formatWhen(item.savedAt))}</p>
         <div class="hist-foot">
@@ -224,8 +224,8 @@
   function applyLang() {
     document.documentElement.lang = state.lang === 'en' ? 'en' : 'pt-BR';
     document.title = state.lang === 'en'
-      ? 'TIGA — Taxonomy of AI in Audiovisual'
-      : 'TIGA — Taxonomia da IA no Audiovisual';
+      ? 'TIGA: Taxonomy of AI in Audiovisual'
+      : 'TIGA: Taxonomia da IA no Audiovisual';
     $$('[data-i18n]').forEach(el => { el.textContent = ui(el.dataset.i18n); });
     $$('[data-i18n-aria]').forEach(el => {
       if (el.id === 'theme-toggle') return; // rótulo definido em applyTheme, conforme o estado
@@ -582,7 +582,7 @@
         const y = yScale(val);
         const h = Math.max(1, H - p.b - y);
         return `<rect class="${ser.cls}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW}" height="${h.toFixed(1)}" rx="2">
-          <title>${escapeHtml(ser.name)} — ${escapeHtml(m.label)}: ${val}</title></rect>`;
+          <title>${escapeHtml(ser.name)} - ${escapeHtml(m.label)}: ${val}</title></rect>`;
       }).join('');
       const lx = p.l + gi * groupW + groupW / 2;
       return `${rects}<text class="lbl" x="${lx.toFixed(1)}" y="${H - 14}" text-anchor="middle">${escapeHtml(m.label)}</text>`;
@@ -670,7 +670,7 @@
 
   function sheetText(answers, s) {
     const lines = [
-      `TIGA — ${ui('resultEyebrow')}`,
+      `TIGA: ${ui('resultEyebrow')}`,
       state.projectName ? `${ui('projectName')}: ${state.projectName}` : '',
       `${ui('gaugeAutonomy')}: ${s.autonomy}/100`,
       `${ui('gaugeTech')}: ${s.tech}/100`,
