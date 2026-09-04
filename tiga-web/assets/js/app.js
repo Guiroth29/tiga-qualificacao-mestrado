@@ -559,9 +559,9 @@
 
   function renderCompareBars(s) {
     const metrics = [
-      { key: 'autonomy', label: ui('gaugeAutonomy') },
-      { key: 'tech', label: ui('gaugeTech') },
-      { key: 'social', label: ui('gaugeSocial') }
+      { key: 'autonomy', label: ui('gaugeAutonomyShort') },
+      { key: 'tech', label: ui('gaugeTechShort') },
+      { key: 'social', label: ui('gaugeSocialShort') }
     ];
     const series = [
       { cls: 'you', name: ui('mapYou'), scores: s },
@@ -624,9 +624,12 @@
     const y = v => H - p.b - (v / 100) * (H - p.t - p.b);
     const dots = CASES.map(c => {
       const cs = scores(c.answers);
-      return `<circle class="dot-case" cx="${x(cs.autonomy)}" cy="${y(cs.social)}" r="6">
+      const cx = x(cs.autonomy), cy = y(cs.social);
+      const right = cx > W * 0.62;
+      return `<circle class="dot-case" cx="${cx}" cy="${cy}" r="6">
         <title>${c.name}</title></circle>
-        <text class="lbl" x="${x(cs.autonomy) + 8}" y="${y(cs.social) - 8}">${c.name}</text>`;
+        <text class="lbl" x="${right ? cx - 10 : cx + 8}" y="${cy < p.t + 24 ? cy + 18 : cy - 8}"
+          text-anchor="${right ? 'end' : 'start'}">${c.name}</text>`;
     }).join('');
     return `<div class="map-wrap">
       <svg class="map-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${ui('mapTitle')}">
@@ -641,7 +644,8 @@
         ${dots}
         <circle class="dot-you" cx="${x(s.autonomy)}" cy="${y(s.social)}" r="8">
           <title>${ui('mapYou')}</title></circle>
-        <text class="lbl lbl-you" x="${x(s.autonomy) + 10}" y="${y(s.social) + 4}">${ui('mapYou')}</text>
+        <text class="lbl lbl-you" x="${x(s.autonomy) > W * 0.62 ? x(s.autonomy) - 12 : x(s.autonomy) + 12}"
+          y="${y(s.social) + 4}" text-anchor="${x(s.autonomy) > W * 0.62 ? 'end' : 'start'}">${ui('mapYou')}</text>
       </svg>
       <div class="map-legend">
         <span><i class="you"></i>${ui('mapYou')}</span>
