@@ -474,6 +474,7 @@
         <p class="eyebrow">${ui('formTitle')}</p>
         <h1 class="step-title">${t(titles[state.step])}</h1>
         <p class="step-lead">${t(leads[state.step])}</p>
+        <p class="expert-note">${ui('expertNudge')}</p>
       </header>
       <div class="form-error" id="form-error" hidden>${icon('alert')}<span>${ui('required')}</span></div>
       ${nameField}
@@ -663,7 +664,7 @@
     return `<div class="sheet">${groups.map(g => `
       <div class="sheet-dim">
         <h3>${ui(g.key === 'operational' ? 'dimOp' : g.key === 'technical' ? 'dimTe' : 'dimRi')}</h3>
-        ${g.ids.map(f => `<div class="sheet-row"><span class="sheet-k">${t(f.formalName)}</span><span class="sheet-v">${formalValue(f, answers)}</span></div>`).join('')}
+        ${g.ids.map(f => `<div class="sheet-row"><span class="sheet-k">${t(f.formalName)}<span class="tag tag-sq expert-only sheet-sq">${ui('sqLabel')} ${f.sq}</span></span><span class="sheet-v">${formalValue(f, answers)}</span></div>`).join('')}
       </div>`).join('')}</div>`;
   }
 
@@ -806,6 +807,7 @@
       <section class="result-block">
         <h2>${ui('sheetTitle')}</h2>
         <p class="lead">${ui('sheetLead')}</p>
+        <p class="expert-note">${ui('expertNudge')}</p>
         ${sheetHTML(answers)}
         <div class="sheet-actions">
           <button type="button" class="btn btn-primary" data-save>${ui('histSave')}</button>

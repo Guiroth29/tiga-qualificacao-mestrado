@@ -20,6 +20,9 @@ const UI = {
   themeDark:    { pt: 'Modo escuro',                           en: 'Dark mode' },
   themeLight:   { pt: 'Modo claro',                            en: 'Light mode' },
   expertOn:     { pt: 'Mostrar termos técnicos',               en: 'Show technical terms' },
+  expertShort:  { pt: 'Técnico',                                en: 'Technical' },
+  expertNudge:  { pt: 'Modo técnico ligado: as perguntas e a ficha passam a mostrar o nome formal de cada categoria e a subquestão do mapeamento que a originou.',
+                  en: 'Technical mode on: the questions and the sheet now show each category’s formal name and the mapping sub-question it came from.' },
   expertHint:   { pt: 'Exibe o nome formal de cada categoria e a subquestão de origem no mapeamento.',
                   en: 'Shows the formal name of each category and its source sub-question in the mapping.' },
 

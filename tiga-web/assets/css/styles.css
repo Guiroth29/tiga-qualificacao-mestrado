@@ -234,6 +234,14 @@ a:hover { color: var(--accent-hover); }
 .brand-name { font-family: var(--font-display); font-weight: 800; font-size: var(--fs-base); letter-spacing: .02em; }
 .brand-sub { font-size: .6875rem; color: var(--ink-3); letter-spacing: .01em; max-width: 22ch; }
 @media (max-width: 40rem) { .brand-sub { display: none; } .brand-mark { width: 2rem; height: 2rem; } }
+@media (max-width: 34rem) {
+  .brand-mark { display: none; }
+  .brand { gap: 0; }
+  .brand-name { font-size: var(--fs-lg); }
+  .app-header .wrap { column-gap: var(--sp-3); min-height: 3.5rem; }
+  .expert-toggle { padding-inline: var(--sp-2); gap: var(--sp-1); }
+  .ctl-group { gap: var(--sp-1); }
+}
 
 .header-nav { display: flex; gap: var(--sp-1); margin-inline-start: auto; }
 .header-nav button {
@@ -250,6 +258,7 @@ a:hover { color: var(--accent-hover); }
     overflow-x: auto; scroll-snap-type: x proximity;
     scrollbar-width: none; -ms-overflow-style: none;
   }
+
   .header-nav::-webkit-scrollbar { display: none; }
   .header-nav button { scroll-snap-align: start; white-space: nowrap; }
 }
@@ -287,7 +296,16 @@ a:hover { color: var(--accent-hover); }
 }
 .expert-toggle:hover { color: var(--ink); border-color: var(--line-strong); }
 .expert-toggle input { accent-color: var(--accent); width: 1rem; height: 1rem; }
-@media (max-width: 44rem) { .expert-toggle .expert-label { display: none; } }
+.expert-label-short { display: none; }
+@media (max-width: 44rem) {
+  /* A legenda longa sai da tela mas continua nomeando o checkbox; a curta ocupa
+     o lugar dela, para o controle nunca ficar sem rótulo visível. */
+  .expert-toggle .expert-label {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .expert-label-short { display: inline; }
+}
 
 /* --- Botões ------------------------------------------------------------- */
 .btn {
@@ -878,3 +896,16 @@ html[data-expert="on"] p.expert-only { display: block !important; }
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
+
+/* Aviso do modo técnico: só aparece com o modo ligado, para o efeito do botão
+   não passar despercebido em quem não conhece o vocabulário da taxonomia. */
+.expert-note {
+  display: none;
+  font-size: var(--fs-sm); color: var(--ink-2);
+  background: var(--accent-soft); border: 1px solid var(--accent-line);
+  border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4);
+  margin-bottom: var(--sp-5);
+}
+html[data-expert="on"] .expert-note { display: block; }
+.sheet-sq { margin-inline-start: var(--sp-2); }
+html[data-expert="on"] .sheet-k { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
