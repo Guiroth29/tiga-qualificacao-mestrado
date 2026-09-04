@@ -27,3 +27,6 @@ venue_*.json
 **/*.fls
 Qualificação_mestrado/main_maziero.pdf
 Qualificação_mestrado/changelog
+
+# Build do site: só a versão autossuficiente é versionada
+tiga-web/dist/tiga-artifact.html

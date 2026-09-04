@@ -1,0 +1,2978 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#EDF1F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0D171B" media="(prefers-color-scheme: dark)">
+  <title>TIGA — Taxonomia da IA no Audiovisual</title>
+  <meta name="description" content="Classifique o uso de inteligência artificial generativa no seu filme, série, clipe ou peça publicitária. Receba uma ficha com o perfil, os pontos de atenção e o que fazer sobre cada um.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+/* =========================================================================
+   TIGA — folha de estilo
+   Paleta ancorada na sala de grading: cinza-azulado neutro, luz de projeção
+   ciano, semântica em sálvia / âmbar / coral.
+   ========================================================================= */
+
+/* --- Tokens: tema claro (estado base, também vale para "sistema") -------- */
+:root {
+  color-scheme: light;
+
+  --ground:        #EDF1F2;
+  --ground-deep:   #E2E9EB;
+  --surface:       #FFFFFF;
+  --surface-2:     #F5F9F9;
+  --surface-sunk:  #E7EEEF;
+
+  --ink:           #0C1A20;
+  --ink-2:         #3C525A;
+  --ink-3:         #69808A;
+
+  --line:          #D2DBDE;
+  --line-strong:   #AFBFC4;
+
+  --accent:        #0B6E78;
+  --accent-hover:  #085760;
+  --accent-ink:    #FFFFFF;
+  --accent-soft:   #DAEFF1;
+  --accent-line:   #8ECBD1;
+
+  --good:          #2C7A57;
+  --good-soft:     #DCEFE5;
+  --warn:          #9A6207;
+  --warn-soft:     #F7E9CD;
+  --bad:           #AE3B2A;
+  --bad-soft:      #F8DED9;
+
+  --shadow-sm: 0 1px 2px rgba(12, 26, 32, .06), 0 1px 3px rgba(12, 26, 32, .04);
+  --shadow-md: 0 2px 4px rgba(12, 26, 32, .06), 0 8px 20px rgba(12, 26, 32, .07);
+  --shadow-lg: 0 4px 8px rgba(12, 26, 32, .07), 0 20px 44px rgba(12, 26, 32, .10);
+
+  --font-display: 'Archivo', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --font-body:    'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --fs-xs:   .75rem;
+  --fs-sm:   .875rem;
+  --fs-base: 1rem;
+  --fs-md:   1.0625rem;
+  --fs-lg:   1.3125rem;
+  --fs-xl:   1.625rem;
+  --fs-2xl:  2.125rem;
+  --fs-3xl:  clamp(2.125rem, 1.35rem + 3.3vw, 3.4rem);
+
+  --sp-1: .25rem;  --sp-2: .5rem;   --sp-3: .75rem;  --sp-4: 1rem;
+  --sp-5: 1.5rem;  --sp-6: 2rem;    --sp-7: 2.75rem; --sp-8: 3.5rem;
+  --sp-9: 5rem;
+
+  --r-sm: 3px;
+  --r-md: 6px;
+  --r-lg: 10px;
+
+  --wrap: 74rem;
+  --read: 40rem;
+  --gutter: 1.25rem;
+}
+
+/* --- Tokens: tema escuro por preferência do sistema ---------------------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --ground:        #0D171B;
+    --ground-deep:   #091215;
+    --surface:       #132127;
+    --surface-2:     #182A31;
+    --surface-sunk:  #0F1D22;
+
+    --ink:           #E7EFF1;
+    --ink-2:         #A9BEC5;
+    --ink-3:         #7C949D;
+
+    --line:          #24393F;
+    --line-strong:   #38555D;
+
+    --accent:        #4FD3DD;
+    --accent-hover:  #7BE2EA;
+    --accent-ink:    #06232A;
+    --accent-soft:   #10343B;
+    --accent-line:   #2C6C75;
+
+    --good:          #5CC48F;
+    --good-soft:     #12332A;
+    --warn:          #E2A544;
+    --warn-soft:     #33280F;
+    --bad:           #F0786A;
+    --bad-soft:      #3A1D1A;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, .5);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, .4), 0 8px 20px rgba(0, 0, 0, .45);
+    --shadow-lg: 0 4px 8px rgba(0, 0, 0, .4), 0 20px 44px rgba(0, 0, 0, .55);
+  }
+}
+
+/* --- Tokens: tema escuro por escolha explícita --------------------------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --ground:        #0D171B;
+  --ground-deep:   #091215;
+  --surface:       #132127;
+  --surface-2:     #182A31;
+  --surface-sunk:  #0F1D22;
+
+  --ink:           #E7EFF1;
+  --ink-2:         #A9BEC5;
+  --ink-3:         #7C949D;
+
+  --line:          #24393F;
+  --line-strong:   #38555D;
+
+  --accent:        #4FD3DD;
+  --accent-hover:  #7BE2EA;
+  --accent-ink:    #06232A;
+  --accent-soft:   #10343B;
+  --accent-line:   #2C6C75;
+
+  --good:          #5CC48F;
+  --good-soft:     #12332A;
+  --warn:          #E2A544;
+  --warn-soft:     #33280F;
+  --bad:           #F0786A;
+  --bad-soft:      #3A1D1A;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .5);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, .4), 0 8px 20px rgba(0, 0, 0, .45);
+  --shadow-lg: 0 4px 8px rgba(0, 0, 0, .4), 0 20px 44px rgba(0, 0, 0, .55);
+}
+
+/* --- Base --------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 5rem; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: -.012em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--accent-hover); }
+
+:where(button, a, input, select, textarea, summary):focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--sp-3); top: -4rem; z-index: 100;
+  background: var(--accent); color: var(--accent-ink);
+  padding: var(--sp-2) var(--sp-4); border-radius: var(--r-md);
+  font-weight: 600; transition: top .16s ease;
+}
+.skip-link:focus { top: var(--sp-3); color: var(--accent-ink); }
+
+.wrap { width: min(100% - (var(--gutter) * 2), var(--wrap)); margin-inline: auto; }
+@media (max-width: 30rem) { :root { --gutter: .875rem; } }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.lead { color: var(--ink-2); max-width: var(--read); font-size: var(--fs-md); }
+
+/* --- Cabeçalho ---------------------------------------------------------- */
+.app-header {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.app-header .wrap {
+  display: flex; align-items: center; gap: var(--sp-4);
+  min-height: 4rem; flex-wrap: wrap;
+}
+
+.brand {
+  display: flex; align-items: center; gap: var(--sp-3);
+  background: none; border: 0; padding: var(--sp-1); margin-inline-start: calc(var(--sp-1) * -1);
+  cursor: pointer; color: inherit; text-align: start;
+}
+.brand-mark {
+  width: 2.25rem; height: 2.25rem; flex: none;
+  display: grid; place-items: center;
+  background: var(--ink); color: var(--ground);
+  border-radius: var(--r-sm);
+  font-family: var(--font-display); font-weight: 800;
+  font-size: .8rem; letter-spacing: .04em;
+}
+:root[data-theme="dark"] .brand-mark { background: var(--accent); color: var(--accent-ink); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .brand-mark { background: var(--accent); color: var(--accent-ink); }
+}
+.brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.brand-name { font-family: var(--font-display); font-weight: 800; font-size: var(--fs-base); letter-spacing: .02em; }
+.brand-sub { font-size: .6875rem; color: var(--ink-3); letter-spacing: .01em; max-width: 22ch; }
+@media (max-width: 40rem) { .brand-sub { display: none; } .brand-mark { width: 2rem; height: 2rem; } }
+
+.header-nav { display: flex; gap: var(--sp-1); margin-inline-start: auto; }
+.header-nav button {
+  font-family: var(--font-body); font-size: var(--fs-sm); color: var(--ink-2);
+  background: none; border: 0; padding: var(--sp-2) var(--sp-3); border-radius: var(--r-md);
+  cursor: pointer; min-height: 2.75rem;
+}
+.header-nav button:hover { background: var(--surface-sunk); color: var(--ink); }
+.header-nav button[aria-current="page"] { color: var(--ink); font-weight: 600; }
+@media (max-width: 56rem) {
+  .header-nav {
+    order: 3; width: 100%; margin-inline-start: 0;
+    border-top: 1px solid var(--line); padding-block: var(--sp-1);
+    overflow-x: auto; scroll-snap-type: x proximity;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .header-nav::-webkit-scrollbar { display: none; }
+  .header-nav button { scroll-snap-align: start; white-space: nowrap; }
+}
+
+.ctl-group { display: flex; align-items: center; gap: var(--sp-2); margin-inline-start: auto; }
+@media (max-width: 56rem) { .ctl-group { margin-inline-start: auto; } }
+
+.lang-switch {
+  display: flex; gap: 2px; padding: 2px;
+  background: var(--surface-sunk); border: 1px solid var(--line); border-radius: var(--r-md);
+}
+.flag-btn {
+  display: grid; place-items: center; width: 2.75rem; height: 2.5rem;
+  background: none; border: 0; border-radius: var(--r-sm); cursor: pointer; padding: 0;
+}
+@media (pointer: coarse) { .flag-btn { height: 2.75rem; } }
+.flag-btn svg { width: 1.5rem; height: 1.05rem; border-radius: 1px; display: block; box-shadow: 0 0 0 1px rgba(0,0,0,.14); }
+.flag-btn:hover { background: var(--surface); }
+.flag-btn[aria-pressed="true"] { background: var(--surface); box-shadow: inset 0 0 0 2px var(--accent); }
+.flag-btn[aria-pressed="false"] svg { opacity: .5; filter: saturate(.35); }
+
+.icon-btn {
+  display: grid; place-items: center; width: 2.75rem; height: 2.75rem;
+  background: var(--surface-sunk); border: 1px solid var(--line); border-radius: var(--r-md);
+  color: var(--ink-2); cursor: pointer; padding: 0;
+}
+.icon-btn:hover { color: var(--ink); border-color: var(--line-strong); }
+.icon-btn svg { width: 1.25rem; height: 1.25rem; }
+
+.expert-toggle {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--fs-sm); color: var(--ink-2); cursor: pointer;
+  padding: var(--sp-2) var(--sp-3); border-radius: var(--r-md);
+  border: 1px solid var(--line); background: var(--surface-sunk); min-height: 2.75rem;
+}
+.expert-toggle:hover { color: var(--ink); border-color: var(--line-strong); }
+.expert-toggle input { accent-color: var(--accent); width: 1rem; height: 1rem; }
+@media (max-width: 44rem) { .expert-toggle .expert-label { display: none; } }
+
+/* --- Botões ------------------------------------------------------------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
+  font-family: var(--font-display); font-weight: 600; font-size: var(--fs-base);
+  padding: .8rem 1.35rem; min-height: 3rem;
+  border-radius: var(--r-md); border: 1px solid transparent;
+  cursor: pointer; text-decoration: none; transition: background .15s ease, border-color .15s ease;
+}
+.btn svg { width: 1.15rem; height: 1.15rem; flex: none; }
+.btn-primary { background: var(--accent); color: var(--accent-ink); }
+.btn-primary:hover { background: var(--accent-hover); color: var(--accent-ink); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn-ghost:hover { background: var(--surface); color: var(--ink); border-color: var(--ink-3); }
+.btn-quiet { background: none; border: 0; color: var(--ink-2); padding: .6rem .5rem; }
+.btn-quiet:hover { color: var(--ink); text-decoration: underline; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+
+/* --- Views -------------------------------------------------------------- */
+.view { padding-block: var(--sp-7) var(--sp-9); }
+.view[hidden] { display: none !important; }
+
+/* --- Home --------------------------------------------------------------- */
+.hero { display: grid; gap: var(--sp-7); grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 62rem) { .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: var(--sp-8); } }
+
+.hero-title { font-size: var(--fs-3xl); margin-block: var(--sp-3) var(--sp-4); }
+.hero-lead { font-size: var(--fs-lg); line-height: 1.45; color: var(--ink-2); max-width: 34ch; }
+@media (max-width: 48rem) { .hero-lead { font-size: var(--fs-md); max-width: none; } }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-6); align-items: center; }
+.hero-time { font-size: var(--fs-sm); color: var(--ink-3); }
+
+.pipeline-strip {
+  display: flex; gap: 1px; margin-top: var(--sp-7);
+  border: 1px solid var(--line); border-radius: var(--r-md); background: var(--line);
+  overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+}
+.pipeline-cell {
+  background: var(--surface); padding: var(--sp-3) var(--sp-4);
+  flex: 1 0 11rem; min-width: 0; scroll-snap-align: start;
+}
+@media (min-width: 62rem) { .pipeline-strip { overflow: hidden; } .pipeline-cell { flex: 1 1 0; } }
+.pipeline-cell .num { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--accent); }
+.pipeline-cell .lbl { display: block; font-family: var(--font-display); font-weight: 600; font-size: var(--fs-sm); margin-top: 2px; }
+.pipeline-cell .sub { display: block; font-size: var(--fs-xs); color: var(--ink-3); margin-top: 2px; }
+
+/* --- Stepper ------------------------------------------------------------ */
+.stepper { margin-bottom: var(--sp-6); }
+.stepper-track { display: flex; gap: var(--sp-2); list-style: none; margin: 0 0 var(--sp-3); padding: 0; }
+.stepper-item { flex: 1; }
+.stepper-bar { height: 4px; border-radius: 2px; background: var(--surface-sunk); border: 1px solid var(--line); }
+.stepper-item[data-state="done"] .stepper-bar,
+.stepper-item[data-state="current"] .stepper-bar { background: var(--accent); border-color: var(--accent); }
+.stepper-item[data-state="current"] .stepper-bar { box-shadow: 0 0 0 3px var(--accent-soft); }
+.stepper-label { display: flex; align-items: baseline; gap: var(--sp-2); font-size: var(--fs-xs); color: var(--ink-3); margin-top: var(--sp-2); }
+.stepper-item[data-state="current"] .stepper-label { color: var(--ink); font-weight: 600; }
+.stepper-num { font-family: var(--font-mono); }
+@media (max-width: 44rem) { .stepper-label .stepper-text { display: none; } .stepper-item[data-state="current"] .stepper-label .stepper-text { display: inline; } }
+.step-count { font-family: var(--font-mono); font-size: var(--fs-sm); color: var(--ink-3); }
+
+/* --- Formulário --------------------------------------------------------- */
+.form-shell { max-width: 58rem; }
+.step-head { margin-bottom: var(--sp-6); }
+.step-title { font-size: var(--fs-2xl); margin-block: var(--sp-2) var(--sp-3); }
+.step-lead { color: var(--ink-2); max-width: var(--read); }
+
+.qblock {
+  border: 1px solid var(--line); background: var(--surface);
+  border-radius: var(--r-lg); padding: var(--sp-5); margin: 0 0 var(--sp-5);
+  box-shadow: var(--shadow-sm);
+}
+.qblock > legend { padding: 0; }
+.q-head { display: flex; align-items: flex-start; gap: var(--sp-3); margin-bottom: var(--sp-2); }
+.q-icon {
+  flex: none; width: 2.25rem; height: 2.25rem; border-radius: var(--r-md);
+  display: grid; place-items: center; background: var(--accent-soft); color: var(--accent);
+  border: 1px solid var(--accent-line);
+}
+.q-icon svg { width: 1.15rem; height: 1.15rem; }
+.q-title { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); line-height: 1.25; }
+.q-hint { color: var(--ink-2); font-size: var(--fs-sm); margin-top: var(--sp-1); }
+.q-meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); align-items: center; }
+.tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: var(--fs-xs); font-family: var(--font-mono);
+  color: var(--ink-3); background: var(--surface-sunk);
+  border: 1px solid var(--line); border-radius: 999px; padding: 2px .55rem;
+}
+.tag-sq { color: var(--accent); border-color: var(--accent-line); background: var(--accent-soft); }
+
+.opts { display: grid; gap: var(--sp-3); margin-top: var(--sp-4); }
+.opts[data-cols="2"] { grid-template-columns: 1fr; }
+@media (min-width: 46rem) { .opts[data-cols="2"] { grid-template-columns: 1fr 1fr; } }
+
+.opt { display: block; position: relative; }
+.opt-input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.opt-inner {
+  display: grid; grid-template-columns: auto 1fr; gap: var(--sp-3);
+  align-items: start; height: 100%;
+  border: 1px solid var(--line); background: var(--surface-2);
+  border-radius: var(--r-md); padding: var(--sp-4);
+  cursor: pointer; transition: border-color .14s ease, background .14s ease;
+}
+.opt-inner:hover { border-color: var(--line-strong); background: var(--surface); }
+.opt-mark {
+  flex: none; width: 1.25rem; height: 1.25rem; margin-top: .15rem;
+  border: 2px solid var(--line-strong); background: var(--surface);
+  display: grid; place-items: center; color: transparent;
+}
+.opt[data-multi="false"] .opt-mark { border-radius: 50%; }
+.opt[data-multi="true"] .opt-mark { border-radius: var(--r-sm); }
+.opt-mark svg { width: .8rem; height: .8rem; }
+.opt-input:checked + .opt-inner { border-color: var(--accent); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); }
+.opt-input:checked + .opt-inner .opt-mark { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.opt-input:focus-visible + .opt-inner { outline: 3px solid var(--accent); outline-offset: 2px; }
+.opt-label { font-family: var(--font-display); font-weight: 600; font-size: var(--fs-base); line-height: 1.3; }
+.opt-desc { color: var(--ink-2); font-size: var(--fs-sm); margin-top: var(--sp-1); }
+.opt-foot { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); }
+.opt-glyph { display: none; }
+@media (min-width: 34rem) {
+  .opt-inner { grid-template-columns: auto auto 1fr; }
+  .opt-glyph { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; color: var(--ink-3); margin-top: .05rem; }
+  .opt-glyph svg { width: 1.25rem; height: 1.25rem; }
+  .opt-input:checked + .opt-inner .opt-glyph { color: var(--accent); }
+}
+
+.other-field { grid-column: 1 / -1; display: flex; flex-direction: column; gap: var(--sp-2); }
+.field-label { font-size: var(--fs-sm); font-weight: 600; color: var(--ink-2); }
+.text-input {
+  font-family: var(--font-body); font-size: var(--fs-base); color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--r-md);
+  padding: .75rem .9rem; min-height: 3rem; width: 100%;
+}
+.text-input::placeholder { color: var(--ink-3); }
+
+.form-error {
+  display: flex; align-items: center; gap: var(--sp-2);
+  color: var(--bad); background: var(--bad-soft); border: 1px solid var(--bad);
+  border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4); font-size: var(--fs-sm);
+  margin-bottom: var(--sp-4);
+}
+.form-error[hidden] { display: none; }
+.form-error svg { width: 1.15rem; height: 1.15rem; flex: none; }
+
+.form-nav {
+  display: flex; gap: var(--sp-3); align-items: center; flex-wrap: wrap;
+  margin-top: var(--sp-6); padding-top: var(--sp-5); border-top: 1px solid var(--line);
+}
+.form-nav .spacer { flex: 1; }
+@media (max-width: 44rem) {
+  .form-nav {
+    position: sticky; bottom: 0; z-index: 20;
+    background: color-mix(in srgb, var(--ground) 92%, transparent);
+    backdrop-filter: blur(12px);
+    margin-inline: calc(var(--gutter) * -1);
+    padding: var(--sp-4) var(--gutter);
+    border-top: 1px solid var(--line);
+  }
+}
+
+.dim-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: var(--fs-xs); font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-soft);
+  border: 1px solid var(--accent-line); border-radius: 999px; padding: 3px .7rem;
+}
+
+/* --- Cartão de exemplo (home) ------------------------------------------ */
+.sample-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-md); overflow: hidden;
+}
+.sample-head {
+  display: flex; justify-content: space-between; gap: var(--sp-3); align-items: flex-start;
+  padding: var(--sp-5); border-bottom: 1px solid var(--line); background: var(--surface-2);
+}
+.sample-name { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); }
+.sample-note { color: var(--ink-2); font-size: var(--fs-sm); margin-top: var(--sp-2); max-width: 42ch; }
+.sample-body { padding: var(--sp-5); display: grid; gap: var(--sp-5); }
+.mini-gauges { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+.mini-g { text-align: center; }
+.mini-g .n {
+  font-family: var(--font-display); font-weight: 800; font-size: var(--fs-xl); letter-spacing: -.03em;
+  font-variant-numeric: tabular-nums;
+}
+.mini-g .n[data-tone="good"] { color: var(--good); }
+.mini-g .n[data-tone="warn"] { color: var(--warn); }
+.mini-g .n[data-tone="bad"]  { color: var(--bad); }
+.mini-g .l { font-size: var(--fs-xs); color: var(--ink-3); margin-top: 2px; }
+.sample-chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.sample-foot { padding: var(--sp-4) var(--sp-5); border-top: 1px solid var(--line); }
+
+/* --- Como funciona ------------------------------------------------------ */
+.how { margin-top: var(--sp-9); padding-top: var(--sp-8); border-top: 1px solid var(--line); }
+.how-title { font-size: var(--fs-2xl); margin-block: var(--sp-3) var(--sp-3); }
+.how-lead { color: var(--ink-2); max-width: var(--read); margin-bottom: var(--sp-6); }
+.how-grid {
+  display: grid; gap: var(--sp-3);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 52rem) { .how-grid { grid-template-columns: repeat(5, 1fr); } }
+@media (min-width: 36rem) and (max-width: 51.99rem) { .how-grid { grid-template-columns: 1fr 1fr; } }
+.how-cell {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--sp-4); min-height: 100%;
+}
+.how-cell .n { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--accent); font-weight: 500; }
+.how-cell h3 { font-size: var(--fs-base); margin-block: var(--sp-2); }
+.how-cell p { font-size: var(--fs-sm); color: var(--ink-2); }
+
+.what-is {
+  margin-top: var(--sp-6); padding: var(--sp-5);
+  background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: var(--r-lg);
+  max-width: 46rem;
+}
+.what-is h2 { font-size: var(--fs-lg); margin-bottom: var(--sp-2); }
+.what-is p { color: var(--ink-2); }
+
+/* --- Resultado ---------------------------------------------------------- */
+.result-head { margin-bottom: var(--sp-7); }
+.result-title { font-size: var(--fs-3xl); margin-block: var(--sp-3) var(--sp-3); }
+.result-sub { color: var(--ink-2); font-size: var(--fs-lg); max-width: 36ch; }
+.project-kicker { font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); margin-top: var(--sp-3); }
+
+.badge {
+  display: inline-flex; flex-direction: column; gap: 4px; max-width: 42rem;
+  border-radius: var(--r-md); padding: var(--sp-4) var(--sp-5); margin-top: var(--sp-5);
+  border: 1px solid;
+}
+.badge[data-level="low"]  { background: var(--good-soft); border-color: var(--good); }
+.badge[data-level="mid"]  { background: var(--warn-soft); border-color: var(--warn); }
+.badge[data-level="high"] { background: var(--bad-soft);  border-color: var(--bad); }
+.badge-name {
+  font-family: var(--font-display); font-weight: 700; font-size: var(--fs-base);
+}
+.badge[data-level="low"]  .badge-name { color: var(--good); }
+.badge[data-level="mid"]  .badge-name { color: var(--warn); }
+.badge[data-level="high"] .badge-name { color: var(--bad); }
+.badge-desc { font-size: var(--fs-sm); color: var(--ink-2); }
+
+.gauges {
+  display: grid; gap: var(--sp-4);
+  grid-template-columns: 1fr;
+  margin-bottom: var(--sp-6);
+}
+@media (min-width: 52rem) { .gauges { grid-template-columns: repeat(3, 1fr); } }
+.gauge {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--sp-5); box-shadow: var(--shadow-sm);
+  display: grid; justify-items: center; text-align: center; gap: var(--sp-3);
+}
+.gauge-ring { width: 8.5rem; height: 8.5rem; position: relative; }
+.gauge-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.gauge-ring .track { fill: none; stroke: var(--surface-sunk); stroke-width: 8; }
+.gauge-ring .fill { fill: none; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset .6s ease; }
+.gauge[data-tone="good"] .fill { stroke: var(--good); }
+.gauge[data-tone="warn"] .fill { stroke: var(--warn); }
+.gauge[data-tone="bad"]  .fill { stroke: var(--bad); }
+.gauge-num {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.85rem;
+  letter-spacing: -.04em; font-variant-numeric: tabular-nums; line-height: 1;
+}
+.gauge-num small { display: block; font-size: .7rem; font-weight: 600; color: var(--ink-3); letter-spacing: 0; margin-top: 2px; }
+.gauge h3 { font-size: var(--fs-base); }
+.gauge p { font-size: var(--fs-sm); color: var(--ink-2); }
+
+.caveat {
+  font-size: var(--fs-sm); color: var(--ink-2);
+  background: var(--surface-2); border: 1px dashed var(--line-strong);
+  border-radius: var(--r-md); padding: var(--sp-4); margin-bottom: var(--sp-8); max-width: 54rem;
+}
+
+.silence-box {
+  display: flex; gap: var(--sp-4); align-items: flex-start;
+  background: var(--warn-soft); border: 1px solid var(--warn);
+  border-radius: var(--r-md); padding: var(--sp-4); margin-bottom: var(--sp-7);
+}
+.silence-box[data-n="0"] { background: var(--good-soft); border-color: var(--good); }
+.silence-n {
+  font-family: var(--font-display); font-weight: 800; font-size: var(--fs-xl);
+  font-variant-numeric: tabular-nums; line-height: 1; min-width: 2.5rem;
+}
+.silence-box h3 { font-size: var(--fs-base); margin-bottom: 4px; }
+.silence-box p { font-size: var(--fs-sm); color: var(--ink-2); }
+
+.result-block { margin-bottom: var(--sp-8); }
+.result-block > h2 { font-size: var(--fs-xl); margin-block: var(--sp-2) var(--sp-3); }
+.result-block > .lead { margin-bottom: var(--sp-5); }
+
+/* --- Vereditos ---------------------------------------------------------- */
+.verdicts { display: grid; gap: var(--sp-4); }
+@media (min-width: 54rem) { .verdicts { grid-template-columns: 1fr 1fr; } }
+.verdict {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--sp-5); box-shadow: var(--shadow-sm);
+  border-inline-start-width: 4px;
+}
+.verdict[data-level="ok"]    { border-inline-start-color: var(--good); }
+.verdict[data-level="warn"]  { border-inline-start-color: var(--warn); }
+.verdict[data-level="alert"] { border-inline-start-color: var(--bad); }
+.verdict-top { display: flex; align-items: flex-start; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+.verdict-ico {
+  width: 2.25rem; height: 2.25rem; flex: none; border-radius: var(--r-md);
+  display: grid; place-items: center; border: 1px solid;
+}
+.verdict-ico svg { width: 1.15rem; height: 1.15rem; }
+.verdict[data-level="ok"]    .verdict-ico { background: var(--good-soft); color: var(--good); border-color: var(--good); }
+.verdict[data-level="warn"]  .verdict-ico { background: var(--warn-soft); color: var(--warn); border-color: var(--warn); }
+.verdict[data-level="alert"] .verdict-ico { background: var(--bad-soft);  color: var(--bad);  border-color: var(--bad); }
+.verdict h3 { font-size: var(--fs-md); flex: 1; }
+.level-pill {
+  font-family: var(--font-display); font-size: var(--fs-xs); font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  border-radius: 999px; padding: 3px .6rem; border: 1px solid; flex: none;
+}
+.verdict[data-level="ok"]    .level-pill { color: var(--good); border-color: var(--good); background: var(--good-soft); }
+.verdict[data-level="warn"]  .level-pill { color: var(--warn); border-color: var(--warn); background: var(--warn-soft); }
+.verdict[data-level="alert"] .level-pill { color: var(--bad);  border-color: var(--bad);  background: var(--bad-soft); }
+.verdict-body { color: var(--ink); font-size: var(--fs-sm); margin-bottom: var(--sp-3); }
+.verdict-action {
+  font-size: var(--fs-sm); color: var(--ink-2);
+  background: var(--surface-2); border-radius: var(--r-md); padding: var(--sp-3);
+}
+.verdict-action strong { display: block; font-size: var(--fs-xs); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; }
+
+/* --- Recomendações ------------------------------------------------------ */
+.recs { display: grid; gap: var(--sp-3); }
+.rec {
+  border-radius: var(--r-md); padding: var(--sp-4) var(--sp-5); border: 1px solid;
+}
+.rec[data-tone="alert"] { background: var(--bad-soft);  border-color: var(--bad); }
+.rec[data-tone="warn"]  { background: var(--warn-soft); border-color: var(--warn); }
+.rec[data-tone="info"]  { background: var(--accent-soft); border-color: var(--accent-line); }
+.rec[data-tone="good"]  { background: var(--good-soft); border-color: var(--good); }
+.rec h3 { font-size: var(--fs-base); margin-bottom: var(--sp-2); }
+.rec p { font-size: var(--fs-sm); color: var(--ink-2); }
+.rec-empty { color: var(--ink-2); font-size: var(--fs-sm); }
+
+/* --- Mapa --------------------------------------------------------------- */
+.map-wrap {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--sp-5); box-shadow: var(--shadow-sm); overflow: auto;
+}
+.map-svg { width: 100%; max-width: 40rem; height: auto; display: block; margin-inline: auto; }
+.map-svg .axis { stroke: var(--line-strong); stroke-width: 1.25; }
+.map-svg .grid { stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 4; }
+.map-svg .lbl { fill: var(--ink-3); font-size: 11px; font-family: var(--font-body); }
+.map-svg .dot-case { fill: var(--ink-3); }
+.map-svg .dot-you { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.map-legend { display: flex; flex-wrap: wrap; gap: var(--sp-4); margin-top: var(--sp-4); font-size: var(--fs-sm); color: var(--ink-2); }
+.map-legend i { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; margin-inline-end: 6px; vertical-align: middle; }
+.map-legend .you { background: var(--accent); }
+.map-legend .case { background: var(--ink-3); }
+
+/* --- Comparação --------------------------------------------------------- */
+.compare { display: grid; gap: var(--sp-4); }
+@media (min-width: 52rem) { .compare { grid-template-columns: repeat(3, 1fr); } }
+.case-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-3);
+}
+.case-card h3 { font-size: var(--fs-md); }
+.case-card .note { font-size: var(--fs-sm); color: var(--ink-2); flex: 1; }
+.case-meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.you-strip {
+  grid-column: 1 / -1;
+  display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center;
+  background: var(--accent-soft); border: 1px solid var(--accent-line);
+  border-radius: var(--r-md); padding: var(--sp-4);
+}
+.you-strip strong { font-family: var(--font-display); }
+
+/* --- Ficha técnica ------------------------------------------------------ */
+.sheet {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.sheet-dim { border-top: 1px solid var(--line); }
+.sheet-dim:first-child { border-top: 0; }
+.sheet-dim h3 {
+  font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase;
+  padding: var(--sp-3) var(--sp-5); background: var(--surface-2); color: var(--ink-3);
+}
+.sheet-row {
+  display: grid; grid-template-columns: minmax(10rem, 32%) 1fr;
+  gap: var(--sp-3); padding: var(--sp-3) var(--sp-5);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-sm);
+}
+@media (max-width: 36rem) { .sheet-row { grid-template-columns: 1fr; gap: 2px; } }
+.sheet-k { color: var(--ink-3); }
+.sheet-v { font-weight: 600; }
+.sheet-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-5); }
+
+/* --- Glossário / Sobre -------------------------------------------------- */
+.gloss-list { display: grid; gap: var(--sp-4); max-width: 46rem; }
+.gloss-item {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: var(--sp-4) var(--sp-5);
+}
+.gloss-item dt { font-family: var(--font-display); font-weight: 700; margin-bottom: var(--sp-2); }
+.gloss-item dd { margin: 0; color: var(--ink-2); font-size: var(--fs-sm); }
+
+.about { max-width: var(--read); display: grid; gap: var(--sp-4); }
+.about .lead { font-size: var(--fs-lg); color: var(--ink); }
+.about p { color: var(--ink-2); }
+.about-credit {
+  margin-top: var(--sp-3); padding-top: var(--sp-4); border-top: 1px solid var(--line);
+  font-size: var(--fs-sm); color: var(--ink-3);
+}
+
+.page-head { margin-bottom: var(--sp-6); }
+.page-head h1 { font-size: var(--fs-2xl); margin-block: var(--sp-2) var(--sp-3); }
+
+/* --- Rodapé ------------------------------------------------------------- */
+.app-footer {
+  border-top: 1px solid var(--line); padding-block: var(--sp-6);
+  background: var(--ground-deep);
+}
+.app-footer .wrap { display: flex; flex-wrap: wrap; gap: var(--sp-4); justify-content: space-between; align-items: flex-start; }
+.app-footer p { font-size: var(--fs-sm); color: var(--ink-3); max-width: 46ch; }
+.app-footer .mark { font-family: var(--font-display); font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+
+/* --- Modo técnico ------------------------------------------------------- */
+.expert-only { display: none !important; }
+html[data-expert="on"] .expert-only { display: revert !important; }
+html[data-expert="on"] .expert-only.tag { display: inline-flex !important; }
+html[data-expert="on"] p.expert-only { display: block !important; }
+
+/* --- Impressão ---------------------------------------------------------- */
+@media print {
+  .app-header, .app-footer, .skip-link, .form-nav, .hero-actions,
+  .sheet-actions, .sample-foot, .ctl-group, .header-nav, .btn { display: none !important; }
+  .view[hidden] { display: none !important; }
+  .view { padding: 0; }
+  body { background: #fff; color: #111; }
+  .gauge, .verdict, .sheet, .sample-card, .case-card { box-shadow: none; break-inside: avoid; }
+}
+
+/* --- Gráficos do resultado --------------------------------------------- */
+.viz-grid {
+  display: grid; gap: var(--sp-4);
+  grid-template-columns: 1fr;
+  margin-bottom: var(--sp-8);
+}
+@media (min-width: 62rem) { .viz-grid { grid-template-columns: 1.05fr .95fr; } }
+.viz-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--sp-5); box-shadow: var(--shadow-sm);
+}
+.viz-card h3 { font-size: var(--fs-md); margin-bottom: var(--sp-2); }
+.viz-card .lead { font-size: var(--fs-sm); margin-bottom: var(--sp-4); }
+
+.radar-svg { width: 100%; max-width: 22rem; height: auto; display: block; margin-inline: auto; }
+.radar-svg .web { fill: none; stroke: var(--line); stroke-width: 1; }
+.radar-svg .axis { stroke: var(--line-strong); stroke-width: 1; }
+.radar-svg .fill { fill: color-mix(in srgb, var(--accent) 28%, transparent); stroke: var(--accent); stroke-width: 2; }
+.radar-svg .dot { fill: var(--accent); }
+.radar-svg .lbl { fill: var(--ink-2); font-size: 11px; font-family: var(--font-body); }
+
+.pipe-row { display: grid; grid-template-columns: 1fr; gap: var(--sp-3); }
+@media (min-width: 40rem) { .pipe-row { grid-template-columns: repeat(3, 1fr); } }
+.pipe-cell {
+  border: 1px solid var(--line); border-radius: var(--r-md); padding: var(--sp-4);
+  background: var(--surface-2); text-align: center;
+}
+.pipe-cell[data-on="true"] {
+  background: var(--accent-soft); border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent);
+}
+.pipe-cell .st { font-family: var(--font-display); font-weight: 700; }
+.pipe-cell .on { display: block; font-size: var(--fs-xs); letter-spacing: .08em; text-transform: uppercase; margin-top: 6px; color: var(--ink-3); }
+.pipe-cell[data-on="true"] .on { color: var(--accent); }
+
+.bars-svg { width: 100%; height: auto; display: block; }
+.bars-svg .axis { stroke: var(--line); }
+.bars-svg .lbl { fill: var(--ink-3); font-size: 11px; font-family: var(--font-body); }
+.bars-svg .you { fill: var(--accent); }
+.bars-svg .c0 { fill: #7C949D; }
+.bars-svg .c1 { fill: #69808A; }
+.bars-svg .c2 { fill: #3C525A; }
+.viz-legend { display: flex; flex-wrap: wrap; gap: var(--sp-3) var(--sp-4); margin-top: var(--sp-3); font-size: var(--fs-sm); color: var(--ink-2); }
+.viz-legend i { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-inline-end: 6px; vertical-align: middle; }
+.viz-legend .you { background: var(--accent); }
+.viz-legend .c0 { background: #7C949D; }
+.viz-legend .c1 { background: #69808A; }
+.viz-legend .c2 { background: #3C525A; }
+.hist-when { font-size: var(--fs-sm); color: var(--ink-3); }
+
+.facet-bars { display: grid; gap: var(--sp-4); }
+.facet-group h3 {
+  font-size: var(--fs-xs); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-3); margin-bottom: var(--sp-3);
+}
+.fbar { display: grid; grid-template-columns: minmax(8rem, 28%) 1fr auto; gap: var(--sp-3); align-items: center; margin-bottom: var(--sp-2); }
+@media (max-width: 40rem) { .fbar { grid-template-columns: 1fr auto; } .fbar .k { grid-column: 1 / -1; } }
+.fbar .k { font-size: var(--fs-sm); color: var(--ink-2); }
+.fbar .track { height: 10px; background: var(--surface-sunk); border: 1px solid var(--line); border-radius: 99px; overflow: hidden; }
+.fbar .fill { display: block; height: 100%; border-radius: 99px; }
+.fbar .fill[data-tone="good"] { background: var(--good); }
+.fbar .fill[data-tone="warn"] { background: var(--warn); }
+.fbar .fill[data-tone="bad"]  { background: var(--bad); }
+.fbar .n { font-family: var(--font-mono); font-size: var(--fs-xs); font-variant-numeric: tabular-nums; color: var(--ink-3); min-width: 2.2rem; text-align: end; }
+
+.hist-list { display: grid; gap: var(--sp-3); }
+.hist-card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--sp-4) var(--sp-5); display: grid; gap: var(--sp-3);
+}
+.hist-card h3 { font-size: var(--fs-md); }
+.hist-meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.hist-foot { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.hist-empty { color: var(--ink-2); }
+
+@media print {
+  .hist-foot, [data-save] { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* =========================================================================
+   Ajustes para telas estreitas e toque
+   ========================================================================= */
+
+/* Nada deve provocar rolagem lateral da página. */
+html, body { overflow-x: clip; }
+@supports not (overflow: clip) { html, body { overflow-x: hidden; } }
+
+/* Gráficos: o texto do SVG encolhe junto com o viewBox, então em telas
+   estreitas ele precisa nascer maior para continuar legível. Cada gráfico
+   guarda uma largura mínima e rola dentro do próprio cartão. */
+.map-wrap, .viz-card { max-width: 100%; }
+.map-wrap { overflow-x: auto; overscroll-behavior-x: contain; }
+.map-svg  { min-width: 19rem; }
+.bars-scroll { overflow-x: auto; overscroll-behavior-x: contain; }
+.bars-svg { min-width: 21rem; }
+.radar-svg { min-width: 15rem; }
+
+.map-svg .lbl, .bars-svg .lbl { font-size: 13px; }
+.radar-svg .lbl { font-size: 12px; }
+.map-svg .lbl-you { fill: var(--accent); font-weight: 700; }
+
+@media (max-width: 40rem) {
+  .map-svg .lbl, .bars-svg .lbl { font-size: 17px; }
+  .radar-svg .lbl { font-size: 14px; }
+  .map-wrap, .viz-card { padding: var(--sp-4) var(--sp-3); }
+  .gauge { padding: var(--sp-4); }
+  .qblock { padding: var(--sp-4); }
+  .opt-inner { padding: var(--sp-3); }
+  .verdict, .hist-card, .gloss-item { padding: var(--sp-4); }
+  .sheet-dim h3, .sheet-row { padding-inline: var(--sp-4); }
+  .sample-head, .sample-body { padding: var(--sp-4); }
+  .sample-foot { padding: var(--sp-3) var(--sp-4); }
+  .what-is, .silence-box, .rec, .badge { padding: var(--sp-4); }
+  .view { padding-block: var(--sp-6) var(--sp-8); }
+}
+
+/* O anel do medidor acompanha a largura disponível em telas pequenas. */
+.gauge-ring { width: min(8.5rem, 42vw); height: min(8.5rem, 42vw); }
+
+/* Cabeçalho do cartão de exemplo quebra em vez de espremer. */
+.sample-head { flex-wrap: wrap; }
+
+/* Títulos longos não podem estourar a caixa em telas estreitas. */
+.hero-title, .result-title, .page-head h1, .step-title, .q-title,
+.verdict h3, .rec h3, .case-card h3, .hist-card h3 { overflow-wrap: break-word; }
+
+/* Palavras técnicas longas na ficha (nomes de modelo, siglas). */
+.sheet-v, .opt-desc, .tag { overflow-wrap: anywhere; }
+
+/* Em telas de toque, todo controle chega aos 44px recomendados. */
+@media (pointer: coarse) {
+  .header-nav button, .icon-btn, .expert-toggle { min-height: 2.75rem; }
+  .btn-quiet { min-height: 2.75rem; padding-inline: var(--sp-2); }
+}
+
+/* A barra fixa do formulário não pode cobrir o conteúdo no fim da rolagem. */
+@media (max-width: 44rem) {
+  .form-shell { padding-bottom: var(--sp-4); }
+  .form-nav { padding-bottom: max(var(--sp-4), env(safe-area-inset-bottom)); }
+}
+
+/* Rolagem suave só para quem não pediu movimento reduzido. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+</style>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%230C1A20'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Archivo,sans-serif' font-size='11' font-weight='800' fill='%23EDF1F2'%3ETIGA%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip"></a>
+
+  <header class="app-header">
+    <div class="wrap">
+      <button class="brand" type="button" data-go="home">
+        <span class="brand-mark">TG</span>
+        <span class="brand-text">
+          <span class="brand-name" data-i18n="brand"></span>
+          <span class="brand-sub" data-i18n="brandFull"></span>
+        </span>
+      </button>
+
+      <nav class="header-nav" data-i18n-aria="navSections">
+        <button type="button" data-go="home" data-hash="como" data-i18n="navHow"></button>
+        <button type="button" data-go="history" data-i18n="navHistory"></button>
+        <button type="button" data-go="glossary" data-i18n="navGlossary"></button>
+        <button type="button" data-go="about" data-i18n="navAbout"></button>
+      </nav>
+
+      <div class="ctl-group">
+        <label class="expert-toggle" title="" data-i18n-title="expertHint">
+          <input type="checkbox" id="expert-toggle">
+          <span class="expert-label" data-i18n="expertOn"></span>
+        </label>
+        <div class="lang-switch" role="group">
+          <button type="button" class="flag-btn" data-lang="pt" aria-pressed="true" data-i18n-aria="langPt">
+            <svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="1" fill="#009B3A"/><polygon points="14,2.2 25.4,10 14,17.8 2.6,10" fill="#FEDD00"/><circle cx="14" cy="10" r="4.1" fill="#002776"/></svg>
+          </button>
+          <button type="button" class="flag-btn" data-lang="en" aria-pressed="false" data-i18n-aria="langEn">
+            <svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="1" fill="#012169"/><path d="M0 0l28 20M28 0L0 20" stroke="#fff" stroke-width="3.2"/><path d="M0 0l28 20M28 0L0 20" stroke="#C8102E" stroke-width="1.6"/><path d="M14 0v20M0 10h28" stroke="#fff" stroke-width="5.2"/><path d="M14 0v20M0 10h28" stroke="#C8102E" stroke-width="2.4"/></svg>
+          </button>
+        </div>
+        <button type="button" class="icon-btn" id="theme-toggle" data-i18n-aria="themeToggle">
+          <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg>
+          <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="view-home" class="view">
+      <div class="wrap">
+        <div class="hero">
+          <div>
+            <p class="eyebrow" data-i18n="heroEyebrow"></p>
+            <h1 class="hero-title" data-i18n="heroTitle"></h1>
+            <p class="hero-lead" data-i18n="heroLead"></p>
+            <div class="hero-actions">
+              <button type="button" class="btn btn-primary" data-go="form" data-i18n="heroCta"></button>
+              <button type="button" class="btn btn-ghost" data-example="magicvfx" data-i18n="heroCta2"></button>
+              <span class="hero-time" data-i18n="heroTime"></span>
+            </div>
+            <div class="pipeline-strip" id="pipeline-strip" aria-hidden="true"></div>
+          </div>
+          <aside class="sample-card" id="sample-card" aria-live="polite"></aside>
+        </div>
+
+        <section class="how" id="como">
+          <p class="eyebrow" data-i18n="homeHow"></p>
+          <h2 class="how-title" data-i18n="howTitle"></h2>
+          <p class="how-lead" data-i18n="howLead"></p>
+          <div class="how-grid" id="how-grid"></div>
+          <div class="what-is">
+            <h2 data-i18n="whatIsTitle"></h2>
+            <p data-i18n="whatIsBody"></p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="view-form" class="view" hidden>
+      <div class="wrap form-shell">
+        <nav class="stepper" aria-label="" data-i18n-aria="progress">
+          <ol class="stepper-track" id="stepper"></ol>
+          <p class="step-count" id="step-count"></p>
+        </nav>
+        <div id="form-root"></div>
+      </div>
+    </section>
+
+    <section id="view-result" class="view" hidden>
+      <div class="wrap" id="result-root"></div>
+    </section>
+
+    <section id="view-history" class="view" hidden>
+      <div class="wrap">
+        <div class="page-head">
+          <p class="eyebrow" data-i18n="navHistory"></p>
+          <h1 data-i18n="histTitle"></h1>
+          <p class="lead" data-i18n="histLead"></p>
+        </div>
+        <div id="history-root"></div>
+      </div>
+    </section>
+
+    <section id="view-glossary" class="view" hidden>
+      <div class="wrap">
+        <div class="page-head">
+          <p class="eyebrow" data-i18n="navGlossary"></p>
+          <h1 data-i18n="glossTitle"></h1>
+          <p class="lead" data-i18n="glossLead"></p>
+        </div>
+        <dl class="gloss-list" id="gloss-list"></dl>
+      </div>
+    </section>
+
+    <section id="view-about" class="view" hidden>
+      <div class="wrap">
+        <div class="page-head">
+          <p class="eyebrow" data-i18n="navAbout"></p>
+          <h1 data-i18n="aboutTitle"></h1>
+        </div>
+        <article class="about" id="about-root"></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="wrap">
+      <div>
+        <p class="mark">TIGA</p>
+        <p data-i18n="footerCredit"></p>
+      </div>
+      <p data-i18n="footerNote"></p>
+    </div>
+  </footer>
+
+  <noscript>
+    <p style="padding:1.5rem;text-align:center">Esta ferramenta precisa de JavaScript para montar o formulário e calcular a ficha.</p>
+  </noscript>
+  <script>
+/* =========================================================================
+   TIGA — conteúdo bilíngue e definição da taxonomia
+   Taxonomia de Integração da IA Generativa no Audiovisual Não Interativo
+   Base empírica: MSL com 60 estudos primários (IEEE Xplore + ACM DL, 2023–2025)
+   ========================================================================= */
+
+/* --- Textos de interface ------------------------------------------------ */
+const UI = {
+  brand:        { pt: 'TIGA',                                  en: 'TIGA' },
+  brandFull:    { pt: 'Taxonomia de Integração da IA Generativa no Audiovisual',
+                  en: 'Taxonomy for Integrating Generative AI in Audiovisual' },
+  skip:         { pt: 'Ir para o conteúdo',                    en: 'Skip to content' },
+  navHow:       { pt: 'Como funciona',                         en: 'How it works' },
+  navGlossary:  { pt: 'Glossário',                             en: 'Glossary' },
+  navAbout:     { pt: 'Sobre',                                 en: 'About' },
+  navSections:  { pt: 'Seções',                                en: 'Sections' },
+  langPt:       { pt: 'Português (Brasil)',                    en: 'Portuguese (Brazil)' },
+  langEn:       { pt: 'Inglês',                                en: 'English' },
+  themeToggle:  { pt: 'Alternar modo claro e escuro',          en: 'Toggle light and dark mode' },
+  themeDark:    { pt: 'Modo escuro',                           en: 'Dark mode' },
+  themeLight:   { pt: 'Modo claro',                            en: 'Light mode' },
+  expertOn:     { pt: 'Mostrar termos técnicos',               en: 'Show technical terms' },
+  expertHint:   { pt: 'Exibe o nome formal de cada categoria e a subquestão de origem no mapeamento.',
+                  en: 'Shows the formal name of each category and its source sub-question in the mapping.' },
+
+  heroEyebrow:  { pt: 'Ficha técnica de uso de IA',            en: 'AI usage spec sheet' },
+  heroTitle:    { pt: 'Onde a inteligência artificial entra no seu projeto — e o que isso custa',
+                  en: 'Where AI enters your project — and what that costs' },
+  heroLead:     { pt: 'Responda a algumas perguntas sobre o seu filme, série, clipe ou peça publicitária. No fim, você recebe uma ficha com o perfil do seu uso de IA, os pontos que exigem atenção e o que fazer sobre cada um. Não é preciso entender nada de programação.',
+                  en: 'Answer a few questions about your film, series, music video or ad. At the end you get a spec sheet with the profile of your AI usage, the points that need attention, and what to do about each one.' },
+  heroCta:      { pt: 'Classificar meu projeto',               en: 'Classify my project' },
+  heroCta2:     { pt: 'Ver um exemplo pronto',                 en: 'See a finished example' },
+  heroTime:     { pt: 'Leva cerca de 4 minutos',               en: 'Takes about 4 minutes' },
+
+  sampleLabel:  { pt: 'Exemplo real do corpus',                en: 'Real case from the corpus' },
+  sampleNote:   { pt: 'Ficha gerada a partir de um estudo real analisado no mapeamento. Os seus resultados terão este formato.',
+                  en: 'Sheet generated from a real study analysed in the mapping. Your results will look like this.' },
+
+  howTitle:     { pt: 'Como funciona',                         en: 'How it works' },
+  howLead:      { pt: 'A ferramenta segue o mesmo protocolo de cinco passos da taxonomia. Cada passo pergunta uma coisa de cada vez, na ordem em que uma decisão de produção realmente acontece.',
+                  en: 'The tool follows the same five-step protocol as the taxonomy. Each step asks one thing at a time, in the order a production decision actually happens.' },
+  whatIsTitle:  { pt: 'O que é uma taxonomia, em uma frase',   en: 'What a taxonomy is, in one sentence' },
+  whatIsBody:   { pt: 'É uma ficha técnica padronizada: em vez de descrever o uso de IA com palavras soltas, você preenche sempre os mesmos campos, e aí dá para comparar dois projetos, dois estudos ou duas ferramentas lado a lado.',
+                  en: 'It is a standardised spec sheet: instead of describing AI usage in loose words, you always fill in the same fields, which lets you compare two projects, two studies or two tools side by side.' },
+
+  stepOf:       { pt: 'Passo {n} de {total}',                  en: 'Step {n} of {total}' },
+  back:         { pt: 'Voltar',                                en: 'Back' },
+  next:         { pt: 'Continuar',                             en: 'Continue' },
+  seeResult:    { pt: 'Ver meu resultado',                     en: 'See my result' },
+  restart:      { pt: 'Começar de novo',                       en: 'Start over' },
+  edit:         { pt: 'Rever respostas',                       en: 'Review answers' },
+  required:     { pt: 'Escolha uma opção para continuar.',     en: 'Pick one option to continue.' },
+  optional:     { pt: 'opcional',                              en: 'optional' },
+  multiHint:    { pt: 'Pode marcar mais de uma.',              en: 'You can pick more than one.' },
+  singleHint:   { pt: 'Escolha uma.',                          en: 'Pick one.' },
+  dontKnowOk:   { pt: 'Não saber também é uma resposta válida e conta no resultado.',
+                  en: '“I don’t know” is a valid answer and counts in the result.' },
+  corpusChip:   { pt: '{n} de 60 estudos',                     en: '{n} of 60 studies' },
+  corpusChipT:  { pt: 'Frequência desta resposta entre os 60 estudos primários do mapeamento.',
+                  en: 'Frequency of this answer across the 60 primary studies in the mapping.' },
+  sqLabel:      { pt: 'Origem',                                en: 'Source' },
+  formalLabel:  { pt: 'Termo na taxonomia',                    en: 'Term in the taxonomy' },
+  progress:     { pt: 'Progresso do formulário',               en: 'Form progress' },
+
+  projectName:  { pt: 'Nome do projeto ou da ferramenta',      en: 'Project or tool name' },
+  projectPh:    { pt: 'Ex.: curta “Maré Alta”, piloto da série, campanha de verão',
+                  en: 'e.g. “High Tide” short film, series pilot, summer campaign' },
+  otherPh:      { pt: 'Qual?',                                 en: 'Which one?' },
+
+  resultEyebrow:{ pt: 'Ficha de integração',                   en: 'Integration sheet' },
+  resultTitle:  { pt: 'Perfil do seu uso de IA',               en: 'Your AI usage profile' },
+  costLabel:    { pt: 'Custo sociotécnico',                    en: 'Sociotechnical cost' },
+  costOf:       { pt: 'de 100',                                en: 'out of 100' },
+  costCaveat:   { pt: 'Isto não avalia a qualidade artística nem técnica do seu projeto. Mede o quanto ele exige de cuidado com autoria, trabalho das pessoas, transparência e sinalização ao público.',
+                  en: 'This does not judge your project’s artistic or technical quality. It measures how much care it demands around authorship, people’s work, transparency and disclosure to the audience.' },
+  gaugeAutonomy:{ pt: 'Autonomia da máquina',                  en: 'Machine autonomy' },
+  gaugeTech:    { pt: 'Exigência técnica',                     en: 'Technical demand' },
+  gaugeSocial:  { pt: 'Custo sociotécnico',                    en: 'Sociotechnical cost' },
+  gaugeAutoHelp:{ pt: 'Quanto da decisão criativa foi entregue à ferramenta.',
+                  en: 'How much of the creative decision was handed to the tool.' },
+  gaugeTechHelp:{ pt: 'Quanto o seu arranjo exige de infraestrutura e enfrenta gargalos conhecidos.',
+                  en: 'How much your setup demands in infrastructure and runs into known bottlenecks.' },
+  gaugeSocHelp: { pt: 'Quanto de exposição em autoria, trabalho, reprodutibilidade e sinalização.',
+                  en: 'How much exposure in authorship, labour, reproducibility and disclosure.' },
+
+  verdictTitle: { pt: 'Veredito por tópico',                   en: 'Verdict by topic' },
+  verdictLead:  { pt: 'Cada tópico abaixo foi avaliado a partir das suas respostas. A cor indica o nível de atenção, e o texto em cinza diz o que fazer a respeito.',
+                  en: 'Each topic below was assessed from your answers. The colour shows the attention level, and the grey text says what to do about it.' },
+  actionLabel:  { pt: 'O que fazer',                           en: 'What to do' },
+  recTitle:     { pt: 'Recomendações para este perfil',        en: 'Recommendations for this profile' },
+  recEmpty:     { pt: 'Nenhum alerta adicional para este perfil. Os tópicos acima já cobrem os pontos de atenção.',
+                  en: 'No additional alerts for this profile. The topics above already cover the attention points.' },
+  mapTitle:     { pt: 'Onde você está no mapa',                en: 'Where you sit on the map' },
+  mapLead:      { pt: 'O eixo horizontal é a autonomia entregue à máquina; o vertical, o custo sociotécnico. Os três pontos cinza são estudos reais do mapeamento, para você comparar.',
+                  en: 'The horizontal axis is the autonomy handed to the machine; the vertical one, the sociotechnical cost. The three grey points are real studies from the mapping, for comparison.' },
+  mapYou:       { pt: 'Você',                                  en: 'You' },
+  mapAxisX:     { pt: 'Autonomia da máquina',                  en: 'Machine autonomy' },
+  mapAxisY:     { pt: 'Custo sociotécnico',                    en: 'Sociotechnical cost' },
+  mapLow:       { pt: 'baixa',                                 en: 'low' },
+  mapHigh:      { pt: 'alta',                                  en: 'high' },
+  mapLowY:      { pt: 'baixo',                                 en: 'low' },
+  mapHighY:     { pt: 'alto',                                  en: 'high' },
+  compareTitle: { pt: 'Comparação com estudos reais',          en: 'Comparison with real studies' },
+  compareLead:  { pt: 'Três estudos do corpus, classificados com a mesma ficha. Servem de régua: onde o seu projeto se parece com eles e onde se afasta.',
+                  en: 'Three studies from the corpus, classified with the same sheet. Use them as a ruler: where your project resembles them and where it differs.' },
+  sheetTitle:   { pt: 'Ficha técnica completa',                en: 'Full spec sheet' },
+  sheetLead:    { pt: 'A classificação formal, no vocabulário da taxonomia. É esta ficha que torna dois projetos comparáveis.',
+                  en: 'The formal classification, in the taxonomy’s vocabulary. This sheet is what makes two projects comparable.' },
+  copySheet:    { pt: 'Copiar ficha',                          en: 'Copy sheet' },
+  copied:       { pt: 'Ficha copiada',                         en: 'Sheet copied' },
+  copyFail:     { pt: 'Não foi possível copiar. Selecione o texto da ficha e copie manualmente.',
+                  en: 'Could not copy. Select the sheet text and copy it manually.' },
+  printSheet:   { pt: 'Imprimir ou salvar em PDF',             en: 'Print or save as PDF' },
+  notAnswered:  { pt: 'não respondido',                        en: 'not answered' },
+  silenceTitle: { pt: 'Índice de silêncio',                    en: 'Silence index' },
+
+  glossTitle:   { pt: 'Glossário',                             en: 'Glossary' },
+  glossLead:    { pt: 'Os termos que aparecem nas perguntas, explicados sem jargão.',
+                  en: 'The terms used in the questions, explained without jargon.' },
+  aboutTitle:   { pt: 'Sobre esta ferramenta',                 en: 'About this tool' },
+  backHome:     { pt: 'Voltar ao início',                      en: 'Back to start' },
+  levelOk:      { pt: 'Tranquilo',                             en: 'Clear' },
+  levelWarn:    { pt: 'Atenção',                               en: 'Attention' },
+  levelAlert:   { pt: 'Crítico',                               en: 'Critical' },
+  badgeLow:     { pt: 'Adoção de baixo custo',                 en: 'Low-cost adoption' },
+  badgeMid:     { pt: 'Adoção com cuidados',                   en: 'Adoption with safeguards' },
+  badgeHigh:    { pt: 'Adoção sensível',                       en: 'Sensitive adoption' },
+  badgeLowD:    { pt: 'O arranjo mantém a decisão criativa com as pessoas e deixa pouca exposição em aberto.',
+                  en: 'The setup keeps creative decisions with people and leaves little exposure open.' },
+  badgeMidD:    { pt: 'O arranjo funciona, mas há pontos que precisam de registro, combinado ou sinalização antes de escalar.',
+                  en: 'The setup works, but some points need documentation, agreement or disclosure before scaling.' },
+  badgeHighD:   { pt: 'O arranjo concentra decisões na máquina e deixa aberta mais de uma frente sensível. Trate os itens críticos antes de usar em produção.',
+                  en: 'The setup concentrates decisions in the machine and leaves more than one sensitive front open. Address the critical items before production use.' },
+  resultSaved:  { pt: 'Resultado calculado.',                  en: 'Result calculated.' },
+
+  dimOp:        { pt: 'Dimensão operacional',                  en: 'Operational dimension' },
+  dimTe:        { pt: 'Dimensão técnica',                      en: 'Technical dimension' },
+  dimRi:        { pt: 'Dimensão de risco e ética',             en: 'Risk and ethics dimension' },
+  silenceHelp:  { pt: 'Quantas frentes de risco ficaram sem avaliação. Silêncio não é risco baixo: é uma decisão ainda em aberto.',
+                  en: 'How many risk fronts were left unassessed. Silence is not low risk: it is a decision still left open.' },
+  silenceNone:  { pt: 'Nenhuma frente em silêncio.',           en: 'No silent fronts.' },
+  silenceOf:    { pt: '{n} de {total} em aberto',              en: '{n} of {total} still open' },
+  footerNote:   { pt: 'Versão preliminar do artefato, para uso em pesquisa e em produção. Não avalia qualidade artística.',
+                  en: 'Preliminary version of the artifact, for research and production use. It does not judge artistic quality.' },
+  footerCredit: { pt: 'Pesquisa de mestrado · PPGInf / UFPR',  en: 'Master’s research · PPGInf / UFPR' },
+  projectOptional:{ pt: 'opcional, aparece na ficha',          en: 'optional, shown on the sheet' },
+  howCta:       { pt: 'Começar a classificar',                 en: 'Start classifying' },
+  openCase:     { pt: 'Abrir esta ficha',                      en: 'Open this sheet' },
+  youVs:        { pt: 'O seu projeto',                         en: 'Your project' },
+  printTitle:   { pt: 'Ficha TIGA',                            en: 'TIGA sheet' },
+  homeHow:      { pt: 'Cinco passos',                          en: 'Five steps' },
+  formTitle:    { pt: 'Classificar projeto',                   en: 'Classify a project' },
+  otherLabel:   { pt: 'Outro modelo ou ferramenta',            en: 'Another model or tool' },
+  restartConfirm:{ pt: 'Apagar as respostas e começar de novo?', en: 'Clear the answers and start over?' },
+  close:        { pt: 'Fechar',                                en: 'Close' },
+
+  navHistory:   { pt: 'Minhas fichas',                         en: 'My sheets' },
+  histTitle:    { pt: 'Fichas guardadas neste aparelho',       en: 'Sheets saved on this device' },
+  histLead:     { pt: 'As classificações ficam só neste navegador, neste computador. Não há conta nem senha: é o jeito mais simples de guardar o histórico sem servidor. Se você limpar os dados do site, a lista some.',
+                  en: 'Classifications stay only in this browser, on this computer. There is no account or password: the simplest way to keep a history without a server. Clearing the site’s data deletes the list.' },
+  histEmpty:    { pt: 'Ainda não há ficha guardada. Classifique um projeto ou abra um exemplo, e use “Guardar nesta máquina”.',
+                  en: 'No sheet saved yet. Classify a project or open an example, then use “Save on this device”.' },
+  histSave:     { pt: 'Guardar nesta máquina',                 en: 'Save on this device' },
+  histSaved:    { pt: 'Ficha guardada',                        en: 'Sheet saved' },
+  histOpen:     { pt: 'Abrir',                                 en: 'Open' },
+  histDelete:   { pt: 'Apagar',                                en: 'Delete' },
+  histUntitled: { pt: 'Projeto sem nome',                      en: 'Untitled project' },
+  histWhen:     { pt: 'Guardada em {d}',                       en: 'Saved on {d}' },
+  histDeleteQ:  { pt: 'Apagar esta ficha do histórico?',       en: 'Delete this sheet from the history?' },
+
+  radarTitle:   { pt: 'Perfil de atenção',                     en: 'Attention profile' },
+  radarLead:    { pt: 'Cada eixo é um tópico da ficha. Quanto mais longe do centro, maior o cuidado exigido.',
+                  en: 'Each axis is a topic on the sheet. The farther from the centre, the more care it demands.' },
+  barsTitle:    { pt: 'Você ao lado do corpus',                en: 'You next to the corpus' },
+  barsLead:     { pt: 'As três notas da sua ficha, comparadas com os três estudos reais usados como régua.',
+                  en: 'Your three scores, compared with the three real studies used as a ruler.' },
+  pipeTitle:    { pt: 'Onde a IA entra no pipeline',           en: 'Where AI enters the pipeline' },
+  pipeOn:       { pt: 'Em uso',                                en: 'In use' },
+  pipeOff:      { pt: 'Fora',                                  en: 'Off' },
+  facetTitle:   { pt: 'Leitura por faceta',                    en: 'Reading by facet' },
+  facetLead:    { pt: 'Cada barra traduz uma resposta em 0 a 100. Não é nota de qualidade: é quanto aquele campo puxa o custo ou a autonomia para cima.',
+                  en: 'Each bar turns an answer into 0 to 100. It is not a quality grade: it is how much that field pulls cost or autonomy up.' }
+};
+
+/* --- Passos do protocolo (espelham a rubrica da taxonomia) ------------- */
+const STEPS = [
+  { n: 1, label: { pt: 'Momento',    en: 'Stage' } },
+  { n: 2, label: { pt: 'Decisão',    en: 'Decision' } },
+  { n: 3, label: { pt: 'Ferramenta', en: 'Tool' } },
+  { n: 4, label: { pt: 'Custos',     en: 'Costs' } },
+  { n: 5, label: { pt: 'Ficha',      en: 'Sheet' } }
+];
+
+const HOW_STEPS = [
+  {
+    n: '01',
+    title: { pt: 'Onde a IA entra', en: 'Where AI comes in' },
+    body:  { pt: 'Você marca as etapas da produção em que a ferramenta é usada. Isso delimita o objeto da ficha.',
+             en: 'You tick the production stages where the tool is used. That delimits the object of the sheet.' }
+  },
+  {
+    n: '02',
+    title: { pt: 'Quem decide', en: 'Who decides' },
+    body:  { pt: 'A pergunta do grau de autonomia. É a que mais muda o resultado, porque subordina as demais escolhas.',
+             en: 'The degree-of-autonomy question. It is the one that most changes the result, because it subordinates the other choices.' }
+  },
+  {
+    n: '03',
+    title: { pt: 'O que a ferramenta exige', en: 'What the tool demands' },
+    body:  { pt: 'Tecnologia, modelo, tipo de saída, onde processa e o gargalo que realmente atrapalha o trabalho.',
+             en: 'Technology, model, output type, where it processes, and the bottleneck that actually gets in the way.' }
+  },
+  {
+    n: '04',
+    title: { pt: 'O que isso custa', en: 'What that costs' },
+    body:  { pt: 'Autoria, viés, trabalho da equipe, possibilidade de repetir o processo e se o público será avisado.',
+             en: 'Authorship, bias, the team’s work, whether the process can be repeated, and whether the audience will be told.' }
+  },
+  {
+    n: '05',
+    title: { pt: 'Ler a ficha', en: 'Read the sheet' },
+    body:  { pt: 'Os três perfis juntos — operacional, técnico e de risco — e o que fazer sobre cada ponto de atenção.',
+             en: 'The three profiles together — operational, technical and risk — and what to do about each attention point.' }
+  }
+];
+
+const DIMS = {
+  operational: { pt: 'Operacional', en: 'Operational' },
+  technical:   { pt: 'Técnica',     en: 'Technical' },
+  risk:        { pt: 'Risco e ética', en: 'Risk and ethics' }
+};
+
+const ABOUT = {
+  lead: {
+    pt: 'Esta ferramenta aplica a TIGA, uma taxonomia multidimensional para classificar o uso de inteligência artificial generativa em filme, série, clipe, publicidade e animação linear.',
+    en: 'This tool applies TIGA, a multidimensional taxonomy for classifying the use of generative AI in film, series, music videos, advertising and linear animation.'
+  },
+  p1: {
+    pt: 'O propósito não é dar nota à qualidade da peça. É preencher sempre os mesmos campos — etapa, autonomia, técnica e risco — para que dois projetos, dois estudos ou duas ferramentas possam ser comparados lado a lado. No fim, a ficha aponta o quanto aquele arranjo exige de cuidado com autoria, trabalho, reprodutibilidade e sinalização ao público.',
+    en: 'The purpose is not to grade the quality of the piece. It is to fill in the same fields every time — stage, autonomy, technique and risk — so that two projects, two studies or two tools can be compared side by side. At the end, the sheet shows how much care that setup demands around authorship, labour, reproducibility and disclosure to the audience.'
+  },
+  p2: {
+    pt: 'A estrutura veio de um mapeamento sistemático da literatura com 60 estudos primários recuperados na IEEE Xplore e na ACM Digital Library, publicados entre 2023 e abril de 2025. Cada pergunta desta ficha corresponde a uma faceta da taxonomia, e cada faceta rastreia uma subquestão daquele mapeamento.',
+    en: 'The structure comes from a systematic mapping of the literature with 60 primary studies retrieved from IEEE Xplore and the ACM Digital Library, published between 2023 and April 2025. Each question on this sheet corresponds to a facet of the taxonomy, and each facet traces back to a sub-question in that mapping.'
+  },
+  p3: {
+    pt: 'Esta é a versão preliminar do artefato, em desenvolvimento no mestrado em Informática da Universidade Federal do Paraná (PPGInf/UFPR). A validação por painel de especialistas e por concordância entre avaliadores ainda está em curso. Use-a como mapa de prontidão, não como laudo definitivo.',
+    en: 'This is the preliminary version of the artifact, under development in the Master’s in Computer Science at the Federal University of Paraná (PPGInf/UFPR). Validation by an expert panel and by inter-rater agreement is still underway. Use it as a readiness map, not as a definitive report.'
+  },
+  author: {
+    pt: 'Pesquisa de Guilherme de Queiroz Lima Roth. Orientação de Natasha Malveira Costa Valentim. Coorientação de Rafael de Andrade de Pereira.',
+    en: 'Research by Guilherme de Queiroz Lima Roth. Supervised by Natasha Malveira Costa Valentim. Co-supervised by Rafael de Andrade de Pereira.'
+  }
+};
+
+/* --- Facetas da taxonomia ----------------------------------------------
+   Cada faceta guarda: a pergunta em linguagem de produção, a regra formal
+   da rubrica (modo técnico), a subquestão de origem no MSL e, quando
+   existe correspondência direta, a frequência da resposta no corpus.
+   ----------------------------------------------------------------------- */
+const FACETS = [
+  {
+    id: 'stage', dim: 'operational', sq: 'SQ9', step: 1, multi: true, required: true,
+    icon: 'clapper',
+    question: { pt: 'Em que momento da produção a IA entra?',
+                en: 'At what point of production does the AI come in?' },
+    hint:     { pt: 'Marque todas as fases em que a ferramenta é usada.',
+                en: 'Tick every phase where the tool is used.' },
+    formalName: { pt: 'Etapa do pipeline', en: 'Pipeline stage' },
+    help:     { pt: 'Atribuída pela fase em que a saída da ferramenta é efetivamente utilizada. Admite mais de um valor.',
+                en: 'Assigned by the phase in which the tool’s output is actually used. Accepts more than one value.' },
+    options: [
+      { id: 'pre',  label: { pt: 'Pré-produção', en: 'Pre-production' },
+        desc: { pt: 'Roteiro, concept art, storyboard, animatic, pesquisa visual.',
+                en: 'Script, concept art, storyboard, animatic, visual research.' }, icon: 'pencil' },
+      { id: 'prod', label: { pt: 'Produção', en: 'Production' },
+        desc: { pt: 'Filmagem, captação, animação dos personagens, iluminação.',
+                en: 'Shooting, capture, character animation, lighting.' }, icon: 'camera' },
+      { id: 'post', label: { pt: 'Pós-produção', en: 'Post-production' },
+        desc: { pt: 'Montagem, efeitos visuais, cor, som, dublagem, finalização.',
+                en: 'Editing, VFX, colour, sound, dubbing, finishing.' }, icon: 'layers' }
+    ]
+  },
+
+  {
+    id: 'autonomy', dim: 'operational', sq: 'SQ3, SQ9', step: 2, multi: false, required: true,
+    icon: 'steering', pivotal: true,
+    question: { pt: 'Quando a ferramenta entrega um resultado, quem dá a palavra final?',
+                en: 'When the tool delivers a result, who has the final say?' },
+    hint:     { pt: 'Esta é a pergunta que mais muda o seu resultado. Pense no dia a dia, não no caso excepcional.',
+                en: 'This is the question that changes your result the most. Think about everyday use, not the exception.' },
+    formalName: { pt: 'Grau de autonomia', en: 'Degree of autonomy' },
+    help:     { pt: 'Atribuída pelo locus da decisão criativa final. Assistente: tarefa discreta e verificável, decisão integralmente humana. Colaboradora: humano e máquina alternam contribuições, com a palavra final do humano. Geradora autônoma: artefato completo com intervenção humana mínima, em que o sistema planeja, gera e autoavalia.',
+                en: 'Assigned by the locus of the final creative decision. Assistant: discrete, verifiable task, decision entirely human. Collaborator: human and machine alternate contributions, human has the last word. Autonomous generator: complete artifact with minimal human intervention, the system plans, generates and self-evaluates.' },
+    options: [
+      { id: 'assistant', label: { pt: 'Assistente', en: 'Assistant' },
+        desc: { pt: 'Ela executa uma tarefa específica e eu confiro. Aumentar resolução, tirar um objeto da cena, limpar ruído de áudio, recortar um personagem do fundo.',
+                en: 'It performs a specific task and I check it. Upscaling, removing an object from a shot, cleaning audio noise, cutting a character out of the background.' },
+        formal: { pt: 'Assistente', en: 'Assistant' }, icon: 'wrench', score: 20 },
+      { id: 'collaborator', label: { pt: 'Colaboradora', en: 'Collaborator' },
+        desc: { pt: 'Eu e ela vamos e voltamos até chegar no resultado. Escrever o roteiro a quatro mãos, gerar concept art, montar o storyboard a partir de descrições.',
+                en: 'The tool and I go back and forth until we get there. Co-writing the script, generating concept art, building the storyboard from descriptions.' },
+        formal: { pt: 'Colaboradora', en: 'Collaborator' }, icon: 'handshake', score: 55 },
+      { id: 'autonomous', label: { pt: 'Geradora autônoma', en: 'Autonomous generator' },
+        desc: { pt: 'Eu dou o comando e ela entrega a peça quase pronta, escolhendo sozinha entre as próprias opções.',
+                en: 'I give the command and it delivers a near-finished piece, picking among its own options by itself.' },
+        formal: { pt: 'Geradora autônoma', en: 'Autonomous generator' }, icon: 'robot', score: 95 }
+    ]
+  },
+
+  {
+    id: 'interaction', dim: 'operational', sq: 'SQ12', step: 3, multi: true, required: true,
+    icon: 'cursor',
+    question: { pt: 'Como você comanda a ferramenta?',
+                en: 'How do you drive the tool?' },
+    hint:     { pt: 'Vale a forma que você usa no dia a dia.',
+                en: 'Go with the way you actually use it day to day.' },
+    formalName: { pt: 'Modo de interação', en: 'Interaction mode' },
+    help:     { pt: 'Atribuída pela forma primária de entrada do usuário. Admite mais de um valor.',
+                en: 'Assigned by the primary form of user input. Accepts more than one value.' },
+    options: [
+      { id: 'prompt', label: { pt: 'Escrevendo o que quero', en: 'Typing what I want' },
+        desc: { pt: 'Você descreve em texto e ela produz. É o famoso prompt.',
+                en: 'You describe it in text and it produces. The well-known prompt.' },
+        formal: { pt: 'Prompt textual', en: 'Textual prompt' }, corpus: 29, icon: 'text' },
+      { id: 'gui', label: { pt: 'Por botões e menus', en: 'Through buttons and menus' },
+        desc: { pt: 'Uma interface com controles, sliders e painéis, como um software de edição.',
+                en: 'An interface with controls, sliders and panels, like editing software.' },
+        formal: { pt: 'Interface gráfica (GUI)', en: 'Graphical interface (GUI)' }, corpus: 12, icon: 'sliders' },
+      { id: 'multimodal', label: { pt: 'Misturando texto, imagem e som', en: 'Mixing text, image and sound' },
+        desc: { pt: 'Você entrega uma referência visual, um áudio ou um vídeo junto com a instrução.',
+                en: 'You hand over a visual reference, an audio or a video along with the instruction.' },
+        formal: { pt: 'Multimodal', en: 'Multimodal' }, corpus: 7, icon: 'multi' },
+      { id: 'api', label: { pt: 'Por código ou integração', en: 'Through code or integration' },
+        desc: { pt: 'A ferramenta é chamada por um script ou embutida em outro sistema.',
+                en: 'The tool is called by a script or embedded in another system.' },
+        formal: { pt: 'Programática (API/SDK)', en: 'Programmatic (API/SDK)' }, corpus: 1, icon: 'code' }
+    ]
+  },
+
+  {
+    id: 'family', dim: 'technical', sq: 'SQ4', step: 3, multi: false, required: true,
+    icon: 'chip',
+    question: { pt: 'Que tipo de tecnologia está por trás?',
+                en: 'What kind of technology is behind it?' },
+    hint:     { pt: 'Se você não sabe, marque a última opção. É uma resposta legítima e muito comum.',
+                en: 'If you don’t know, tick the last option. It is a legitimate and very common answer.' },
+    formalName: { pt: 'Família arquitetural', en: 'Architectural family' },
+    help:     { pt: 'Atribuída pela arquitetura declarada. Classificar como híbrido quando duas ou mais famílias operam de forma integrada.',
+                en: 'Assigned by the declared architecture. Classify as hybrid when two or more families operate in an integrated way.' },
+    options: [
+      { id: 'diffusion', label: { pt: 'Geração de imagem e vídeo', en: 'Image and video generation' },
+        desc: { pt: 'Ferramentas que constroem a imagem a partir de um chuveirinho e vão limpando até formar a cena.',
+                en: 'Tools that build the image out of static noise and clean it up until the scene appears.' },
+        formal: { pt: 'Modelos de difusão', en: 'Diffusion models' }, corpus: 29, icon: 'grain', score: 70 },
+      { id: 'transformer', label: { pt: 'Modelo de linguagem', en: 'Language model' },
+        desc: { pt: 'Ferramentas de texto e planejamento, do tipo que conversa e escreve.',
+                en: 'Text and planning tools, the conversational, writing kind.' },
+        formal: { pt: 'Transformers / LLMs', en: 'Transformers / LLMs' }, corpus: 22, icon: 'text', score: 60 },
+      { id: 'hybrid', label: { pt: 'As duas coisas juntas', en: 'Both together' },
+        desc: { pt: 'Um modelo de linguagem planeja a cena e outro modelo desenha. É o arranjo mais comum em agentes.',
+                en: 'A language model plans the scene and another model renders it. The usual arrangement in agents.' },
+        formal: { pt: 'Modelos híbridos', en: 'Hybrid models' }, corpus: 6, icon: 'merge', score: 80 },
+      { id: 'gan', label: { pt: 'Rede adversarial (GAN)', en: 'Adversarial network (GAN)' },
+        desc: { pt: 'Geração mais antiga, ainda usada em rosto, voz e efeitos pontuais.',
+                en: 'Older generation, still used for faces, voice and targeted effects.' },
+        formal: { pt: 'GANs', en: 'GANs' }, corpus: 10, icon: 'swap', score: 65 },
+      { id: 'other', label: { pt: 'Outra tecnologia', en: 'Another technology' },
+        desc: { pt: 'Autoencoders, redes recorrentes ou algo fora dessas famílias.',
+                en: 'Autoencoders, recurrent networks or something outside these families.' },
+        formal: { pt: 'Autoencoders / redes recorrentes / outra', en: 'Autoencoders / recurrent networks / other' }, corpus: 5, icon: 'dots', score: 50 },
+      { id: 'unknown', label: { pt: 'Não sei dizer', en: 'I don’t know' },
+        desc: { pt: 'Você usa a ferramenta pronta e nunca precisou saber o que roda por dentro.',
+                en: 'You use the tool as it comes and never needed to know what runs inside.' },
+        formal: { pt: 'Não informado', en: 'Not informed' }, icon: 'question', score: 55 }
+    ]
+  },
+
+  {
+    id: 'baseModel', dim: 'technical', sq: 'SQ13', step: 3, multi: true, required: false,
+    icon: 'box', allowOther: true,
+    question: { pt: 'Qual ferramenta ou modelo você usa?',
+                en: 'Which tool or model do you use?' },
+    hint:     { pt: 'Marque quantas usar. Isso define o quanto você depende de fornecedores externos.',
+                en: 'Tick as many as you use. This defines how much you depend on outside vendors.' },
+    formalName: { pt: 'Modelo base', en: 'Base model' },
+    help:     { pt: 'Atribuída pelos modelos nominais empregados. Registrar todos quando houver orquestração de vários modelos. Distingue regime de acesso aberto e fechado.',
+                en: 'Assigned by the nominal models employed. Record all of them when several models are orchestrated. Distinguishes open and closed access regimes.' },
+    options: [
+      { id: 'sd', label: { pt: 'Stable Diffusion', en: 'Stable Diffusion' },
+        desc: { pt: 'Código e pesos abertos: dá para inspecionar, ajustar e rodar por conta própria.',
+                en: 'Open code and weights: you can inspect, fine-tune and run it yourself.' },
+        formal: { pt: 'Stable Diffusion (aberto)', en: 'Stable Diffusion (open)' }, corpus: 23, access: 'open', icon: 'grain' },
+      { id: 'gpt', label: { pt: 'ChatGPT / GPT-4', en: 'ChatGPT / GPT-4' },
+        desc: { pt: 'Serviço fechado: você controla pelo comando, não por dentro.',
+                en: 'Closed service: you steer it by the prompt, not from inside.' },
+        formal: { pt: 'GPT-4 (fechado)', en: 'GPT-4 (closed)' }, corpus: 12, access: 'closed', icon: 'text' },
+      { id: 'mj', label: { pt: 'Midjourney', en: 'Midjourney' },
+        desc: { pt: 'Serviço fechado de imagem, muito usado em concept art e storyboard.',
+                en: 'Closed image service, widely used for concept art and storyboards.' },
+        formal: { pt: 'MidJourney (fechado)', en: 'MidJourney (closed)' }, corpus: 8, access: 'closed', icon: 'sail' },
+      { id: 'dalle', label: { pt: 'DALL·E', en: 'DALL·E' },
+        desc: { pt: 'Serviço fechado de imagem a partir de texto.',
+                en: 'Closed text-to-image service.' },
+        formal: { pt: 'DALL·E (fechado)', en: 'DALL·E (closed)' }, corpus: 7, access: 'closed', icon: 'palette' },
+      { id: 'clip', label: { pt: 'CLIP', en: 'CLIP' },
+        desc: { pt: 'Faz a ponte entre texto e imagem dentro de outras ferramentas.',
+                en: 'Bridges text and image inside other tools.' },
+        formal: { pt: 'CLIP', en: 'CLIP' }, corpus: 7, access: 'open', icon: 'link' },
+      { id: 'video', label: { pt: 'Gerador de vídeo (Runway, Pika, Sora e afins)', en: 'Video generator (Runway, Pika, Sora and similar)' },
+        desc: { pt: 'Serviços fechados de texto para vídeo, surgidos depois do recorte do mapeamento.',
+                en: 'Closed text-to-video services, released after the mapping’s cut-off.' },
+        formal: { pt: 'Outro (gerador de vídeo, fechado)', en: 'Other (video generator, closed)' }, access: 'closed', icon: 'film' },
+      { id: 'unknown', label: { pt: 'Não sei qual modelo roda por dentro', en: 'I don’t know which model runs inside' },
+        desc: { pt: 'A ferramenta não informa, ou você nunca precisou verificar.',
+                en: 'The tool does not say, or you never needed to check.' },
+        formal: { pt: 'Não informado', en: 'Not informed' }, access: 'unknown', icon: 'question' }
+    ]
+  },
+
+  {
+    id: 'output', dim: 'technical', sq: 'SQ10', step: 3, multi: true, required: true,
+    icon: 'export',
+    question: { pt: 'O que sai da ferramenta?',
+                en: 'What comes out of the tool?' },
+    hint:     { pt: 'O material que você leva para a próxima etapa da produção.',
+                en: 'The material you carry into the next production stage.' },
+    formalName: { pt: 'Tipo de saída', en: 'Output type' },
+    help:     { pt: 'Atribuída pelo artefato entregue. Admite mais de um valor. O valor texto/roteiro foi incorporado após a aplicação da taxonomia a estudos reais.',
+                en: 'Assigned by the delivered artifact. Accepts more than one value. The text/script value was added after applying the taxonomy to real studies.' },
+    options: [
+      { id: 'text', label: { pt: 'Texto ou roteiro', en: 'Text or script' },
+        desc: { pt: 'Cenas escritas, diálogos, tratamento, descrição de plano.',
+                en: 'Written scenes, dialogue, treatment, shot descriptions.' },
+        formal: { pt: 'Texto/roteiro', en: 'Text/script' }, icon: 'pencil', score: 15 },
+      { id: 'image', label: { pt: 'Imagem parada', en: 'Still image' },
+        desc: { pt: 'Concept art, quadro de storyboard, referência de figurino, cartaz.',
+                en: 'Concept art, storyboard frame, costume reference, poster.' },
+        formal: { pt: 'Imagem estática', en: 'Static image' }, corpus: 14, icon: 'image', score: 30 },
+      { id: 'audio', label: { pt: 'Áudio ou voz', en: 'Audio or voice' },
+        desc: { pt: 'Narração, dublagem, voz clonada, trilha, efeito sonoro.',
+                en: 'Narration, dubbing, cloned voice, score, sound effect.' },
+        formal: { pt: 'Áudio', en: 'Audio' }, icon: 'wave', score: 40 },
+      { id: 'asset', label: { pt: 'Elemento reaproveitável', en: 'Reusable element' },
+        desc: { pt: 'Movimento 3D, modelo de personagem, textura: entra no seu software e é montado lá.',
+                en: '3D motion, character model, texture: it goes into your software and gets assembled there.' },
+        formal: { pt: 'Asset', en: 'Asset' }, icon: 'cube', score: 50 },
+      { id: 'animation', label: { pt: 'Animação', en: 'Animation' },
+        desc: { pt: 'Sequência animada, estilizada ou 2D/3D, com movimento próprio.',
+                en: 'Animated sequence, stylised or 2D/3D, with its own motion.' },
+        formal: { pt: 'Animação', en: 'Animation' }, corpus: 13, icon: 'sparkle', score: 70 },
+      { id: 'video', label: { pt: 'Vídeo pronto', en: 'Finished video' },
+        desc: { pt: 'Um trecho ou uma peça inteira que vai direto para a linha de tempo.',
+                en: 'A clip or an entire piece that goes straight to the timeline.' },
+        formal: { pt: 'Vídeo completo', en: 'Full video' }, corpus: 12, icon: 'film', score: 90 }
+    ]
+  },
+
+  {
+    id: 'infra', dim: 'technical', sq: 'SQ11', step: 3, multi: false, required: true,
+    icon: 'server',
+    question: { pt: 'Onde o processamento acontece?',
+                en: 'Where does the processing happen?' },
+    hint:     { pt: 'Onde a conta pesada é feita, não onde você clica.',
+                en: 'Where the heavy lifting happens, not where you click.' },
+    formalName: { pt: 'Infraestrutura', en: 'Infrastructure' },
+    help:     { pt: 'Atribuída por onde ocorre o processamento do modelo. Local: roda em máquina do usuário. Nuvem: acessado por API ou serviço remoto. Híbrido: combina os dois.',
+                en: 'Assigned by where model processing occurs. Local: runs on the user’s machine. Cloud: accessed by API or remote service. Hybrid: combines both.' },
+    options: [
+      { id: 'local', label: { pt: 'No meu computador', en: 'On my own computer' },
+        desc: { pt: 'Exige placa de vídeo potente, mas os arquivos não saem da sua casa ou produtora.',
+                en: 'Requires a powerful graphics card, but files never leave your home or studio.' },
+        formal: { pt: 'Local', en: 'Local' }, corpus: 24, icon: 'desktop', score: 65 },
+      { id: 'cloud', label: { pt: 'Na internet, no servidor deles', en: 'Online, on their servers' },
+        desc: { pt: 'Você paga por uso e depende da conexão e da empresa continuar oferecendo o serviço.',
+                en: 'You pay per use and depend on the connection and on the company keeping the service alive.' },
+        formal: { pt: 'Nuvem', en: 'Cloud' }, corpus: 12, icon: 'cloud', score: 45 },
+      { id: 'hybrid', label: { pt: 'Um pouco de cada', en: 'A bit of each' },
+        desc: { pt: 'Você edita e ajusta na sua máquina, e a geração pesada roda fora. É o arranjo mais comum em produtora.',
+                en: 'You edit and tweak on your machine, and the heavy generation runs elsewhere. The usual studio arrangement.' },
+        formal: { pt: 'Híbrido', en: 'Hybrid' }, icon: 'shuffle', score: 55 }
+    ]
+  },
+
+  {
+    id: 'bottleneck', dim: 'technical', sq: 'SQ6', step: 3, multi: true, required: true,
+    icon: 'alert',
+    question: { pt: 'Qual é o maior problema que você enfrenta com a ferramenta?',
+                en: 'What is the biggest problem you face with the tool?' },
+    hint:     { pt: 'Marque o que realmente atrapalha o seu trabalho.',
+                en: 'Tick what actually gets in the way of your work.' },
+    formalName: { pt: 'Gargalo dominante', en: 'Dominant bottleneck' },
+    help:     { pt: 'Atribuída pelos desafios técnicos mais citados. Admite mais de um valor. A coerência temporal é o obstáculo nomeado dominante do corpus.',
+                en: 'Assigned by the most cited technical challenges. Accepts more than one value. Temporal coherence is the corpus’s dominant named obstacle.' },
+    options: [
+      { id: 'temporal', label: { pt: 'A imagem não se mantém igual entre um quadro e outro', en: 'The image does not hold from one frame to the next' },
+        desc: { pt: 'O rosto muda, a camisa listrada troca o número de listras, a luz pisca. A indústria chama isso de cintilação.',
+                en: 'The face changes, the striped shirt swaps its number of stripes, the light flickers. The industry calls it flickering.' },
+        formal: { pt: 'Coerência temporal', en: 'Temporal coherence' }, corpus: 16, icon: 'flicker', score: 85 },
+      { id: 'stability', label: { pt: 'O resultado é imprevisível', en: 'The result is unpredictable' },
+        desc: { pt: 'O mesmo comando devolve coisas muito diferentes a cada tentativa.',
+                en: 'The same command returns very different things on each attempt.' },
+        formal: { pt: 'Estabilidade do sistema', en: 'System stability' }, corpus: 7, icon: 'dice', score: 65 },
+      { id: 'latency', label: { pt: 'Demora demais', en: 'It takes too long' },
+        desc: { pt: 'Cada tentativa leva tempo o bastante para atrapalhar o cronograma.',
+                en: 'Each attempt takes long enough to disrupt the schedule.' },
+        formal: { pt: 'Latência / tempo de resposta', en: 'Latency / response time' }, corpus: 5, icon: 'clock', score: 55 },
+      { id: 'scale', label: { pt: 'Não aguenta o volume do projeto', en: 'It does not hold the project’s volume' },
+        desc: { pt: 'Funciona em um teste curto, mas não em um episódio ou longa inteiro.',
+                en: 'It works on a short test, but not on a whole episode or feature.' },
+        formal: { pt: 'Escalabilidade', en: 'Scalability' }, corpus: 4, icon: 'stack', score: 60 },
+      { id: 'resolution', label: { pt: 'A qualidade não chega no padrão de entrega', en: 'Quality does not reach delivery standard' },
+        desc: { pt: 'Resolução, nitidez ou profundidade de cor abaixo do exigido pelo cliente ou pela emissora.',
+                en: 'Resolution, sharpness or colour depth below what the client or broadcaster requires.' },
+        formal: { pt: 'Limitações de resolução', en: 'Resolution limits' }, corpus: 4, icon: 'grid', score: 45 },
+      { id: 'sync', label: { pt: 'Som e imagem não batem', en: 'Sound and picture do not match' },
+        desc: { pt: 'Boca fora de sincronia, efeito atrasado, trilha desencontrada da ação.',
+                en: 'Lip out of sync, delayed effect, score out of step with the action.' },
+        formal: { pt: 'Sincronização áudio-vídeo', en: 'Audio-video synchronisation' }, corpus: 4, icon: 'wave', score: 60 },
+      { id: 'cost', label: { pt: 'Sai caro para rodar', en: 'It is expensive to run' },
+        desc: { pt: 'Custo de máquina, de créditos ou de assinatura pesa no orçamento.',
+                en: 'Machine, credit or subscription cost weighs on the budget.' },
+        formal: { pt: 'Custo computacional', en: 'Computational cost' }, corpus: 2, icon: 'coin', score: 70 },
+      { id: 'none', label: { pt: 'Nenhum problema sério até agora', en: 'No serious problem so far' },
+        desc: { pt: 'A ferramenta atende ao que você precisa hoje.',
+                en: 'The tool meets what you need today.' },
+        formal: { pt: 'Sem gargalo declarado', en: 'No declared bottleneck' }, icon: 'check', score: 10, exclusive: true }
+    ]
+  },
+
+  {
+    id: 'authorship', dim: 'risk', sq: 'SQ7', step: 4, multi: false, required: true,
+    icon: 'signature',
+    question: { pt: 'Como fica a autoria do que a ferramenta produz?',
+                en: 'What happens to the authorship of what the tool produces?' },
+    hint:     { pt: 'Autoria é a segunda preocupação ética mais frequente do corpus: aparece em 17 dos 60 estudos.',
+                en: 'Authorship is the corpus’s second most frequent ethical concern: it appears in 17 of the 60 studies.' },
+    formalName: { pt: 'Autoria e autenticidade', en: 'Authorship and authenticity' },
+    help:     { pt: 'Baixo: autoria humana clara, sem preocupação reportada. Moderado: tema discutido, com salvaguarda de autoria. Alto: geração autônoma sem atribuição clara. Não reportado: ausência de menção.',
+                en: 'Low: clear human authorship, no reported concern. Moderate: topic discussed, with an authorship safeguard. High: autonomous generation with no clear attribution. Not reported: no mention.' },
+    options: [
+      { id: 'low', label: { pt: 'A autoria é claramente das pessoas da equipe', en: 'Authorship clearly belongs to the team' },
+        desc: { pt: 'A ferramenta executa, mas o que vale é a decisão de quem assina.',
+                en: 'The tool executes, but what counts is the decision of whoever signs it.' },
+        formal: { pt: 'Baixo', en: 'Low' }, icon: 'user', score: 10 },
+      { id: 'moderate', label: { pt: 'A gente discutiu e combinou como fica', en: 'We discussed it and agreed on the terms' },
+        desc: { pt: 'Há acordo escrito, crédito combinado ou política interna sobre o assunto.',
+                en: 'There is a written agreement, an agreed credit or an internal policy on it.' },
+        formal: { pt: 'Moderado', en: 'Moderate' }, icon: 'doc', score: 45 },
+      { id: 'high', label: { pt: 'Sai pronto da máquina, sem atribuição definida', en: 'It comes finished from the machine, with no defined attribution' },
+        desc: { pt: 'Ninguém sabe dizer de quem é o resultado, nem em que material ele se baseou.',
+                en: 'Nobody can say whose the result is, nor what material it drew on.' },
+        formal: { pt: 'Alto', en: 'High' }, icon: 'ghost', score: 90 },
+      { id: 'unreported', label: { pt: 'Ainda não paramos para pensar nisso', en: 'We have not stopped to think about it yet' },
+        desc: { pt: 'Não é o mesmo que risco baixo: é uma frente ainda em aberto.',
+                en: 'This is not the same as low risk: it is a front still left open.' },
+        formal: { pt: 'Não reportado', en: 'Not reported' }, icon: 'question', score: 65, silence: true }
+    ]
+  },
+
+  {
+    id: 'bias', dim: 'risk', sq: 'SQ7', step: 4, multi: false, required: true,
+    icon: 'balance',
+    question: { pt: 'Vocês avaliaram se a ferramenta reproduz estereótipos?',
+                en: 'Have you assessed whether the tool reproduces stereotypes?' },
+    hint:     { pt: 'Representação de pessoas, corpos, sotaques, cenários e profissões nas imagens geradas.',
+                en: 'Representation of people, bodies, accents, settings and occupations in the generated images.' },
+    formalName: { pt: 'Viés algorítmico', en: 'Algorithmic bias' },
+    help:     { pt: 'Baixo, moderado ou alto pela presença e severidade reportadas. Não reportado quando o estudo não aborda o tema.',
+                en: 'Low, moderate or high by reported presence and severity. Not reported when the study does not address the topic.' },
+    options: [
+      { id: 'low', label: { pt: 'Sim, e não encontramos problema relevante', en: 'Yes, and we found no relevant problem' },
+        desc: { pt: 'Houve conferência do material gerado, com registro do que foi checado.',
+                en: 'The generated material was reviewed, with a record of what was checked.' },
+        formal: { pt: 'Baixo', en: 'Low' }, icon: 'check', score: 10 },
+      { id: 'moderate', label: { pt: 'Sim, e corrigimos o que apareceu', en: 'Yes, and we corrected what showed up' },
+        desc: { pt: 'Foram necessários ajustes de comando, curadoria ou substituição de material.',
+                en: 'Prompt adjustments, curation or material replacement were needed.' },
+        formal: { pt: 'Moderado', en: 'Moderate' }, icon: 'doc', score: 45 },
+      { id: 'high', label: { pt: 'Sim, e o problema persiste', en: 'Yes, and the problem persists' },
+        desc: { pt: 'A ferramenta insiste em repetir padrões que a equipe não quer no material final.',
+                en: 'The tool keeps repeating patterns the team does not want in the final material.' },
+        formal: { pt: 'Alto', en: 'High' }, icon: 'ghost', score: 90 },
+      { id: 'unreported', label: { pt: 'Não avaliamos', en: 'We have not assessed it' },
+        desc: { pt: 'Nenhuma conferência sistemática foi feita até agora.',
+                en: 'No systematic review has been done so far.' },
+        formal: { pt: 'Não reportado', en: 'Not reported' }, icon: 'question', score: 65, silence: true }
+    ]
+  },
+
+  {
+    id: 'labor', dim: 'risk', sq: 'SQ7, SQ15', step: 4, multi: false, required: true,
+    icon: 'people',
+    question: { pt: 'O que a ferramenta faz com o trabalho das pessoas da equipe?',
+                en: 'What does the tool do to your team’s work?' },
+    hint:     { pt: 'No corpus, 19 dos 60 estudos apontam impacto sobre a indústria criativa como principal preocupação ética.',
+                en: 'In the corpus, 19 of 60 studies flag impact on the creative industry as their main ethical concern.' },
+    formalName: { pt: 'Impacto no trabalho', en: 'Impact on labour' },
+    help:     { pt: 'Atribuída pelo grau de substituição da tarefa humana. Assistivo: aumenta o profissional. Reconfigurador: desloca competências. Substitutivo: dispensa a função.',
+                en: 'Assigned by the degree of substitution of the human task. Assistive: augments the professional. Reconfiguring: shifts competences. Substitutive: removes the role.' },
+    options: [
+      { id: 'assistive', label: { pt: 'Poupa tempo de quem já faz o trabalho', en: 'It saves time for whoever already does the work' },
+        desc: { pt: 'A mesma pessoa segue responsável, com menos etapas repetitivas.',
+                en: 'The same person stays responsible, with fewer repetitive steps.' },
+        formal: { pt: 'Assistivo', en: 'Assistive' }, icon: 'plus', score: 15 },
+      { id: 'reconfiguring', label: { pt: 'Muda o que a pessoa faz no dia a dia', en: 'It changes what the person does day to day' },
+        desc: { pt: 'A função vira mais curadoria, direção e supervisão do que execução.',
+                en: 'The role becomes more curation, direction and supervision than execution.' },
+        formal: { pt: 'Reconfigurador', en: 'Reconfiguring' }, icon: 'shuffle', score: 50 },
+      { id: 'substitutive', label: { pt: 'Dispensa uma função que existia antes', en: 'It removes a role that existed before' },
+        desc: { pt: 'A vaga ou a diária deixa de ser contratada por causa da ferramenta.',
+                en: 'The position or the day rate stops being hired because of the tool.' },
+        formal: { pt: 'Substitutivo', en: 'Substitutive' }, icon: 'minus', score: 95 }
+    ]
+  },
+
+  {
+    id: 'reproducibility', dim: 'risk', sq: 'SQ16', step: 4, multi: false, required: true,
+    icon: 'repeat',
+    question: { pt: 'Outra pessoa conseguiria repetir o seu processo e chegar perto do mesmo resultado?',
+                en: 'Could someone else repeat your process and get close to the same result?' },
+    hint:     { pt: 'Pense em daqui a um ano, com outra equipe e a ferramenta já atualizada.',
+                en: 'Think a year from now, with a different team and the tool already updated.' },
+    formalName: { pt: 'Transparência e reprodutibilidade', en: 'Transparency and reproducibility' },
+    help:     { pt: 'Alta: dados e modelo abertos, resultado estável. Parcial: dependência de dados fechados ou variabilidade moderada. Baixa: dados fechados e alta variabilidade estocástica.',
+                en: 'High: open data and model, stable result. Partial: dependence on closed data or moderate variability. Low: closed data and high stochastic variability.' },
+    options: [
+      { id: 'high', label: { pt: 'Sim, está tudo registrado', en: 'Yes, everything is recorded' },
+        desc: { pt: 'Comandos, versões, configurações e materiais de referência ficam guardados.',
+                en: 'Prompts, versions, settings and reference materials are all kept.' },
+        formal: { pt: 'Alta', en: 'High' }, icon: 'archive', score: 10 },
+      { id: 'partial', label: { pt: 'Mais ou menos, chegaria perto', en: 'Roughly, it would come close' },
+        desc: { pt: 'Parte do caminho está anotada, mas depende de um serviço que muda sozinho.',
+                en: 'Part of the path is written down, but it depends on a service that changes on its own.' },
+        formal: { pt: 'Parcial', en: 'Partial' }, icon: 'half', score: 50 },
+      { id: 'low', label: { pt: 'Não, seria outro resultado', en: 'No, it would be a different result' },
+        desc: { pt: 'Nada foi anotado, ou a ferramenta nunca devolve o mesmo material duas vezes.',
+                en: 'Nothing was written down, or the tool never returns the same material twice.' },
+        formal: { pt: 'Baixa', en: 'Low' }, icon: 'ghost', score: 90 }
+    ]
+  },
+
+  {
+    id: 'perceptibility', dim: 'risk', sq: 'SQ17', step: 4, multi: false, required: true,
+    icon: 'eye',
+    question: { pt: 'Você vai avisar o público que usou IA?',
+                en: 'Will you tell the audience that you used AI?' },
+    hint:     { pt: 'No corpus, 29 dos 60 estudos, quase metade, não declaram nenhuma intenção sobre isso.',
+                en: 'In the corpus, 29 of 60 studies, nearly half, declare no intention on this at all.' },
+    formalName: { pt: 'Perceptibilidade', en: 'Perceptibility' },
+    help:     { pt: 'Explícita: intenção de sinalizar a origem sintética. Ausente: intenção de não sinalizar, buscando imperceptibilidade. Não informada: intenção não declarada.',
+                en: 'Explicit: intention to signal synthetic origin. Absent: intention not to signal, pursuing imperceptibility. Not informed: intention not declared.' },
+    options: [
+      { id: 'explicit', label: { pt: 'Sim, e faz parte da proposta', en: 'Yes, and it is part of the proposal' },
+        desc: { pt: 'O material é assumidamente estilizado, ou há crédito e aviso na peça.',
+                en: 'The material is openly stylised, or there is a credit and a notice in the piece.' },
+        formal: { pt: 'Explícita', en: 'Explicit' }, corpus: 18, icon: 'eye', score: 10 },
+      { id: 'absent', label: { pt: 'Não, quero que passe despercebido', en: 'No, I want it to go unnoticed' },
+        desc: { pt: 'O sucesso da peça depende de o espectador não distinguir o que foi gerado.',
+                en: 'The piece’s success depends on the viewer not telling what was generated.' },
+        formal: { pt: 'Ausente', en: 'Absent' }, corpus: 12, icon: 'eyeoff', score: 85 },
+      { id: 'unreported', label: { pt: 'Ainda não decidimos', en: 'We have not decided yet' },
+        desc: { pt: 'É a resposta mais comum no corpus, e a que mais expõe o projeto a mudanças de regra.',
+                en: 'The most common answer in the corpus, and the one that most exposes a project to rule changes.' },
+        formal: { pt: 'Não informada', en: 'Not informed' }, corpus: 29, icon: 'question', score: 65, silence: true }
+    ]
+  }
+];
+
+/* --- Vereditos por tópico ----------------------------------------------
+   Seis frentes fixas. O nível (ok | warn | alert) é escolhido pela função
+   level(a), que recebe o objeto de respostas.
+   ----------------------------------------------------------------------- */
+const VERDICTS = [
+  {
+    id: 'authorship', icon: 'signature',
+    title: { pt: 'Autoria e crédito', en: 'Authorship and credit' },
+    level: a => ({ low: 'ok', moderate: 'ok', high: 'alert', unreported: 'warn' })[a.authorship] || 'warn',
+    body: {
+      ok:   { pt: 'A decisão criativa continua identificável em uma pessoa, e é isso que sustenta o crédito na peça. Mantenha o registro de quem decidiu o quê.',
+              en: 'The creative decision remains traceable to a person, and that is what sustains the credit on the piece. Keep a record of who decided what.' },
+      warn: { pt: 'A autoria do material gerado ainda não foi tratada. Enquanto isso não estiver combinado, cada entrega abre uma discussão nova sobre quem assina e o que pode ser reutilizado.',
+              en: 'Authorship of the generated material has not been addressed. Until that is agreed, every delivery reopens the discussion of who signs it and what can be reused.' },
+      alert:{ pt: 'O material sai pronto da ferramenta sem atribuição definida. Essa é a configuração de maior exposição: sem saber em que material o modelo se apoiou, você não consegue garantir ao cliente que a peça está livre para uso.',
+              en: 'Material comes out of the tool with no defined attribution. This is the highest-exposure configuration: without knowing what material the model leaned on, you cannot assure the client the piece is clear for use.' }
+    },
+    action: {
+      ok:   { pt: 'Registre no contrato de equipe quem responde pelas decisões assistidas por IA.',
+              en: 'Record in the team contract who answers for AI-assisted decisions.' },
+      warn: { pt: 'Antes da próxima entrega, defina em uma linha quem assina o material gerado e o que a produtora pode reutilizar dele.',
+              en: 'Before the next delivery, define in one line who signs the generated material and what the studio may reuse from it.' },
+      alert:{ pt: 'Insira uma etapa humana de aprovação com registro, e verifique os termos de licença da ferramenta quanto ao uso comercial da saída.',
+              en: 'Add a human approval step with a record, and check the tool’s licence terms for commercial use of the output.' }
+    }
+  },
+  {
+    id: 'labor', icon: 'people',
+    title: { pt: 'Trabalho da equipe', en: 'Team’s work' },
+    level: a => ({ assistive: 'ok', reconfiguring: 'warn', substitutive: 'alert' })[a.labor] || 'warn',
+    body: {
+      ok:   { pt: 'A ferramenta tira peso das tarefas repetitivas sem deslocar a função. É o arranjo com menor atrito interno e o mais fácil de defender diante da equipe.',
+              en: 'The tool takes weight off repetitive tasks without displacing the role. This is the arrangement with the least internal friction and the easiest to defend to the team.' },
+      warn: { pt: 'A função muda de natureza: menos execução, mais curadoria e supervisão. É a transformação mais frequente na literatura, e ela exige combinação explícita, não adaptação silenciosa.',
+              en: 'The role changes in nature: less execution, more curation and supervision. This is the most frequent transformation in the literature, and it calls for an explicit agreement, not silent adaptation.' },
+      alert:{ pt: 'Uma função deixa de ser contratada por causa da ferramenta. Além do efeito sobre as pessoas, isso concentra na produtora um conhecimento que antes estava distribuído na equipe.',
+              en: 'A role stops being hired because of the tool. Beyond the effect on people, this concentrates in the studio knowledge that used to be distributed across the team.' }
+    },
+    action: {
+      ok:   { pt: 'Meça o tempo economizado e devolva parte dele à etapa criativa, não só ao cronograma.',
+              en: 'Measure the time saved and give part of it back to the creative stage, not just to the schedule.' },
+      warn: { pt: 'Nomeie a nova atribuição por escrito e ajuste o cachê e a descrição da função à competência que passou a ser exigida.',
+              en: 'Name the new assignment in writing and adjust the rate and job description to the competence now required.' },
+      alert:{ pt: 'Verifique acordos sindicais e contratuais aplicáveis antes de firmar a mudança, e considere requalificação em vez de dispensa.',
+              en: 'Check applicable union and contractual agreements before making the change permanent, and consider reskilling instead of dismissal.' }
+    }
+  },
+  {
+    id: 'reproducibility', icon: 'repeat',
+    title: { pt: 'Conseguir repetir o resultado', en: 'Being able to repeat the result' },
+    level: a => ({ high: 'ok', partial: 'warn', low: 'alert' })[a.reproducibility] || 'warn',
+    body: {
+      ok:   { pt: 'Seu processo está documentado o suficiente para ser retomado depois. Numa produção seriada, é isso que permite manter a mesma identidade visual entre episódios.',
+              en: 'Your process is documented well enough to be resumed later. On a series, this is what keeps the same visual identity across episodes.' },
+      warn: { pt: 'Parte do caminho está anotada, mas o resultado depende de um serviço que muda sem aviso. Uma atualização do fornecedor pode alterar o material no meio do projeto.',
+              en: 'Part of the path is written down, but the result depends on a service that changes without notice. A vendor update can shift the material mid-project.' },
+      alert:{ pt: 'O processo não é recuperável. Se o cliente pedir uma alteração daqui a três meses, ou se a peça precisar de uma versão nova, você vai começar do zero e o material não vai casar com o que já foi entregue.',
+              en: 'The process is not recoverable. If the client asks for a change in three months, or the piece needs a new version, you start from scratch and the material will not match what was already delivered.' }
+    },
+    action: {
+      ok:   { pt: 'Guarde o registro junto do projeto de edição, não em uma pasta pessoal.',
+              en: 'Keep the record alongside the edit project, not in a personal folder.' },
+      warn: { pt: 'Fixe a versão da ferramenta quando ela permitir e arquive as saídas aprovadas em resolução máxima.',
+              en: 'Pin the tool version where possible and archive approved outputs at maximum resolution.' },
+      alert:{ pt: 'Comece hoje um registro simples: comando usado, data, versão da ferramenta e arquivo gerado. Três colunas em uma planilha já resolvem.',
+              en: 'Start a simple log today: prompt used, date, tool version and generated file. Three columns in a spreadsheet already solve it.' }
+    }
+  },
+  {
+    id: 'perceptibility', icon: 'eye',
+    title: { pt: 'Avisar o público', en: 'Telling the audience' },
+    level: a => ({ explicit: 'ok', unreported: 'warn', absent: 'alert' })[a.perceptibility] || 'warn',
+    body: {
+      ok:   { pt: 'A origem do material é assumida. Isso protege a peça de questionamentos posteriores e é o regime que melhor acompanha as regras de proveniência que já começaram a ser exigidas.',
+              en: 'The material’s origin is owned. That protects the piece from later challenges and is the regime that best tracks the provenance rules already coming into force.' },
+      warn: { pt: 'A decisão sobre sinalizar ficou em aberto, que é exatamente onde está quase metade dos estudos do corpus. O problema do silêncio é que ele vira decisão por omissão no dia da entrega.',
+              en: 'The disclosure decision was left open, which is exactly where nearly half of the corpus sits. The trouble with silence is that it becomes a decision by omission on delivery day.' },
+      alert:{ pt: 'O objetivo é que o espectador não distinga o material gerado. Esse é o regime que concentra a maior exposição ética e regulatória, e ela cresce junto com a qualidade técnica: quanto melhor o resultado, maior o peso de não sinalizar.',
+              en: 'The goal is for the viewer not to tell the generated material apart. This regime concentrates the greatest ethical and regulatory exposure, and it grows with technical quality: the better the result, the heavier the weight of not disclosing.' }
+    },
+    action: {
+      ok:   { pt: 'Padronize a forma do aviso, em cartela final ou ficha técnica, para todas as peças.',
+              en: 'Standardise the notice, in an end card or spec sheet, across all pieces.' },
+      warn: { pt: 'Decida agora, e não na entrega. Uma linha na ficha técnica costuma bastar e evita a discussão depois.',
+              en: 'Decide now, not at delivery. One line in the spec sheet usually suffices and heads off the later argument.' },
+      alert:{ pt: 'Confirme as regras de sinalização do veículo, da plataforma e do anunciante antes de finalizar, e registre internamente o que foi gerado.',
+              en: 'Confirm disclosure rules from the outlet, the platform and the advertiser before finishing, and keep an internal record of what was generated.' }
+    }
+  },
+  {
+    id: 'bottleneck', icon: 'alert',
+    title: { pt: 'Gargalo técnico', en: 'Technical bottleneck' },
+    level: a => {
+      const b = a.bottleneck || [];
+      if (!b.length || (b.length === 1 && b[0] === 'none')) return 'ok';
+      if (b.includes('temporal') || b.length >= 3) return 'alert';
+      return 'warn';
+    },
+    body: {
+      ok:   { pt: 'Nenhum gargalo declarado para o uso atual. Vale registrar isso: quando o escopo crescer, é este o item que costuma mudar de estado primeiro.',
+              en: 'No declared bottleneck for current use. Worth recording: when scope grows, this is the item that usually changes state first.' },
+      warn: { pt: 'Há atrito, mas ele é contornável com ajuste de fluxo. O importante é não descobrir o limite no meio de uma finalização com prazo.',
+              en: 'There is friction, but it is workable with a flow adjustment. What matters is not discovering the limit in the middle of a deadline finish.' },
+      alert:{ pt: 'A coerência entre quadros é o obstáculo nomeado dominante do corpus, presente em 16 dos 60 estudos, e é justamente o que separa uma peça experimental de uma peça entregável. Enquanto ele não for resolvido, a geração autônoma fica confinada a trechos curtos ou assumidamente estilizados.',
+              en: 'Frame-to-frame coherence is the corpus’s dominant named obstacle, present in 16 of 60 studies, and it is precisely what separates an experimental piece from a deliverable one. Until it is solved, autonomous generation stays confined to short or openly stylised segments.' }
+    },
+    action: {
+      ok:   { pt: 'Faça um teste de estresse com a duração real da peça antes de fechar o cronograma.',
+              en: 'Run a stress test at the piece’s real duration before locking the schedule.' },
+      warn: { pt: 'Reserve tempo de retrabalho no cronograma para o item marcado, em vez de tratá-lo como imprevisto.',
+              en: 'Budget rework time in the schedule for the flagged item, instead of treating it as a surprise.' },
+      alert:{ pt: 'Trabalhe com planos curtos, cortes mais frequentes e material estilizado; fixe a semente quando a ferramenta permitir e mantenha uma etapa humana de conformação de continuidade.',
+              en: 'Work with short shots, more frequent cuts and stylised material; fix the seed where the tool allows and keep a human continuity pass.' }
+    }
+  },
+  {
+    id: 'dependency', icon: 'server',
+    title: { pt: 'Dependência de fornecedores', en: 'Vendor dependency' },
+    level: a => {
+      const closed = (a.baseModel || []).filter(m => ['gpt', 'mj', 'dalle', 'video'].includes(m)).length;
+      const unknown = (a.baseModel || []).includes('unknown') || a.family === 'unknown';
+      if (closed >= 2 || (closed >= 1 && a.infra === 'cloud')) return 'alert';
+      if (closed === 1 || unknown || a.infra === 'cloud') return 'warn';
+      return 'ok';
+    },
+    body: {
+      ok:   { pt: 'O arranjo mantém o controle do processamento e usa modelos que podem ser inspecionados. É a configuração com menor risco de interrupção por decisão de terceiros.',
+              en: 'The setup keeps control of processing and uses models that can be inspected. It is the configuration least at risk of interruption by someone else’s decision.' },
+      warn: { pt: 'Uma parte do seu fluxo depende de um serviço que você não controla: preço, disponibilidade e comportamento do modelo podem mudar sem aviso, no meio do projeto.',
+              en: 'Part of your flow depends on a service you do not control: price, availability and model behaviour can change without notice, mid-project.' },
+      alert:{ pt: 'O fluxo depende de mais de um serviço fechado. O acesso pela interface foi democratizado, mas a capacidade de gerar continua concentrada em poucos fornecedores, e é sobre essa base que a sua entrega está apoiada.',
+              en: 'The flow depends on more than one closed service. Access at the interface level has been democratised, but generation capacity remains concentrated in a few vendors, and that is the base your delivery rests on.' }
+    },
+    action: {
+      ok:   { pt: 'Documente os requisitos de máquina para que outra estação da produtora reproduza o ambiente.',
+              en: 'Document machine requirements so another studio workstation can reproduce the environment.' },
+      warn: { pt: 'Baixe e arquive as saídas aprovadas em resolução máxima, sem depender de a peça continuar disponível na plataforma.',
+              en: 'Download and archive approved outputs at maximum resolution, without relying on the piece staying available on the platform.' },
+      alert:{ pt: 'Mapeie o custo mensal por fornecedor e teste um caminho alternativo para a etapa mais crítica antes de assumir prazo com cliente.',
+              en: 'Map the monthly cost per vendor and test an alternative path for the most critical stage before committing to a client deadline.' }
+    }
+  }
+];
+
+/* --- Recomendações condicionais ---------------------------------------- */
+const RULES = [
+  {
+    id: 'underreported',
+    when: (a, s) => s.autonomy >= 90 && s.social < 42,
+    tone: 'alert',
+    title: { pt: 'Perfil incomum: muita autonomia, pouco risco declarado',
+             en: 'Unusual profile: high autonomy, low declared risk' },
+    body: { pt: 'Nos 60 estudos do mapeamento, autonomia alta caminha junto com custo sociotécnico alto. O seu perfil foge dessa correlação, o que costuma indicar que autoria, impacto no trabalho ou sinalização ainda não foram examinados de perto, e não que o risco seja mesmo baixo.',
+            en: 'Across the mapping’s 60 studies, high autonomy travels with high sociotechnical cost. Your profile breaks that correlation, which usually means authorship, labour impact or disclosure have not been examined closely, rather than that the risk is genuinely low.' }
+  },
+  {
+    id: 'autonomousInvisible',
+    when: a => a.autonomy === 'autonomous' && a.perceptibility === 'absent',
+    tone: 'alert',
+    title: { pt: 'Geração autônoma sem sinalização', en: 'Autonomous generation without disclosure' },
+    body: { pt: 'A máquina decide sozinha e o público não será avisado. É a combinação de maior exposição prevista pela taxonomia: cada avanço técnico em realismo aumenta o peso de não sinalizar. Trate a decisão de sinalização como requisito de entrega, no mesmo nível de um direito de imagem.',
+            en: 'The machine decides on its own and the audience will not be told. This is the highest-exposure combination the taxonomy predicts: every technical gain in realism raises the weight of not disclosing. Treat the disclosure decision as a delivery requirement, on par with an image release.' }
+  },
+  {
+    id: 'videoTemporal',
+    when: a => (a.output || []).includes('video') && (a.bottleneck || []).includes('temporal'),
+    tone: 'warn',
+    title: { pt: 'Vídeo pronto com problema de continuidade', en: 'Finished video with a continuity problem' },
+    body: { pt: 'Entregar vídeo fechado é justamente o uso que menos tolera cintilação, porque o espectador não controla a câmera e qualquer quebra entre quadros derruba a imersão. Planos curtos, cortes mais frequentes e uma passada humana de continuidade resolvem a maior parte dos casos sem trocar de ferramenta.',
+            en: 'Delivering finished video is exactly the use that tolerates flickering least, because the viewer does not control the camera and any break between frames destroys immersion. Short shots, more frequent cuts and a human continuity pass solve most cases without changing tools.' }
+  },
+  {
+    id: 'closedNoRecord',
+    when: a => a.reproducibility === 'low' && (a.baseModel || []).some(m => ['gpt', 'mj', 'dalle', 'video'].includes(m)),
+    tone: 'warn',
+    title: { pt: 'Serviço fechado sem registro do processo', en: 'Closed service with no process record' },
+    body: { pt: 'Modelo fechado e processo não anotado é a combinação que mais dificulta retomar um projeto. Como você não controla as atualizações do fornecedor, o registro do seu lado é a única âncora que sobra. Anotar comando, data e versão custa pouco e salva a segunda temporada.',
+            en: 'A closed model plus an unrecorded process is the combination that makes resuming a project hardest. Since you do not control vendor updates, your own log is the only anchor left. Recording prompt, date and version costs little and saves the second season.' }
+  },
+  {
+    id: 'silenceHeavy',
+    when: (a, s) => s.silence >= 2,
+    tone: 'warn',
+    title: { pt: 'Frentes ainda em aberto', en: 'Fronts still left open' },
+    body: { pt: 'Você marcou mais de um item como ainda não avaliado. Na ficha, isso não vira risco baixo: vira silêncio, e o silêncio é a resposta mais comum do corpus justamente nas frentes que depois cobram caro. Escolher uma dessas frentes e fechá-la esta semana já muda o perfil.',
+            en: 'You marked more than one item as not yet assessed. On the sheet that does not become low risk: it becomes silence, and silence is the corpus’s most common answer precisely on the fronts that later cost the most. Picking one of them and closing it this week already changes the profile.' }
+  },
+  {
+    id: 'localHeavy',
+    when: a => a.infra === 'local' && ((a.output || []).includes('video') || (a.output || []).includes('animation')),
+    tone: 'info',
+    title: { pt: 'Geração pesada em máquina própria', en: 'Heavy generation on your own machine' },
+    body: { pt: 'Gerar vídeo ou animação localmente é o cenário que mais exige placa de vídeo, e é por isso que a pesquisa da área se concentra em poucos laboratórios. A vantagem real é que o material não sai da produtora; a desvantagem é o tempo de máquina parada. Vale medir quantas horas de render o projeto consome antes de fechar o orçamento.',
+            en: 'Generating video or animation locally is the scenario that demands the most GPU, which is why research in the field concentrates in a few labs. The real advantage is that material never leaves the studio; the drawback is machine downtime. Worth measuring how many render hours the project consumes before locking the budget.' }
+  },
+  {
+    id: 'assistantSolid',
+    when: (a, s) => a.autonomy === 'assistant' && s.social < 35,
+    tone: 'good',
+    title: { pt: 'Perfil de adoção madura', en: 'Mature adoption profile' },
+    body: { pt: 'Ferramenta pontual, decisão humana e poucas frentes em aberto: é o arranjo que a literatura mostra funcionando melhor em produção real, e o que menos depende de a tecnologia melhorar para continuar valendo a pena. O passo seguinte costuma ser medir o ganho de tempo com números, não com impressão.',
+            en: 'A targeted tool, human decision-making and few open fronts: this is the arrangement the literature shows working best in real production, and the one that depends least on the technology improving to keep paying off. The next step is usually measuring the time gain with numbers rather than impressions.' }
+  },
+  {
+    id: 'preOnly',
+    when: a => (a.stage || []).length === 1 && (a.stage || [])[0] === 'pre',
+    tone: 'good',
+    title: { pt: 'Uso restrito à pré-produção', en: 'Use confined to pre-production' },
+    body: { pt: 'Manter a IA na pré-produção é o caminho de menor atrito: pequenas inconsistências viram inspiração em vez de defeito, e o material gerado nunca chega ao público, o que reduz por construção a questão da sinalização. É por isso que essa é a fase que mais absorveu essas ferramentas até agora.',
+            en: 'Keeping AI in pre-production is the lowest-friction path: small inconsistencies become inspiration rather than defects, and the generated material never reaches the audience, which reduces the disclosure question by construction. That is why this phase has absorbed these tools the most so far.' }
+  }
+];
+
+/* --- Estudos reais do corpus, classificados com a mesma ficha ---------- */
+const CASES = [
+  {
+    id: 'wraiter', name: 'wr-AI-ter',
+    note: { pt: 'Roteirização assistida por GPT-4 que preserva a percepção de autoria do roteirista.',
+            en: 'GPT-4-assisted screenwriting that preserves the writer’s sense of authorship.' },
+    answers: { stage: ['pre'], autonomy: 'collaborator', interaction: ['gui', 'prompt'], family: 'transformer',
+      baseModel: ['gpt'], output: ['text'], infra: 'hybrid', bottleneck: ['temporal'],
+      authorship: 'moderate', bias: 'unreported', labor: 'reconfiguring', reproducibility: 'partial', perceptibility: 'absent' }
+  },
+  {
+    id: 'magicvfx', name: 'MagicVFX',
+    note: { pt: 'Síntese de efeitos visuais a partir de um vídeo-base, uma máscara e um comando de texto.',
+            en: 'Visual-effects synthesis from a base video, a mask and a text prompt.' },
+    answers: { stage: ['post'], autonomy: 'assistant', interaction: ['multimodal'], family: 'diffusion',
+      baseModel: ['video'], output: ['video'], infra: 'local', bottleneck: ['temporal', 'resolution'],
+      authorship: 'low', bias: 'unreported', labor: 'assistive', reproducibility: 'partial', perceptibility: 'absent' }
+  },
+  {
+    id: 'animdirector', name: 'Anim-Director',
+    note: { pt: 'Agente que gera animações completas a partir de narrativas curtas, orquestrando vários modelos sem intervenção humana rotineira.',
+            en: 'Agent that generates full animations from short narratives, orchestrating several models with no routine human intervention.' },
+    answers: { stage: ['prod', 'post'], autonomy: 'autonomous', interaction: ['multimodal'], family: 'hybrid',
+      baseModel: ['gpt', 'mj', 'video'], output: ['video', 'animation'], infra: 'hybrid', bottleneck: ['temporal', 'stability'],
+      authorship: 'high', bias: 'unreported', labor: 'substitutive', reproducibility: 'low', perceptibility: 'absent' }
+  }
+];
+
+/* --- Glossário ---------------------------------------------------------- */
+const GLOSSARY = [
+  { term: { pt: 'Taxonomia', en: 'Taxonomy' },
+    def: { pt: 'Uma ficha técnica padronizada. Em vez de descrever o uso de IA com palavras soltas, você preenche sempre os mesmos campos, e por isso consegue comparar dois projetos lado a lado.',
+           en: 'A standardised spec sheet. Instead of describing AI usage in loose words, you always fill in the same fields, which is what lets you compare two projects side by side.' } },
+  { term: { pt: 'Audiovisual não interativo', en: 'Non-interactive audiovisual' },
+    def: { pt: 'Obras de progressão linear, em que o espectador assiste sem interferir: filme, série, curta, videoclipe, publicidade. Diferente de jogo ou realidade virtual, onde o público decide o rumo.',
+           en: 'Linear works the viewer watches without interfering: film, series, short, music video, advertising. Unlike a game or VR, where the audience decides the course.' } },
+  { term: { pt: 'IA generativa', en: 'Generative AI' },
+    def: { pt: 'Programas que criam material novo (imagem, texto, som, vídeo) a partir de padrões aprendidos em uma quantidade enorme de material existente. Diferente da IA que apenas reconhece ou classifica.',
+           en: 'Software that creates new material (image, text, sound, video) from patterns learned across an enormous amount of existing material. Unlike AI that only recognises or classifies.' } },
+  { term: { pt: 'Prompt', en: 'Prompt' },
+    def: { pt: 'O comando em texto que você escreve para a ferramenta. É a instrução, e o quanto ela é detalhada muda bastante o resultado.',
+           en: 'The text command you write for the tool. It is the instruction, and how detailed it is changes the result considerably.' } },
+  { term: { pt: 'Cintilação (flickering)', en: 'Flickering' },
+    def: { pt: 'Quando a imagem gerada não se mantém igual de um quadro para o outro: o rosto muda, a roupa troca de padrão, a luz pisca. É o principal obstáculo técnico da área.',
+           en: 'When the generated image does not hold from one frame to the next: the face changes, clothing swaps pattern, light pulses. It is the field’s main technical obstacle.' } },
+  { term: { pt: 'Modelo aberto e modelo fechado', en: 'Open and closed model' },
+    def: { pt: 'No aberto, o programa e os parâmetros são públicos e podem ser ajustados por você. No fechado, você só acessa pelo serviço da empresa e controla o resultado pelo comando.',
+           en: 'In an open model, the program and its parameters are public and you can adjust them. In a closed one, you only reach it through the company’s service and steer the result by the prompt.' } },
+  { term: { pt: 'Pipeline de produção', en: 'Production pipeline' },
+    def: { pt: 'O caminho que a obra percorre: pré-produção (roteiro, storyboard), produção (filmagem ou animação) e pós-produção (montagem, efeitos, cor, som).',
+           en: 'The path the work travels: pre-production (script, storyboard), production (shooting or animation) and post-production (editing, effects, colour, sound).' } },
+  { term: { pt: 'Custo sociotécnico', en: 'Sociotechnical cost' },
+    def: { pt: 'O que a adoção da ferramenta cobra fora da conta técnica: efeitos sobre autoria, sobre o trabalho das pessoas, sobre a possibilidade de repetir o processo e sobre o que o público sabe.',
+           en: 'What adopting the tool charges beyond the technical bill: effects on authorship, on people’s work, on the ability to repeat the process and on what the audience knows.' } },
+  { term: { pt: 'Faceta', en: 'Facet' },
+    def: { pt: 'Cada campo da ficha. A taxonomia é facetada porque um mesmo projeto recebe um valor em todos os campos ao mesmo tempo, em vez de ser encaixado em uma única gaveta.',
+           en: 'Each field on the sheet. The taxonomy is faceted because one project receives a value in every field at once, instead of being filed into a single drawer.' } },
+  { term: { pt: 'Mapeamento sistemático', en: 'Systematic mapping' },
+    def: { pt: 'Um levantamento feito com regra escrita antes: onde buscar, o que incluir, o que excluir e quem avalia. É o que separa uma revisão de literatura de uma leitura pessoal do assunto.',
+           en: 'A survey run under rules written in advance: where to search, what to include, what to exclude and who assesses. It is what separates a literature review from a personal reading of the subject.' } }
+];
+
+/* =========================================================================
+   TIGA — aplicação: formulário, pontuação e ficha
+   ========================================================================= */
+(() => {
+  'use strict';
+
+  const STORAGE = 'tiga-web-v1';
+  const HISTORY = 'tiga-web-history-v1';
+  const FORM_STEPS = [1, 2, 3, 4];
+  const RADAR_SHORT = {
+    authorship:      { pt: 'Autoria',      en: 'Authorship' },
+    labor:           { pt: 'Trabalho',     en: 'Labour' },
+    reproducibility: { pt: 'Repetir',      en: 'Repeat' },
+    perceptibility:  { pt: 'Sinalizar',    en: 'Disclose' },
+    bottleneck:      { pt: 'Gargalo',      en: 'Bottleneck' },
+    dependency:      { pt: 'Dependência',  en: 'Dependency' }
+  };
+  const SILENCE_IDS = FACETS.filter(f => f.options.some(o => o.silence)).map(f => f.id);
+  const RING = 2 * Math.PI * 52;
+
+  const ICONS = {
+    clapper: '<path d="M3 9h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="m3 9 4-6 4 6 4-6 4 6"/>',
+    steering: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 5.5v4M7 14.5l3-2M17 14.5l-3-2"/>',
+    cursor: '<path d="M4 4l7 16 2.5-6.5L20 11z"/>',
+    chip: '<rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>',
+    box: '<path d="M3 8l9-5 9 5v11l-9 5-9-5z"/><path d="M3 8l9 5 9-5M12 13v11"/>',
+    export: '<path d="M12 3v10"/><path d="m8 7 4-4 4 4"/><rect x="4" y="13" width="16" height="8" rx="1"/>',
+    server: '<rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><path d="M7 7h.01M7 17h.01"/>',
+    alert: '<path d="M12 3 2 20h20z"/><path d="M12 9v5"/><path d="M12 17h.01"/>',
+    signature: '<path d="M4 19c4-6 7-4 9 0 3-7 6-5 7 0"/><path d="M4 19h16"/>',
+    balance: '<path d="M12 3v18"/><path d="M5 8h14"/><path d="M5 8l-3 6h6zM19 8l-3 6h6z"/>',
+    people: '<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6"/><circle cx="17" cy="9" r="2.5"/><path d="M21 20c0-2.8-2.2-5-5-5"/>',
+    repeat: '<path d="M4 12a8 8 0 0 1 14-5l2 2"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-14 5l-2-2"/><path d="M4 20v-5h5"/>',
+    eye: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    eyeoff: '<path d="M3 3l18 18"/><path d="M10.6 10.6A3 3 0 0 0 13.4 13.4"/><path d="M7 7C4 9 2 12 2 12s4 7 10 7c1.7 0 3.2-.4 4.6-1.1M17 7.4C19.7 9 22 12 22 12s-1.3 2.3-3.5 4.2"/>',
+    pencil: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>',
+    camera: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
+    layers: '<path d="M12 3 3 8l9 5 9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/>',
+    wrench: '<path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18v3h3l6.1-6.1a4 4 0 0 0 5.6-5.6L16 11z"/>',
+    handshake: '<path d="M8 13 4.5 9.5a2 2 0 0 1 0-3L7 4l5 5"/><path d="m16 13 3.5-3.5a2 2 0 0 0 0-3L17 4l-5 5"/><path d="M8 13c2 3 6 3 8 0"/>',
+    robot: '<rect x="5" y="8" width="14" height="11" rx="2"/><path d="M12 8V5M9 13h.01M15 13h.01M9 17h6"/>',
+    text: '<path d="M4 6h16M12 6v13M8 19h8"/>',
+    sliders: '<path d="M4 6h16M4 12h10M4 18h13"/><circle cx="14" cy="12" r="2"/><circle cx="17" cy="18" r="2"/>',
+    multi: '<rect x="3" y="4" width="8" height="8" rx="1"/><rect x="13" y="12" width="8" height="8" rx="1"/><path d="M14 8h4v4"/>',
+    code: '<path d="m8 8-4 4 4 4M16 8l4 4-4 4"/>',
+    grain: '<circle cx="7" cy="7" r="1.4"/><circle cx="12" cy="5" r="1.2"/><circle cx="17" cy="8" r="1.4"/><circle cx="6" cy="13" r="1.2"/><circle cx="12" cy="12" r="1.5"/><circle cx="18" cy="14" r="1.2"/><circle cx="9" cy="18" r="1.3"/><circle cx="15" cy="18" r="1.2"/>',
+    merge: '<path d="M8 4v6a4 4 0 0 0 4 4 4 4 0 0 0 4-4V4"/><path d="M12 14v6"/>',
+    swap: '<path d="M7 7h11l-3-3"/><path d="M17 17H6l3 3"/>',
+    dots: '<circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/>',
+    question: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.4 2.3c-.8.4-1.4 1-1.4 2v.2"/><path d="M12 17h.01"/>',
+    sail: '<path d="M6 21h12"/><path d="M8 21V5l10 10H8"/>',
+    palette: '<path d="M12 3a9 9 0 1 0 0 18h1a2.5 2.5 0 0 0 0-5h-1"/><circle cx="7.5" cy="10" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="14.5" cy="7.5" r="1"/>',
+    link: '<path d="M9 14l6-6"/><path d="M8 9H6a4 4 0 0 0 0 8h3"/><path d="M16 15h2a4 4 0 0 0 0-8h-3"/>',
+    film: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 10h4M3 14h4M17 10h4M17 14h4"/>',
+    image: '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="m21 15-5-4-8 8"/>',
+    wave: '<path d="M3 12c2-6 3 6 5 0s3 6 5 0 3 6 5 0 3 6 5 0"/>',
+    cube: '<path d="M12 3 4 7v10l8 4 8-4V7z"/><path d="M12 13 4 7m8 6 8-6M12 13v10"/>',
+    sparkle: '<path d="M12 3v4M12 17v4M4.5 7.5l2.8 2.8M16.7 16.7l2.8 2.8M3 12h4M17 12h4M4.5 16.5l2.8-2.8M16.7 7.3l2.8-2.8"/>',
+    desktop: '<rect x="3" y="4" width="18" height="12" rx="1"/><path d="M8 20h8M12 16v4"/>',
+    cloud: '<path d="M7 18h11a4 4 0 0 0 0-8 6 6 0 0 0-11.3-1.8A4.5 4.5 0 0 0 7 18z"/>',
+    shuffle: '<path d="M16 4h4v4"/><path d="m20 4-6 6"/><path d="M4 20l6-6"/><path d="M16 20h4v-4"/><path d="m20 20-5-5"/><path d="M4 4l5 5"/>',
+    flicker: '<path d="M8 3v4M16 3v4M5 14h14M8 21v-4M16 21v-4"/><path d="M9 10h.01M15 10h.01"/>',
+    dice: '<rect x="4" y="4" width="16" height="16" rx="2"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="15" r="1"/><circle cx="15" cy="9" r="1"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/>',
+    stack: '<path d="M4 17h16M4 12h16M4 7h16"/>',
+    grid: '<rect x="4" y="4" width="16" height="16"/><path d="M4 12h16M12 4v16"/>',
+    coin: '<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c.6-.7 1.5-1 2.5-1s2 .4 2.5 1M9.5 14.5c.6.7 1.5 1 2.5 1s2-.4 2.5-1"/>',
+    check: '<path d="M20 6 9 17l-5-5"/>',
+    user: '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.5-3.5 4-5 7-5s5.5 1.5 7 5"/>',
+    doc: '<path d="M7 3h8l5 5v13H7z"/><path d="M15 3v5h5M9 13h6M9 17h6"/>',
+    ghost: '<path d="M8 20c1-1.5 2-1.5 4 0s3 1.5 4 0V10a4 4 0 0 0-8 0z"/><path d="M10 10h.01M14 10h.01"/>',
+    plus: '<path d="M12 5v14M5 12h14"/>',
+    minus: '<path d="M5 12h14"/>',
+    archive: '<rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v11h14V9M10 13h4"/>',
+    half: '<circle cx="12" cy="12" r="9"/><path d="M12 3v18"/>',
+    warn: '<path d="M12 3 2 20h20z"/><path d="M12 9v5"/><path d="M12 17h.01"/>'
+  };
+
+  const state = {
+    lang: 'pt',
+    theme: 'system',
+    expert: false,
+    view: 'home',
+    step: 1,
+    answers: {},
+    projectName: '',
+    otherModel: '',
+    error: false
+  };
+
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+
+  function t(obj) {
+    if (!obj) return '';
+    if (typeof obj === 'string') return obj;
+    return obj[state.lang] || obj.pt || obj.en || '';
+  }
+  function ui(key) { return t(UI[key]); }
+  function icon(name) {
+    const d = ICONS[name] || ICONS.dots;
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  }
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORAGE);
+      if (!raw) return;
+      const saved = JSON.parse(raw);
+      Object.assign(state, {
+        lang: saved.lang || 'pt',
+        theme: saved.theme || 'system',
+        expert: !!saved.expert,
+        answers: saved.answers || {},
+        projectName: saved.projectName || '',
+        otherModel: saved.otherModel || ''
+      });
+    } catch (_) { /* ignore */ }
+  }
+  function persist() {
+    localStorage.setItem(STORAGE, JSON.stringify({
+      lang: state.lang, theme: state.theme, expert: state.expert,
+      answers: state.answers, projectName: state.projectName, otherModel: state.otherModel
+    }));
+  }
+
+  function fingerprint(answers, name, other) {
+    return JSON.stringify({ a: answers, n: name || '', o: other || '' });
+  }
+  function loadHistory() {
+    try {
+      const raw = localStorage.getItem(HISTORY);
+      const list = raw ? JSON.parse(raw) : [];
+      return Array.isArray(list) ? list : [];
+    } catch (_) { return []; }
+  }
+  function writeHistory(list) {
+    localStorage.setItem(HISTORY, JSON.stringify(list.slice(0, 40)));
+  }
+  function saveCurrentSheet() {
+    const s = scores(state.answers);
+    const fp = fingerprint(state.answers, state.projectName, state.otherModel);
+    const list = loadHistory();
+    const existing = list.findIndex(x => x.fp === fp);
+    const entry = {
+      id: existing >= 0 ? list[existing].id : 'h-' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+      fp,
+      savedAt: new Date().toISOString(),
+      projectName: state.projectName,
+      otherModel: state.otherModel,
+      answers: JSON.parse(JSON.stringify(state.answers)),
+      scores: s,
+      badge: badgeOf(s)
+    };
+    if (existing >= 0) list.splice(existing, 1);
+    list.unshift(entry);
+    writeHistory(list);
+    return entry;
+  }
+  function openHistory(id) {
+    const item = loadHistory().find(x => x.id === id);
+    if (!item) return;
+    state.answers = { ...item.answers };
+    state.projectName = item.projectName || '';
+    state.otherModel = item.otherModel || '';
+    persist();
+    showView('result');
+  }
+  function deleteHistory(id) {
+    writeHistory(loadHistory().filter(x => x.id !== id));
+    renderHistory();
+  }
+  function formatWhen(iso) {
+    try {
+      return new Date(iso).toLocaleString(state.lang === 'en' ? 'en-GB' : 'pt-BR', {
+        dateStyle: 'short', timeStyle: 'short'
+      });
+    } catch (_) { return iso; }
+  }
+  function renderHistory() {
+    const root = $('#history-root');
+    if (!root) return;
+    const list = loadHistory();
+    if (!list.length) {
+      root.innerHTML = `<p class="hist-empty">${ui('histEmpty')}</p>`;
+      return;
+    }
+    root.innerHTML = `<div class="hist-list">${list.map(item => {
+      const name = item.projectName || ui('histUntitled');
+      const badge = item.badge || 'mid';
+      const sc = item.scores || {};
+      return `<article class="hist-card">
+        <h3>${escapeHtml(name)}</h3>
+        <div class="hist-meta">
+          <span class="tag">${ui(badge === 'low' ? 'badgeLow' : badge === 'high' ? 'badgeHigh' : 'badgeMid')}</span>
+          <span class="tag">${ui('gaugeAutonomy')} ${sc.autonomy ?? '—'}</span>
+          <span class="tag">${ui('gaugeTech')} ${sc.tech ?? '—'}</span>
+          <span class="tag">${ui('gaugeSocial')} ${sc.social ?? '—'}</span>
+        </div>
+        <p class="hist-when">${ui('histWhen').replace('{d}', formatWhen(item.savedAt))}</p>
+        <div class="hist-foot">
+          <button type="button" class="btn btn-primary" data-hist-open="${item.id}">${ui('histOpen')}</button>
+          <button type="button" class="btn btn-quiet" data-hist-del="${item.id}">${ui('histDelete')}</button>
+        </div>
+      </article>`;
+    }).join('')}</div>`;
+  }
+
+  function applyTheme() {
+    const root = document.documentElement;
+    if (state.theme === 'system') root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', state.theme);
+    const dark = state.theme === 'dark' || (state.theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+    $('#icon-moon').hidden = dark;
+    $('#icon-sun').hidden = !dark;
+    const btn = $('#theme-toggle');
+    if (btn) {
+      btn.setAttribute('aria-label', dark ? ui('themeLight') : ui('themeDark'));
+      btn.setAttribute('title', dark ? ui('themeLight') : ui('themeDark'));
+      btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    }
+  }
+
+  function applyLang() {
+    document.documentElement.lang = state.lang === 'en' ? 'en' : 'pt-BR';
+    document.title = state.lang === 'en'
+      ? 'TIGA — Taxonomy of AI in Audiovisual'
+      : 'TIGA — Taxonomia da IA no Audiovisual';
+    $$('[data-i18n]').forEach(el => { el.textContent = ui(el.dataset.i18n); });
+    $$('[data-i18n-aria]').forEach(el => {
+      if (el.id === 'theme-toggle') return; // rótulo definido em applyTheme, conforme o estado
+      el.setAttribute('aria-label', ui(el.dataset.i18nAria));
+    });
+    $$('[data-i18n-title]').forEach(el => { el.setAttribute('title', ui(el.dataset.i18nTitle)); });
+    $$('.flag-btn').forEach(btn => { btn.setAttribute('aria-pressed', btn.dataset.lang === state.lang ? 'true' : 'false'); });
+  }
+
+  function facetsFor(step) { return FACETS.filter(f => f.step === step); }
+
+  function selected(facet) {
+    if (facet.multi) return state.answers[facet.id] || [];
+    return state.answers[facet.id] || '';
+  }
+  function isChecked(facet, id) {
+    const v = selected(facet);
+    return facet.multi ? v.includes(id) : v === id;
+  }
+
+  function optionOf(facet, id) { return facet.options.find(o => o.id === id); }
+
+  function setAnswer(facet, id, on) {
+    if (facet.multi) {
+      let cur = [...(state.answers[facet.id] || [])];
+      const opt = optionOf(facet, id);
+      if (opt?.exclusive) {
+        cur = on ? [id] : [];
+      } else {
+        cur = cur.filter(x => !optionOf(facet, x)?.exclusive);
+        if (on) { if (!cur.includes(id)) cur.push(id); }
+        else cur = cur.filter(x => x !== id);
+      }
+      state.answers[facet.id] = cur;
+    } else {
+      state.answers[facet.id] = on ? id : '';
+    }
+    persist();
+  }
+
+  function scoreOf(facet, answers) {
+    if (facet.multi) {
+      const ids = answers[facet.id] || [];
+      const vals = ids.map(id => optionOf(facet, id)?.score).filter(v => v != null);
+      if (!vals.length) return null;
+      return Math.round(vals.reduce((a, b) => a + b, 0) / vals.length);
+    }
+    const s = optionOf(facet, answers[facet.id])?.score;
+    return s == null ? null : s;
+  }
+
+  function scores(answers) {
+    const autoF = FACETS.find(f => f.id === 'autonomy');
+    const autonomy = scoreOf(autoF, answers) ?? 50;
+    const techIds = ['family', 'output', 'infra', 'bottleneck'];
+    const techVals = techIds.map(id => scoreOf(FACETS.find(f => f.id === id), answers)).filter(v => v != null);
+    const tech = techVals.length ? Math.round(techVals.reduce((a, b) => a + b, 0) / techVals.length) : 50;
+    const riskIds = ['authorship', 'bias', 'labor', 'reproducibility', 'perceptibility'];
+    const riskVals = riskIds.map(id => scoreOf(FACETS.find(f => f.id === id), answers)).filter(v => v != null);
+    const social = riskVals.length ? Math.round(riskVals.reduce((a, b) => a + b, 0) / riskVals.length) : 50;
+    let silence = 0;
+    for (const id of SILENCE_IDS) {
+      const f = FACETS.find(x => x.id === id);
+      const val = answers[id];
+      const ids = Array.isArray(val) ? val : (val ? [val] : []);
+      if (ids.some(i => optionOf(f, i)?.silence)) silence += 1;
+    }
+    return { autonomy, tech, social, silence };
+  }
+
+  function tone(n) {
+    if (n < 34) return 'good';
+    if (n < 67) return 'warn';
+    return 'bad';
+  }
+  function badgeOf(s) {
+    if (s.social < 35 && s.autonomy < 50) return 'low';
+    if (s.social >= 62 || s.autonomy >= 90) return 'high';
+    return 'mid';
+  }
+  function levelLabel(lv) {
+    return { ok: ui('levelOk'), warn: ui('levelWarn'), alert: ui('levelAlert') }[lv] || lv;
+  }
+  function formalValue(facet, answers) {
+    const v = answers[facet.id];
+    const ids = facet.multi ? (v || []) : (v ? [v] : []);
+    if (!ids.length) return ui('notAnswered');
+    return ids.map(id => {
+      const o = optionOf(facet, id);
+      return o ? t(o.formal || o.label) : id;
+    }).join('; ') + (facet.id === 'baseModel' && state.otherModel ? `; ${state.otherModel}` : '');
+  }
+
+  /* --- Home extras ----------------------------------------------------- */
+  function renderPipeline() {
+    $('#pipeline-strip').innerHTML = HOW_STEPS.map(s => `
+      <div class="pipeline-cell">
+        <span class="num">${s.n}</span>
+        <span class="lbl">${t(s.title)}</span>
+        <span class="sub">${t(STEPS[Number(s.n) - 1].label)}</span>
+      </div>`).join('');
+  }
+  function renderHow() {
+    $('#how-grid').innerHTML = HOW_STEPS.map(s => `
+      <article class="how-cell">
+        <span class="n">${s.n}</span>
+        <h3>${t(s.title)}</h3>
+        <p>${t(s.body)}</p>
+      </article>`).join('');
+  }
+  function renderSample() {
+    const c = CASES.find(x => x.id === 'magicvfx') || CASES[0];
+    const s = scores(c.answers);
+    const auto = FACETS.find(f => f.id === 'autonomy');
+    const opt = optionOf(auto, c.answers.autonomy);
+    $('#sample-card').innerHTML = `
+      <div class="sample-head">
+        <div>
+          <p class="eyebrow">${ui('sampleLabel')}</p>
+          <p class="sample-name">${c.name}</p>
+          <p class="sample-note">${t(c.note)}</p>
+        </div>
+      </div>
+      <div class="sample-body">
+        <div class="mini-gauges">
+          <div class="mini-g"><div class="n" data-tone="${tone(s.autonomy)}">${s.autonomy}</div><div class="l">${ui('gaugeAutonomy')}</div></div>
+          <div class="mini-g"><div class="n" data-tone="${tone(s.tech)}">${s.tech}</div><div class="l">${ui('gaugeTech')}</div></div>
+          <div class="mini-g"><div class="n" data-tone="${tone(s.social)}">${s.social}</div><div class="l">${ui('gaugeSocial')}</div></div>
+        </div>
+        <div class="sample-chips">
+          <span class="tag">${opt ? t(opt.label) : ''}</span>
+          <span class="tag">${t(DIMS.technical)}</span>
+          <span class="tag">${t(DIMS.risk)}</span>
+        </div>
+        <p class="sample-note">${ui('sampleNote')}</p>
+      </div>
+      <div class="sample-foot">
+        <button type="button" class="btn btn-ghost" data-example="${c.id}">${ui('openCase')}</button>
+      </div>`;
+  }
+  function renderGloss() {
+    $('#gloss-list').innerHTML = GLOSSARY.map(g => `
+      <div class="gloss-item"><dt>${t(g.term)}</dt><dd>${t(g.def)}</dd></div>`).join('');
+  }
+  function renderAbout() {
+    $('#about-root').innerHTML = `
+      <p class="lead">${t(ABOUT.lead)}</p>
+      <p>${t(ABOUT.p1)}</p>
+      <p>${t(ABOUT.p2)}</p>
+      <p>${t(ABOUT.p3)}</p>
+      <p class="about-credit">${t(ABOUT.author)}</p>
+      <p><button type="button" class="btn btn-ghost" data-go="home">${ui('backHome')}</button></p>`;
+  }
+
+  /* --- Form ------------------------------------------------------------ */
+  function renderStepper() {
+    $('#stepper').innerHTML = STEPS.map(s => {
+      const st = s.n < state.step ? 'done' : s.n === state.step ? 'current' : 'todo';
+      return `<li class="stepper-item" data-state="${st}">
+        <div class="stepper-bar"></div>
+        <div class="stepper-label"><span class="stepper-num">${s.n}</span><span class="stepper-text">${t(s.label)}</span></div>
+      </li>`;
+    }).join('');
+    $('#step-count').textContent = ui('stepOf').replace('{n}', state.step).replace('{total}', '5');
+  }
+
+  function optionCard(facet, opt) {
+    const type = facet.multi ? 'checkbox' : 'radio';
+    const checked = isChecked(facet, opt.id) ? 'checked' : '';
+    const corpus = opt.corpus != null
+      ? `<span class="tag" title="${ui('corpusChipT')}">${ui('corpusChip').replace('{n}', opt.corpus)}</span>` : '';
+    const formal = opt.formal
+      ? `<span class="tag expert-only">${ui('formalLabel')}: ${t(opt.formal)}</span>` : '';
+    return `<label class="opt" data-multi="${facet.multi}">
+      <input class="opt-input" type="${type}" name="${facet.id}" value="${opt.id}" ${checked}>
+      <span class="opt-inner">
+        <span class="opt-mark">${icon('check')}</span>
+        <span class="opt-glyph">${icon(opt.icon)}</span>
+        <span>
+          <span class="opt-label">${t(opt.label)}</span>
+          <span class="opt-desc">${t(opt.desc)}</span>
+          <span class="opt-foot">${corpus}${formal}</span>
+        </span>
+      </span>
+    </label>`;
+  }
+
+  function questionBlock(facet) {
+    const cols = facet.options.length > 3 ? 2 : 1;
+    const hintBits = [
+      facet.required ? '' : `<span class="tag">${ui('optional')}</span>`,
+      facet.multi ? `<span class="tag">${ui('multiHint')}</span>` : `<span class="tag">${ui('singleHint')}</span>`,
+      facet.options.some(o => o.id === 'unknown' || o.silence) ? `<span class="tag">${ui('dontKnowOk')}</span>` : ''
+    ].join('');
+    const other = facet.allowOther ? `
+      <div class="other-field">
+        <label class="field-label" for="other-${facet.id}">${ui('otherLabel')}</label>
+        <input class="text-input" id="other-${facet.id}" data-other="${facet.id}" value="${escapeAttr(state.otherModel)}" placeholder="${ui('otherPh')}">
+      </div>` : '';
+    return `<fieldset class="qblock">
+      <legend class="sr-only">${t(facet.question)}</legend>
+      <div class="q-head">
+        <span class="q-icon">${icon(facet.icon)}</span>
+        <div>
+          <p class="dim-chip">${t(DIMS[facet.dim === 'operational' ? 'operational' : facet.dim === 'technical' ? 'technical' : 'risk'])}</p>
+          <h2 class="q-title">${t(facet.question)}</h2>
+          <p class="q-hint">${t(facet.hint)}</p>
+          <p class="q-hint expert-only">${t(facet.help)}</p>
+          <div class="q-meta">
+            ${hintBits}
+            <span class="tag tag-sq expert-only">${ui('sqLabel')} ${facet.sq}</span>
+            <span class="tag expert-only">${ui('formalLabel')}: ${t(facet.formalName)}</span>
+          </div>
+        </div>
+      </div>
+      <div class="opts" data-cols="${cols}">
+        ${facet.options.map(o => optionCard(facet, o)).join('')}
+        ${other}
+      </div>
+    </fieldset>`;
+  }
+
+  function renderForm() {
+    renderStepper();
+    const facets = facetsFor(state.step);
+    const titles = {
+      1: { pt: 'Em que momento a IA entra', en: 'When AI comes in' },
+      2: { pt: 'Quem dá a palavra final', en: 'Who has the final say' },
+      3: { pt: 'O que a ferramenta exige', en: 'What the tool demands' },
+      4: { pt: 'O que isso custa para as pessoas', en: 'What that costs people' }
+    };
+    const leads = {
+      1: { pt: 'Comece pela etapa da produção. É o que delimita o objeto da ficha.', en: 'Start with the production stage. That delimits the object of the sheet.' },
+      2: { pt: 'Esta é a pergunta de maior poder discriminante da taxonomia.', en: 'This is the taxonomy’s most discriminating question.' },
+      3: { pt: 'Tecnologia, modelo, saída, infraestrutura e o gargalo do dia a dia.', en: 'Technology, model, output, infrastructure and the everyday bottleneck.' },
+      4: { pt: 'Autoria, viés, trabalho, reprodutibilidade e sinalização ao público.', en: 'Authorship, bias, labour, reproducibility and disclosure to the audience.' }
+    };
+    const nameField = state.step === 1 ? `
+      <div class="qblock">
+        <label class="field-label" for="project-name">${ui('projectName')} <span class="tag">${ui('projectOptional')}</span></label>
+        <input class="text-input" id="project-name" value="${escapeAttr(state.projectName)}" placeholder="${ui('projectPh')}" autocomplete="off">
+      </div>` : '';
+    const last = state.step === 4;
+    $('#form-root').innerHTML = `
+      <header class="step-head">
+        <p class="eyebrow">${ui('formTitle')}</p>
+        <h1 class="step-title">${t(titles[state.step])}</h1>
+        <p class="step-lead">${t(leads[state.step])}</p>
+      </header>
+      <div class="form-error" id="form-error" hidden>${icon('alert')}<span>${ui('required')}</span></div>
+      ${nameField}
+      ${facets.map(questionBlock).join('')}
+      <div class="form-nav">
+        <button type="button" class="btn btn-ghost" data-back ${state.step === 1 ? 'disabled' : ''}>${ui('back')}</button>
+        <span class="spacer"></span>
+        <button type="button" class="btn btn-primary" data-next>${last ? ui('seeResult') : ui('next')}</button>
+      </div>`;
+    if (state.error) {
+      const err = $('#form-error');
+      err.hidden = false;
+      err.scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  function stepValid() {
+    return facetsFor(state.step).every(f => {
+      if (!f.required) return true;
+      const v = selected(f);
+      return f.multi ? v.length > 0 : !!v;
+    });
+  }
+
+  /* --- Result ---------------------------------------------------------- */
+  function gaugeSVG(value) {
+    const off = RING - RING * Math.max(0, Math.min(100, value)) / 100;
+    return `<div class="gauge-ring">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <circle class="track" cx="60" cy="60" r="52"></circle>
+        <circle class="fill" cx="60" cy="60" r="52" stroke-dasharray="${RING.toFixed(2)}" stroke-dashoffset="${off.toFixed(2)}"></circle>
+      </svg>
+      <div class="gauge-num">${value}<small>${ui('costOf')}</small></div>
+    </div>`;
+  }
+
+  function radarValue(level) {
+    return { ok: 22, warn: 58, alert: 94 }[level] || 58;
+  }
+  function renderRadar(answers) {
+    const items = VERDICTS;
+    const n = items.length;
+    const cx = 160, cy = 158, r = 86;
+    const polar = (i, pct) => {
+      const ang = -Math.PI / 2 + (i * 2 * Math.PI / n);
+      const rr = (pct / 100) * r;
+      return [cx + rr * Math.cos(ang), cy + rr * Math.sin(ang)];
+    };
+    const web = [25, 50, 75, 100].map(pct => {
+      const pts = items.map((_, i) => polar(i, pct).join(',')).join(' ');
+      return `<polygon class="web" points="${pts}"/>`;
+    }).join('');
+    const axes = items.map((_, i) => {
+      const [x, y] = polar(i, 100);
+      return `<line class="axis" x1="${cx}" y1="${cy}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`;
+    }).join('');
+    const vals = items.map(v => radarValue(v.level(answers)));
+    const poly = vals.map((val, i) => polar(i, val).map(n => n.toFixed(1)).join(',')).join(' ');
+    const dots = vals.map((val, i) => {
+      const [x, y] = polar(i, val);
+      return `<circle class="dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.5"/>`;
+    }).join('');
+    const labels = items.map((v, i) => {
+      const [x, y] = polar(i, 124);
+      return `<text class="lbl" x="${x.toFixed(1)}" y="${y.toFixed(1)}" text-anchor="middle" dominant-baseline="middle">${escapeHtml(t(RADAR_SHORT[v.id] || v.title))}</text>`;
+    }).join('');
+    return `<svg class="radar-svg" viewBox="0 0 320 316" role="img" aria-label="${ui('radarTitle')}">
+      ${web}${axes}
+      <polygon class="fill" points="${poly}"/>
+      ${dots}${labels}
+    </svg>`;
+  }
+
+  function renderPipe(answers) {
+    const facet = FACETS.find(f => f.id === 'stage');
+    const on = answers.stage || [];
+    return `<div class="pipe-row">${facet.options.map(o => `
+      <div class="pipe-cell" data-on="${on.includes(o.id) ? 'true' : 'false'}">
+        <span class="st">${t(o.label)}</span>
+        <span class="on">${on.includes(o.id) ? ui('pipeOn') : ui('pipeOff')}</span>
+      </div>`).join('')}</div>`;
+  }
+
+  function renderCompareBars(s) {
+    const metrics = [
+      { key: 'autonomy', label: ui('gaugeAutonomy') },
+      { key: 'tech', label: ui('gaugeTech') },
+      { key: 'social', label: ui('gaugeSocial') }
+    ];
+    const series = [
+      { cls: 'you', name: ui('mapYou'), scores: s },
+      ...CASES.map((c, i) => ({ cls: 'c' + i, name: c.name, scores: scores(c.answers) }))
+    ];
+    const W = 520, H = 228, p = { l: 28, r: 8, t: 12, b: 38 };
+    const groupW = (W - p.l - p.r) / metrics.length;
+    const barW = 16, gap = 4;
+    const nBars = series.length;
+    const cluster = nBars * barW + (nBars - 1) * gap;
+    const yScale = v => H - p.b - (Math.max(0, Math.min(100, v)) / 100) * (H - p.t - p.b);
+    const bars = metrics.map((m, gi) => {
+      const gx = p.l + gi * groupW + (groupW - cluster) / 2;
+      const rects = series.map((ser, si) => {
+        const val = ser.scores[m.key] ?? 0;
+        const x = gx + si * (barW + gap);
+        const y = yScale(val);
+        const h = Math.max(1, H - p.b - y);
+        return `<rect class="${ser.cls}" x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barW}" height="${h.toFixed(1)}" rx="2">
+          <title>${escapeHtml(ser.name)} — ${escapeHtml(m.label)}: ${val}</title></rect>`;
+      }).join('');
+      const lx = p.l + gi * groupW + groupW / 2;
+      return `${rects}<text class="lbl" x="${lx.toFixed(1)}" y="${H - 14}" text-anchor="middle">${escapeHtml(m.label)}</text>`;
+    }).join('');
+    const legend = series.map(ser =>
+      `<span><i class="${ser.cls}"></i>${escapeHtml(ser.name)}</span>`
+    ).join('');
+    return `<div class="bars-scroll">
+      <svg class="bars-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${ui('barsTitle')}">
+        <line class="axis" x1="${p.l}" y1="${H - p.b}" x2="${W - p.r}" y2="${H - p.b}"/>
+        ${bars}
+      </svg>
+    </div>
+    <div class="viz-legend">${legend}</div>`;
+  }
+
+  function renderFacetBars(answers) {
+    const groups = [
+      { key: 'operational', title: ui('dimOp') },
+      { key: 'technical', title: ui('dimTe') },
+      { key: 'risk', title: ui('dimRi') }
+    ];
+    return `<div class="facet-bars">${groups.map(g => {
+      const rows = FACETS.filter(f => f.dim === g.key && f.id !== 'stage').map(f => {
+        const n = scoreOf(f, answers);
+        if (n == null) return '';
+        return `<div class="fbar">
+          <span class="k">${escapeHtml(t(f.formalName))}</span>
+          <span class="track"><span class="fill" data-tone="${tone(n)}" style="width:${n}%"></span></span>
+          <span class="n">${n}</span>
+        </div>`;
+      }).join('');
+      return `<div class="facet-group"><h3>${g.title}</h3>${rows}</div>`;
+    }).join('')}</div>`;
+  }
+
+  function renderMap(s) {
+    const W = 420, H = 300, p = { l: 48, r: 18, t: 18, b: 42 };
+    const x = v => p.l + (v / 100) * (W - p.l - p.r);
+    const y = v => H - p.b - (v / 100) * (H - p.t - p.b);
+    const dots = CASES.map(c => {
+      const cs = scores(c.answers);
+      return `<circle class="dot-case" cx="${x(cs.autonomy)}" cy="${y(cs.social)}" r="6">
+        <title>${c.name}</title></circle>
+        <text class="lbl" x="${x(cs.autonomy) + 8}" y="${y(cs.social) - 8}">${c.name}</text>`;
+    }).join('');
+    return `<div class="map-wrap">
+      <svg class="map-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${ui('mapTitle')}">
+        <line class="grid" x1="${x(50)}" y1="${y(0)}" x2="${x(50)}" y2="${y(100)}"/>
+        <line class="grid" x1="${x(0)}" y1="${y(50)}" x2="${x(100)}" y2="${y(50)}"/>
+        <line class="axis" x1="${p.l}" y1="${H - p.b}" x2="${W - p.r}" y2="${H - p.b}"/>
+        <line class="axis" x1="${p.l}" y1="${H - p.b}" x2="${p.l}" y2="${p.t}"/>
+        <text class="lbl" x="${W / 2}" y="${H - 8}">${ui('mapAxisX')}</text>
+        <text class="lbl" x="14" y="${H / 2}" transform="rotate(-90 14 ${H / 2})">${ui('mapAxisY')}</text>
+        <text class="lbl" x="${x(2)}" y="${H - p.b + 16}">${ui('mapLow')}</text>
+        <text class="lbl" x="${x(88)}" y="${H - p.b + 16}">${ui('mapHigh')}</text>
+        ${dots}
+        <circle class="dot-you" cx="${x(s.autonomy)}" cy="${y(s.social)}" r="8">
+          <title>${ui('mapYou')}</title></circle>
+        <text class="lbl lbl-you" x="${x(s.autonomy) + 10}" y="${y(s.social) + 4}">${ui('mapYou')}</text>
+      </svg>
+      <div class="map-legend">
+        <span><i class="you"></i>${ui('mapYou')}</span>
+        <span><i class="case"></i>${ui('compareTitle')}</span>
+      </div>
+    </div>`;
+  }
+
+  function sheetHTML(answers) {
+    const groups = [
+      { key: 'operational', ids: FACETS.filter(f => f.dim === 'operational') },
+      { key: 'technical', ids: FACETS.filter(f => f.dim === 'technical') },
+      { key: 'risk', ids: FACETS.filter(f => f.dim === 'risk') }
+    ];
+    return `<div class="sheet">${groups.map(g => `
+      <div class="sheet-dim">
+        <h3>${ui(g.key === 'operational' ? 'dimOp' : g.key === 'technical' ? 'dimTe' : 'dimRi')}</h3>
+        ${g.ids.map(f => `<div class="sheet-row"><span class="sheet-k">${t(f.formalName)}</span><span class="sheet-v">${formalValue(f, answers)}</span></div>`).join('')}
+      </div>`).join('')}</div>`;
+  }
+
+  function sheetText(answers, s) {
+    const lines = [
+      `TIGA — ${ui('resultEyebrow')}`,
+      state.projectName ? `${ui('projectName')}: ${state.projectName}` : '',
+      `${ui('gaugeAutonomy')}: ${s.autonomy}/100`,
+      `${ui('gaugeTech')}: ${s.tech}/100`,
+      `${ui('gaugeSocial')}: ${s.social}/100`,
+      ''
+    ];
+    for (const f of FACETS) lines.push(`${t(f.formalName)}: ${formalValue(f, answers)}`);
+    return lines.filter(Boolean).join('\n');
+  }
+
+  function renderResult(answers) {
+    const s = scores(answers);
+    const badge = badgeOf(s);
+    const name = state.projectName;
+    const verdicts = VERDICTS.map(v => {
+      const lv = v.level(answers);
+      return `<article class="verdict" data-level="${lv}">
+        <div class="verdict-top">
+          <span class="verdict-ico">${icon(v.icon)}</span>
+          <h3>${t(v.title)}</h3>
+          <span class="level-pill">${levelLabel(lv)}</span>
+        </div>
+        <p class="verdict-body">${t(v.body[lv])}</p>
+        <div class="verdict-action"><strong>${ui('actionLabel')}</strong>${t(v.action[lv])}</div>
+      </article>`;
+    }).join('');
+    const recs = RULES.filter(r => r.when(answers, s));
+    const recHTML = recs.length
+      ? recs.map(r => `<article class="rec" data-tone="${r.tone}"><h3>${t(r.title)}</h3><p>${t(r.body)}</p></article>`).join('')
+      : `<p class="rec-empty">${ui('recEmpty')}</p>`;
+    const cases = CASES.map(c => {
+      const cs = scores(c.answers);
+      const auto = optionOf(FACETS.find(f => f.id === 'autonomy'), c.answers.autonomy);
+      return `<article class="case-card">
+        <h3>${c.name}</h3>
+        <p class="note">${t(c.note)}</p>
+        <div class="case-meta">
+          <span class="tag">${auto ? t(auto.label) : ''}</span>
+          <span class="tag">${ui('gaugeSocial')} ${cs.social}</span>
+        </div>
+        <button type="button" class="btn btn-quiet" data-example="${c.id}">${ui('openCase')}</button>
+      </article>`;
+    }).join('');
+
+    $('#result-root').innerHTML = `
+      <header class="result-head">
+        <p class="eyebrow">${ui('resultEyebrow')}</p>
+        <h1 class="result-title">${ui('resultTitle')}</h1>
+        ${name ? `<p class="project-kicker">${escapeHtml(name)}</p>` : ''}
+        <div class="badge" data-level="${badge}">
+          <span class="badge-name">${ui(badge === 'low' ? 'badgeLow' : badge === 'high' ? 'badgeHigh' : 'badgeMid')}</span>
+          <span class="badge-desc">${ui(badge === 'low' ? 'badgeLowD' : badge === 'high' ? 'badgeHighD' : 'badgeMidD')}</span>
+        </div>
+      </header>
+
+      <div class="gauges">
+        <article class="gauge" data-tone="${tone(s.autonomy)}">
+          ${gaugeSVG(s.autonomy)}
+          <h3>${ui('gaugeAutonomy')}</h3>
+          <p>${ui('gaugeAutoHelp')}</p>
+        </article>
+        <article class="gauge" data-tone="${tone(s.tech)}">
+          ${gaugeSVG(s.tech)}
+          <h3>${ui('gaugeTech')}</h3>
+          <p>${ui('gaugeTechHelp')}</p>
+        </article>
+        <article class="gauge" data-tone="${tone(s.social)}">
+          ${gaugeSVG(s.social)}
+          <h3>${ui('costLabel')}</h3>
+          <p>${ui('gaugeSocHelp')}</p>
+        </article>
+      </div>
+      <p class="caveat">${ui('costCaveat')}</p>
+
+      <div class="silence-box" data-n="${s.silence}">
+        <div class="silence-n">${s.silence}</div>
+        <div>
+          <h3>${ui('silenceTitle')}</h3>
+          <p>${s.silence ? ui('silenceOf').replace('{n}', s.silence).replace('{total}', SILENCE_IDS.length) : ui('silenceNone')} ${ui('silenceHelp')}</p>
+        </div>
+      </div>
+
+      <div class="viz-grid">
+        <article class="viz-card">
+          <h3>${ui('radarTitle')}</h3>
+          <p class="lead">${ui('radarLead')}</p>
+          ${renderRadar(answers)}
+        </article>
+        <article class="viz-card">
+          <h3>${ui('pipeTitle')}</h3>
+          ${renderPipe(answers)}
+          <h3 style="margin-top:1.5rem">${ui('barsTitle')}</h3>
+          <p class="lead">${ui('barsLead')}</p>
+          ${renderCompareBars(s)}
+        </article>
+      </div>
+
+      <section class="result-block">
+        <h2>${ui('verdictTitle')}</h2>
+        <p class="lead">${ui('verdictLead')}</p>
+        <div class="verdicts">${verdicts}</div>
+      </section>
+
+      <section class="result-block">
+        <h2>${ui('recTitle')}</h2>
+        <div class="recs">${recHTML}</div>
+      </section>
+
+      <section class="result-block">
+        <h2>${ui('mapTitle')}</h2>
+        <p class="lead">${ui('mapLead')}</p>
+        ${renderMap(s)}
+      </section>
+
+      <section class="result-block">
+        <h2>${ui('compareTitle')}</h2>
+        <p class="lead">${ui('compareLead')}</p>
+        <div class="compare">
+          <div class="you-strip"><strong>${ui('youVs')}</strong>
+            <span class="tag">${ui('gaugeAutonomy')} ${s.autonomy}</span>
+            <span class="tag">${ui('gaugeTech')} ${s.tech}</span>
+            <span class="tag">${ui('gaugeSocial')} ${s.social}</span>
+          </div>
+          ${cases}
+        </div>
+      </section>
+
+      <section class="result-block">
+        <h2>${ui('facetTitle')}</h2>
+        <p class="lead">${ui('facetLead')}</p>
+        ${renderFacetBars(answers)}
+      </section>
+
+      <section class="result-block">
+        <h2>${ui('sheetTitle')}</h2>
+        <p class="lead">${ui('sheetLead')}</p>
+        ${sheetHTML(answers)}
+        <div class="sheet-actions">
+          <button type="button" class="btn btn-primary" data-save>${ui('histSave')}</button>
+          <button type="button" class="btn btn-ghost" data-copy>${ui('copySheet')}</button>
+          <button type="button" class="btn btn-ghost" data-print>${ui('printSheet')}</button>
+          <button type="button" class="btn btn-ghost" data-edit>${ui('edit')}</button>
+          <button type="button" class="btn btn-quiet" data-restart>${ui('restart')}</button>
+        </div>
+      </section>`;
+  }
+
+  /* --- Navigation ------------------------------------------------------ */
+  function showView(name, hash, opts) {
+    opts = opts || {};
+    state.view = name;
+    state.error = false;
+    $$('.view').forEach(v => { v.hidden = v.id !== `view-${name}`; });
+    $$('.header-nav button').forEach(b => {
+      const on = b.dataset.go === name && (!b.dataset.hash || b.dataset.hash === hash);
+      if (on) b.setAttribute('aria-current', 'page');
+      else b.removeAttribute('aria-current');
+    });
+    if (name === 'form') renderForm();
+    if (name === 'result') renderResult(state.answers);
+    if (name === 'glossary') renderGloss();
+    if (name === 'about') renderAbout();
+    if (name === 'history') renderHistory();
+    if (name === 'home') { renderPipeline(); renderHow(); renderSample(); }
+    if (opts.silent) return;
+    const target = hash ? document.getElementById(hash) : $('#main');
+    const el = target || $('#main');
+    const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+    moveFocus(el);
+  }
+
+  /* Leva o foco para o primeiro título da tela aberta, sem deixar um
+     tabindex permanente no documento. */
+  function moveFocus(scope) {
+    const heading = scope.querySelector('h1, h2, .step-title, .result-title') || scope;
+    if (!heading.hasAttribute('tabindex')) {
+      heading.setAttribute('tabindex', '-1');
+      heading.addEventListener('blur', () => heading.removeAttribute('tabindex'), { once: true });
+    }
+    try { heading.focus({ preventScroll: true }); } catch (_) { heading.focus(); }
+  }
+
+  function loadCase(id) {
+    const c = CASES.find(x => x.id === id);
+    if (!c) return;
+    state.answers = { ...c.answers };
+    state.projectName = c.name;
+    state.otherModel = '';
+    persist();
+    showView('result');
+  }
+
+  function restart() {
+    if (!confirm(ui('restartConfirm'))) return;
+    state.answers = {};
+    state.projectName = '';
+    state.otherModel = '';
+    state.step = 1;
+    persist();
+    showView('form');
+  }
+
+  async function copySheet() {
+    const s = scores(state.answers);
+    const text = sheetText(state.answers, s);
+    try {
+      await navigator.clipboard.writeText(text);
+      const btn = $('[data-copy]');
+      if (btn) { btn.textContent = ui('copied'); setTimeout(() => { btn.textContent = ui('copySheet'); }, 1800); }
+    } catch (_) {
+      alert(ui('copyFail'));
+    }
+  }
+
+  function bind() {
+    $('#expert-toggle').checked = state.expert;
+    document.documentElement.dataset.expert = state.expert ? 'on' : 'off';
+
+    document.addEventListener('click', e => {
+      const go = e.target.closest('[data-go]');
+      if (go) {
+        showView(go.dataset.go, go.dataset.hash);
+        return;
+      }
+      const ex = e.target.closest('[data-example]');
+      if (ex) { loadCase(ex.dataset.example); return; }
+      const langBtn = e.target.closest('[data-lang]');
+      if (langBtn) {
+        state.lang = langBtn.dataset.lang;
+        persist();
+        refresh();
+        return;
+      }
+      if (e.target.closest('#theme-toggle')) {
+        const darkNow = document.documentElement.getAttribute('data-theme') === 'dark'
+          || (!document.documentElement.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+        state.theme = darkNow ? 'light' : 'dark';
+        persist();
+        applyTheme();
+        return;
+      }
+      if (e.target.closest('[data-next]')) {
+        if (!stepValid()) { state.error = true; renderForm(); return; }
+        state.error = false;
+        if (state.step < 4) { state.step += 1; renderForm(); $('#form-root').scrollIntoView({ block: 'start' }); }
+        else { state.step = 5; showView('result'); }
+        return;
+      }
+      if (e.target.closest('[data-back]')) {
+        if (state.step > 1) { state.step -= 1; state.error = false; renderForm(); }
+        else showView('home');
+        return;
+      }
+      if (e.target.closest('[data-edit]')) { state.step = 1; showView('form'); return; }
+      if (e.target.closest('[data-restart]')) { restart(); return; }
+      if (e.target.closest('[data-copy]')) { copySheet(); return; }
+      if (e.target.closest('[data-print]')) { window.print(); return; }
+      if (e.target.closest('[data-save]')) {
+        saveCurrentSheet();
+        const btn = $('[data-save]');
+        if (btn) {
+          btn.textContent = ui('histSaved');
+          setTimeout(() => { if (btn.isConnected) btn.textContent = ui('histSave'); }, 1800);
+        }
+        return;
+      }
+      const hop = e.target.closest('[data-hist-open]');
+      if (hop) { openHistory(hop.dataset.histOpen); return; }
+      const hdel = e.target.closest('[data-hist-del]');
+      if (hdel) {
+        if (confirm(ui('histDeleteQ'))) deleteHistory(hdel.dataset.histDel);
+        return;
+      }
+    });
+
+    document.addEventListener('change', e => {
+      if (e.target.id === 'expert-toggle') {
+        state.expert = e.target.checked;
+        document.documentElement.dataset.expert = state.expert ? 'on' : 'off';
+        persist();
+        return;
+      }
+      const input = e.target.closest('.opt-input');
+      if (input) {
+        const facet = FACETS.find(f => f.id === input.name);
+        if (!facet) return;
+        setAnswer(facet, input.value, input.checked);
+        if (facet.multi && (optionOf(facet, input.value)?.exclusive || facet.options.some(o => o.exclusive))) {
+          renderForm();
+        }
+        state.error = false;
+        const err = $('#form-error');
+        if (err) err.hidden = true;
+      }
+    });
+
+    document.addEventListener('input', e => {
+      if (e.target.id === 'project-name') {
+        state.projectName = e.target.value;
+        persist();
+      }
+      if (e.target.dataset.other) {
+        state.otherModel = e.target.value;
+        persist();
+      }
+    });
+
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (state.theme === 'system') applyTheme();
+    });
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+  }
+  function escapeAttr(str) { return escapeHtml(str); }
+
+  function refresh() {
+    applyLang();
+    applyTheme();
+    if (state.view === 'home') { renderPipeline(); renderHow(); renderSample(); }
+    else if (state.view === 'form') renderForm();
+    else if (state.view === 'result') renderResult(state.answers);
+    else if (state.view === 'glossary') renderGloss();
+    else if (state.view === 'about') renderAbout();
+    else if (state.view === 'history') renderHistory();
+  }
+
+  load();
+  bind();
+  applyTheme();
+  applyLang();
+  showView('home', null, { silent: true });
+})();
+
+  </script>
+</body>
+</html>

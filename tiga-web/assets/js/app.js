@@ -213,15 +213,24 @@
     const dark = state.theme === 'dark' || (state.theme === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
     $('#icon-moon').hidden = dark;
     $('#icon-sun').hidden = !dark;
+    const btn = $('#theme-toggle');
+    if (btn) {
+      btn.setAttribute('aria-label', dark ? ui('themeLight') : ui('themeDark'));
+      btn.setAttribute('title', dark ? ui('themeLight') : ui('themeDark'));
+      btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    }
   }
 
   function applyLang() {
     document.documentElement.lang = state.lang === 'en' ? 'en' : 'pt-BR';
     document.title = state.lang === 'en'
-      ? 'TIGA — spec sheet for AI in audiovisual'
-      : 'TIGA — ficha de integração da IA no audiovisual';
+      ? 'TIGA — Taxonomy of AI in Audiovisual'
+      : 'TIGA — Taxonomia da IA no Audiovisual';
     $$('[data-i18n]').forEach(el => { el.textContent = ui(el.dataset.i18n); });
-    $$('[data-i18n-aria]').forEach(el => { el.setAttribute('aria-label', ui(el.dataset.i18nAria)); });
+    $$('[data-i18n-aria]').forEach(el => {
+      if (el.id === 'theme-toggle') return; // rótulo definido em applyTheme, conforme o estado
+      el.setAttribute('aria-label', ui(el.dataset.i18nAria));
+    });
     $$('[data-i18n-title]').forEach(el => { el.setAttribute('title', ui(el.dataset.i18nTitle)); });
     $$('.flag-btn').forEach(btn => { btn.setAttribute('aria-pressed', btn.dataset.lang === state.lang ? 'true' : 'false'); });
   }
@@ -580,10 +589,12 @@
     const legend = series.map(ser =>
       `<span><i class="${ser.cls}"></i>${escapeHtml(ser.name)}</span>`
     ).join('');
-    return `<svg class="bars-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${ui('barsTitle')}">
-      <line class="axis" x1="${p.l}" y1="${H - p.b}" x2="${W - p.r}" y2="${H - p.b}"/>
-      ${bars}
-    </svg>
+    return `<div class="bars-scroll">
+      <svg class="bars-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${ui('barsTitle')}">
+        <line class="axis" x1="${p.l}" y1="${H - p.b}" x2="${W - p.r}" y2="${H - p.b}"/>
+        ${bars}
+      </svg>
+    </div>
     <div class="viz-legend">${legend}</div>`;
   }
 
@@ -630,7 +641,7 @@
         ${dots}
         <circle class="dot-you" cx="${x(s.autonomy)}" cy="${y(s.social)}" r="8">
           <title>${ui('mapYou')}</title></circle>
-        <text class="lbl" x="${x(s.autonomy) + 10}" y="${y(s.social) + 4}" fill="currentColor">${ui('mapYou')}</text>
+        <text class="lbl lbl-you" x="${x(s.autonomy) + 10}" y="${y(s.social) + 4}">${ui('mapYou')}</text>
       </svg>
       <div class="map-legend">
         <span><i class="you"></i>${ui('mapYou')}</span>
@@ -803,7 +814,8 @@
   }
 
   /* --- Navigation ------------------------------------------------------ */
-  function showView(name, hash) {
+  function showView(name, hash, opts) {
+    opts = opts || {};
     state.view = name;
     state.error = false;
     $$('.view').forEach(v => { v.hidden = v.id !== `view-${name}`; });
@@ -818,8 +830,23 @@
     if (name === 'about') renderAbout();
     if (name === 'history') renderHistory();
     if (name === 'home') { renderPipeline(); renderHow(); renderSample(); }
+    if (opts.silent) return;
     const target = hash ? document.getElementById(hash) : $('#main');
-    (target || $('#main')).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const el = target || $('#main');
+    const smooth = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
+    moveFocus(el);
+  }
+
+  /* Leva o foco para o primeiro título da tela aberta, sem deixar um
+     tabindex permanente no documento. */
+  function moveFocus(scope) {
+    const heading = scope.querySelector('h1, h2, .step-title, .result-title') || scope;
+    if (!heading.hasAttribute('tabindex')) {
+      heading.setAttribute('tabindex', '-1');
+      heading.addEventListener('blur', () => heading.removeAttribute('tabindex'), { once: true });
+    }
+    try { heading.focus({ preventScroll: true }); } catch (_) { heading.focus(); }
   }
 
   function loadCase(id) {
@@ -972,5 +999,5 @@
   bind();
   applyTheme();
   applyLang();
-  showView('home');
+  showView('home', null, { silent: true });
 })();

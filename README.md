@@ -12,6 +12,10 @@ Não é preciso instalar nada. Abra o link:
 
 **https://guiroth29.github.io/tiga-qualificacao-mestrado/**
 
+A página funciona em celular e tem modo claro e escuro, além dos botões de
+bandeira para alternar entre português e inglês. Todo push na `main` republica
+o site automaticamente.
+
 O atalho **Ver um exemplo pronto** mostra uma ficha já preenchida (estudo MagicVFX do corpus). **Classificar meu projeto** percorre o protocolo da taxonomia e gera o resultado.
 
 **Minhas fichas** guarda classificações só neste navegador (não há login). Para a apresentação, use o exemplo pronto ou classifique um projeto na hora.
@@ -20,8 +24,14 @@ O atalho **Ver um exemplo pronto** mostra uma ficha já preenchida (estudo Magic
 
 | Pasta | Conteúdo |
 | --- | --- |
-| [`tiga-web/`](tiga-web/) | Ferramenta web (HTML, CSS e JavaScript). Sem servidor, sem banco, sem build. |
+| [`tiga-web/`](tiga-web/) | Ferramenta web (HTML, CSS e JavaScript). Sem servidor, sem banco e sem dependências. |
 | [`Qualificação_mestrado/`](Qualificação_mestrado/) | Fonte LaTeX da qualificação e um PDF compilado (`main.pdf`), quando disponível. |
+
+## Levar o site para a apresentação, sem depender de internet
+
+O arquivo [`tiga-web/dist/tiga.html`](tiga-web/dist/tiga.html) é a ferramenta
+inteira num arquivo só: baixe, abra com duplo clique e ela funciona offline, com
+ou sem conexão na sala. Serve de plano B para a banca.
 
 ## Rodar o site no computador
 
@@ -33,6 +43,9 @@ python3 -m http.server 8765
 ```
 
 Depois acesse `http://localhost:8765/`.
+
+Depois de editar qualquer arquivo em `tiga-web/assets/`, rode `python3 build.py`
+dentro de `tiga-web/` para regenerar o arquivo único.
 
 ## Compilar a qualificação (LaTeX)
 

@@ -61,6 +61,7 @@
 
   --wrap: 74rem;
   --read: 40rem;
+  --gutter: 1.25rem;
 }
 
 /* --- Tokens: tema escuro por preferência do sistema ---------------------- */
@@ -183,8 +184,8 @@ a:hover { color: var(--accent-hover); }
 }
 .skip-link:focus { top: var(--sp-3); color: var(--accent-ink); }
 
-.wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
-@media (max-width: 30rem) { .wrap { width: min(100% - 1.75rem, var(--wrap)); } }
+.wrap { width: min(100% - (var(--gutter) * 2), var(--wrap)); margin-inline: auto; }
+@media (max-width: 30rem) { :root { --gutter: .875rem; } }
 
 .eyebrow {
   font-family: var(--font-display);
@@ -229,6 +230,7 @@ a:hover { color: var(--accent-hover); }
 .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
 .brand-name { font-family: var(--font-display); font-weight: 800; font-size: var(--fs-base); letter-spacing: .02em; }
 .brand-sub { font-size: .6875rem; color: var(--ink-3); letter-spacing: .01em; max-width: 22ch; }
+@media (max-width: 40rem) { .brand-sub { display: none; } .brand-mark { width: 2rem; height: 2rem; } }
 
 .header-nav { display: flex; gap: var(--sp-1); margin-inline-start: auto; }
 .header-nav button {
@@ -238,7 +240,16 @@ a:hover { color: var(--accent-hover); }
 }
 .header-nav button:hover { background: var(--surface-sunk); color: var(--ink); }
 .header-nav button[aria-current="page"] { color: var(--ink); font-weight: 600; }
-@media (max-width: 56rem) { .header-nav { order: 3; width: 100%; margin-inline-start: 0; border-top: 1px solid var(--line); padding-block: var(--sp-1); overflow-x: auto; } }
+@media (max-width: 56rem) {
+  .header-nav {
+    order: 3; width: 100%; margin-inline-start: 0;
+    border-top: 1px solid var(--line); padding-block: var(--sp-1);
+    overflow-x: auto; scroll-snap-type: x proximity;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .header-nav::-webkit-scrollbar { display: none; }
+  .header-nav button { scroll-snap-align: start; white-space: nowrap; }
+}
 
 .ctl-group { display: flex; align-items: center; gap: var(--sp-2); margin-inline-start: auto; }
 @media (max-width: 56rem) { .ctl-group { margin-inline-start: auto; } }
@@ -248,9 +259,10 @@ a:hover { color: var(--accent-hover); }
   background: var(--surface-sunk); border: 1px solid var(--line); border-radius: var(--r-md);
 }
 .flag-btn {
-  display: grid; place-items: center; width: 2.5rem; height: 2.25rem;
+  display: grid; place-items: center; width: 2.75rem; height: 2.5rem;
   background: none; border: 0; border-radius: var(--r-sm); cursor: pointer; padding: 0;
 }
+@media (pointer: coarse) { .flag-btn { height: 2.75rem; } }
 .flag-btn svg { width: 1.5rem; height: 1.05rem; border-radius: 1px; display: block; box-shadow: 0 0 0 1px rgba(0,0,0,.14); }
 .flag-btn:hover { background: var(--surface); }
 .flag-btn[aria-pressed="true"] { background: var(--surface); box-shadow: inset 0 0 0 2px var(--accent); }
@@ -307,9 +319,15 @@ a:hover { color: var(--accent-hover); }
 
 .pipeline-strip {
   display: flex; gap: 1px; margin-top: var(--sp-7);
-  border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r-md); background: var(--line);
+  overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: thin;
+  overscroll-behavior-x: contain;
 }
-.pipeline-cell { background: var(--surface); padding: var(--sp-3) var(--sp-4); flex: 1; min-width: 0; }
+.pipeline-cell {
+  background: var(--surface); padding: var(--sp-3) var(--sp-4);
+  flex: 1 0 11rem; min-width: 0; scroll-snap-align: start;
+}
+@media (min-width: 62rem) { .pipeline-strip { overflow: hidden; } .pipeline-cell { flex: 1 1 0; } }
 .pipeline-cell .num { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--accent); }
 .pipeline-cell .lbl { display: block; font-family: var(--font-display); font-weight: 600; font-size: var(--fs-sm); margin-top: 2px; }
 .pipeline-cell .sub { display: block; font-size: var(--fs-xs); color: var(--ink-3); margin-top: 2px; }
@@ -422,8 +440,8 @@ a:hover { color: var(--accent-hover); }
     position: sticky; bottom: 0; z-index: 20;
     background: color-mix(in srgb, var(--ground) 92%, transparent);
     backdrop-filter: blur(12px);
-    margin-inline: calc(var(--sp-4) * -1);
-    padding: var(--sp-4);
+    margin-inline: calc(var(--gutter) * -1);
+    padding: var(--sp-4) var(--gutter);
     border-top: 1px solid var(--line);
   }
 }
@@ -790,3 +808,69 @@ html[data-expert="on"] p.expert-only { display: block !important; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 
+/* =========================================================================
+   Ajustes para telas estreitas e toque
+   ========================================================================= */
+
+/* Nada deve provocar rolagem lateral da página. */
+html, body { overflow-x: clip; }
+@supports not (overflow: clip) { html, body { overflow-x: hidden; } }
+
+/* Gráficos: o texto do SVG encolhe junto com o viewBox, então em telas
+   estreitas ele precisa nascer maior para continuar legível. Cada gráfico
+   guarda uma largura mínima e rola dentro do próprio cartão. */
+.map-wrap, .viz-card { max-width: 100%; }
+.map-wrap { overflow-x: auto; overscroll-behavior-x: contain; }
+.map-svg  { min-width: 19rem; }
+.bars-scroll { overflow-x: auto; overscroll-behavior-x: contain; }
+.bars-svg { min-width: 21rem; }
+.radar-svg { min-width: 15rem; }
+
+.map-svg .lbl, .bars-svg .lbl { font-size: 13px; }
+.radar-svg .lbl { font-size: 12px; }
+.map-svg .lbl-you { fill: var(--accent); font-weight: 700; }
+
+@media (max-width: 40rem) {
+  .map-svg .lbl, .bars-svg .lbl { font-size: 17px; }
+  .radar-svg .lbl { font-size: 14px; }
+  .map-wrap, .viz-card { padding: var(--sp-4) var(--sp-3); }
+  .gauge { padding: var(--sp-4); }
+  .qblock { padding: var(--sp-4); }
+  .opt-inner { padding: var(--sp-3); }
+  .verdict, .hist-card, .gloss-item { padding: var(--sp-4); }
+  .sheet-dim h3, .sheet-row { padding-inline: var(--sp-4); }
+  .sample-head, .sample-body { padding: var(--sp-4); }
+  .sample-foot { padding: var(--sp-3) var(--sp-4); }
+  .what-is, .silence-box, .rec, .badge { padding: var(--sp-4); }
+  .view { padding-block: var(--sp-6) var(--sp-8); }
+}
+
+/* O anel do medidor acompanha a largura disponível em telas pequenas. */
+.gauge-ring { width: min(8.5rem, 42vw); height: min(8.5rem, 42vw); }
+
+/* Cabeçalho do cartão de exemplo quebra em vez de espremer. */
+.sample-head { flex-wrap: wrap; }
+
+/* Títulos longos não podem estourar a caixa em telas estreitas. */
+.hero-title, .result-title, .page-head h1, .step-title, .q-title,
+.verdict h3, .rec h3, .case-card h3, .hist-card h3 { overflow-wrap: break-word; }
+
+/* Palavras técnicas longas na ficha (nomes de modelo, siglas). */
+.sheet-v, .opt-desc, .tag { overflow-wrap: anywhere; }
+
+/* Em telas de toque, todo controle chega aos 44px recomendados. */
+@media (pointer: coarse) {
+  .header-nav button, .icon-btn, .expert-toggle { min-height: 2.75rem; }
+  .btn-quiet { min-height: 2.75rem; padding-inline: var(--sp-2); }
+}
+
+/* A barra fixa do formulário não pode cobrir o conteúdo no fim da rolagem. */
+@media (max-width: 44rem) {
+  .form-shell { padding-bottom: var(--sp-4); }
+  .form-nav { padding-bottom: max(var(--sp-4), env(safe-area-inset-bottom)); }
+}
+
+/* Rolagem suave só para quem não pediu movimento reduzido. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
